@@ -1,0 +1,23 @@
+Dere skal lage en applikasjon som lar brukeren registrere Møter med tidspunkt, sted, og type møte.
+Møtene skal kunne listes i et ListView og det skal være mulig å endre og slette disse.
+
+Applikasjonen skal også kunne registrere kontakter med navn og telefon.
+Vennene skal også kunne listes, endres og slettes.
+
+Alt som registreres skal legges i en database. Dere vil trenge tabell for møter, kontakter og
+møtedeltagelse siden et møte kan være for mange kontakter og en kontakt kan delta på mange møter.
+
+Hensikten med applikasjonen er å kunne registrere møter med tidspunkt og hvilke kontakter som
+skal være med. En gang i døgnet skal appen sjekke om det er noen møter i dag. Hvis det er det
+skal brukeren få opp en notifikasjon om møtet. I tillegg skal det sendes sms med en påminnelse
+til kontaktene som skal være med på møtet.
+
+Standard SMS-beskjed skal lagres i SharedPreferences. Der skal det også være mulig å sette
+tidspunkt for utsendelse av SMS og det skal være mulig å slå av/på denne SMS-tjenesten.
+
+Hvis telefonen slås av skal servicen som starter den periodiske jobben startes på nytt når telefonen slås på.
+
+Positivt hvis dere lager en ContentProvider som gjør det mulig å dele møtedata med andre applikasjoner.
+Prøv gjerne å kode med fragmenter.
+
+Programmer mot API23 som sist. Lag rapport som sist og navngi prosjektet som sist.

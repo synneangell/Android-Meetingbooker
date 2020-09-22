@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">s331153s333975mappe2</string>
+    <string name="app_name">MøteBooker</string>
+    <string name="moteRegistrering">Registrer møte</string>
+    <string name="kontaktRegistrering">Registrer kontakt</string>
+    <string name="navn">Navn</string>
+    <string name="txtNavn"></string>
+    <string name="telefon">Telefon</string>
+    <string name="txtTelefon"></string>
+    <string name="tidspunkt">Tidspunkt</string>
+    <string name="txtTidspunkt"></string>
+    <string name="sted">Sted</string>
+    <string name="txtSted"></string>
+    <string name="type">Type</string>
+    <string name="txtType"></string>
+    <string name="registrer">Registrer</string>
 </resources>

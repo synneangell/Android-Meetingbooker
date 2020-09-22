@@ -16,4 +16,11 @@
         android:background="?attr/colorPrimary">
     </Toolbar>
 
+    <fragment
+        android:id="@+id/listefragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.example.s331153s333975mappe2.MoteFragment"
+        tools:layout="@layout/oversikt_mote" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

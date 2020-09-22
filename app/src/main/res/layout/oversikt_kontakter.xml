@@ -11,4 +11,9 @@
         android:background="?attr/colorPrimary">
     </Toolbar>
 
+    <ListView
+        android:id="@+id/listeKontakter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>

@@ -2,11 +2,11 @@ package com.example.s331153s333975mappe2;
 
 public class Møte {
     public int MId;
-    public int tidspunkt;
+    public String tidspunkt;
     public String sted;
     public String type;
 
-    public Møte(int MId, int tidspunkt, String sted, String type){
+    public Møte(int MId, String tidspunkt, String sted, String type){
         this.MId = MId;
         this.tidspunkt = tidspunkt;
         this.sted = sted;
@@ -21,7 +21,7 @@ public class Møte {
         return MId;
     }
 
-    public int getTidspunkt() {
+    public String getTidspunkt() {
         return tidspunkt;
     }
 
@@ -37,7 +37,7 @@ public class Møte {
         this.MId = MId;
     }
 
-    public void setTidspunkt(int tidspunkt) {
+    public void setTidspunkt(String tidspunkt) {
         this.tidspunkt = tidspunkt;
     }
 

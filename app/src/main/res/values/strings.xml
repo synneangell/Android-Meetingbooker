@@ -13,4 +13,7 @@
     <string name="type">Type</string>
     <string name="txtType"></string>
     <string name="registrer">Registrer</string>
+    <string name="mote">Møte</string>
+    <string name="kontakter">Kontakter</string>
+    <string name="innstillinger">Innstillinger</string>
 </resources>

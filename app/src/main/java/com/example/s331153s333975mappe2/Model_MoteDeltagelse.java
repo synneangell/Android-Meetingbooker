@@ -2,26 +2,26 @@ package com.example.s331153s333975mappe2;
 
 import java.util.ArrayList;
 
-public class MoteDeltagelse {
+public class Model_MoteDeltagelse {
         Long MoteID;
         Long _ID;
-        ArrayList<Kontakt> deltagere = new ArrayList<>();
+        ArrayList<Model_Kontakt> deltagere = new ArrayList<>();
 
-        public MoteDeltagelse(){
+        public Model_MoteDeltagelse(){
 
         }
 
-        public MoteDeltagelse(String navn, String telefon) {
+        public Model_MoteDeltagelse(String navn, String telefon) {
         }
 
-        public MoteDeltagelse(Long _ID, String navn, String telefon) {
+        public Model_MoteDeltagelse(Long _ID, String navn, String telefon) {
         }
 
-        public ArrayList<Kontakt> getDeltagere() {
+        public ArrayList<Model_Kontakt> getDeltagere() {
             return deltagere;
         }
 
-        public void setDeltagere(ArrayList<Kontakt> deltagere) {
+        public void setDeltagere(ArrayList<Model_Kontakt> deltagere) {
             this.deltagere = deltagere;
         }
 

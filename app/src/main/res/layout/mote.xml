@@ -7,22 +7,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    android:background="@color/bakgrunn"
+    tools:context=".Aktivitet_Mote">
 
     <Toolbar
-        android:id="@+id/mintoolbar"
+        android:id="@+id/moteToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
+        android:background="@color/toolbar">
     </Toolbar>
-
-    <fragment
-        android:id="@+id/listefragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        class="com.example.s331153s333975mappe2.MoteFragment"
-        tools:layout="@layout/oversikt_mote" >
-    </fragment>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

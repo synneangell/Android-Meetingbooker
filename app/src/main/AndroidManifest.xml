@@ -9,24 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Aktivitet_Mote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".OversiktMote"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".OversiktKontakter"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity android:name=".RegistrerMote"
-            android:parentActivityName=".OversiktMote">
-        </activity>
-        <activity android:name=".RegistrerKontakt"
-            android:parentActivityName=".OversiktKontakter">
+        <activity android:name=".Aktivitet_Kontakt">
         </activity>
     </application>
 

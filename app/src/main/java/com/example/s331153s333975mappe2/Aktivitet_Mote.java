@@ -1,28 +1,28 @@
 package com.example.s331153s333975mappe2;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toolbar;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class OversiktMote extends AppCompatActivity {
-
+public class Aktivitet_Mote extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.oversikt_mote);
+        setContentView(R.layout.mote);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.moteBar);
-        myToolbar.inflateMenu(R.menu.menu_mote);
-        setActionBar(myToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.moteToolbar);
+        toolbar.setSubtitle("Inne på møter");
+        toolbar.inflateMenu(R.menu.menu_mote);
+        setActionBar(toolbar);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_mote, menu);
         return true;
@@ -31,13 +31,13 @@ public class OversiktMote extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
-            case R.id.main:
-                finish();
+            case R.id.kontakter:
+                Intent i = new Intent(this, Aktivitet_Kontakt.class);
+                startActivity(i);
                 break;
-            case R.id.kontakterBar:
-                Intent i3 = new Intent(this, OversiktKontakter.class);
-                startActivity(i3);
-                finish();
+            case R.id.innstillinger:
+                Intent i2 = new Intent(this, Aktivitet_Innstillinger.class);
+                startActivity(i2);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

@@ -60,7 +60,7 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void leggTilMote(Mote mote) {
+    public void leggTilMote(Model_Mote mote) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_KONTAKT_NAVN, mote.getNavn());
@@ -77,7 +77,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public int oppdaterMote(Mote mote) {
+    public int oppdaterMote(Model_Mote mote) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_KONTAKT_NAVN, mote.getNavn());
@@ -89,14 +89,14 @@ public class DBHandler extends SQLiteOpenHelper {
         return endret;
     }
 
-    public List<Mote> finnAlleMoter() {
-        List<Mote> moteListe = new ArrayList<Mote>();
+    public List<Model_Mote> finnAlleMoter() {
+        List<Model_Mote> moteListe = new ArrayList<Model_Mote>();
         String selectQuery = "SELECT * FROM " + TABLE_MOTER;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                Mote mote = new Mote();
+                Model_Mote mote = new Model_Mote();
                 mote.set_ID(cursor.getLong(0));
                 mote.setNavn(cursor.getString(1));
                 mote.setSted(cursor.getString(2));
@@ -109,7 +109,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return moteListe;
     }
 
-    public void leggTilKontakt(Kontakt kontakt) {
+    public void leggTilKontakt(Model_Kontakt kontakt) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_KONTAKT_NAVN, kontakt.getNavn());
@@ -118,14 +118,14 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<Kontakt> finnAlleKontakter() {
-        List<Kontakt> kontaktListe = new ArrayList<Kontakt>();
+    public List<Model_Kontakt> finnAlleKontakter() {
+        List<Model_Kontakt> kontaktListe = new ArrayList<Model_Kontakt>();
         String selectQuery = "SELECT * FROM " + TABLE_KONTAKTER;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                Kontakt kontakt = new Kontakt();
+                Model_Kontakt kontakt = new Model_Kontakt();
                 kontakt.set_ID(cursor.getLong(0));
                 kontakt.setNavn(cursor.getString(1));
                 kontakt.setTelefon(cursor.getString(2));
@@ -143,7 +143,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public int oppdaterKontakt(Kontakt kontakt) {
+    public int oppdaterKontakt(Model_Kontakt kontakt) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_KONTAKT_NAVN, kontakt.getNavn());
@@ -164,14 +164,14 @@ public class DBHandler extends SQLiteOpenHelper {
         return antall;
     }
 
-    public Kontakt finnKontakt(int id) {
+    public Model_Kontakt finnKontakt(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_KONTAKTER, new String[]{
                         KEY_KONTAKT_ID, KEY_KONTAKT_NAVN, KEY_TELEFON}, KEY_KONTAKT_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
-        Kontakt kontakt = new
-                Kontakt(Long.parseLong(cursor.getString(0)),
+        Model_Kontakt kontakt = new
+                Model_Kontakt(Long.parseLong(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2));
         cursor.close();
         db.close();

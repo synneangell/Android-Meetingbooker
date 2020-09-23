@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/main"
-        android:title="Forside"/>
-    <item
         android:id="@+id/mote"
-        android:title="Møte"/>
+        android:title="@string/mote"/>
+    <item
+        android:id="@+id/innstillinger"
+        android:title="@string/innstillinger"/>
 </menu>

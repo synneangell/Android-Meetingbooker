@@ -1,42 +1,38 @@
 package com.example.s331153s333975mappe2;
 
-public class Kontakt
-{
-    public int KId;
-    public String navn;
-    public String telefonnr;
+public class Kontakt {
+    String navn;
+    String telefon;
+    Long _ID;
 
-    public Kontakt (int KId, String navn, String telefonnr){
-        this.KId = KId;
-        this.navn = navn;
-        this.telefonnr = telefonnr;
+    public Kontakt() {
     }
-
-    public Kontakt(int KId){
-        this.KId = KId;
+    public Kontakt(String navn, String telefon) {
     }
-
-    public int getKId() {
-        return KId;
+    public Kontakt(Long _ID, String navn, String telefon) {
     }
 
     public String getNavn() {
         return navn;
     }
 
-    public String getTelefonnr() {
-        return telefonnr;
-    }
-
-    public void setKId(int KId) {
-        this.KId = KId;
-    }
-
     public void setNavn(String navn) {
         this.navn = navn;
     }
 
-    public void setTelefonnr(String telefonnr) {
-        this.telefonnr = telefonnr;
+    public String getTelefon() {
+        return telefon;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public Long get_ID() {
+        return _ID;
+    }
+
+    public void set_ID(Long _ID) {
+        this._ID = _ID;
     }
 }

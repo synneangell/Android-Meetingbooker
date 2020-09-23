@@ -1,5 +1,7 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -56,7 +58,17 @@ public class Aktivitet_Mote extends AppCompatActivity implements Fragment_Mote.U
             if(visMoter == null){
                 visMoter = new Fragment_MoteInnhold();
                 visMoter.init(link);
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.listefragment, visMoter);
+                ft.commit();
+            } else {
+                visMoter.updateUrl(link);
             }
+        } else {
+            Intent i = new Intent(this, Aktivitet_MoteInnhold.class);
+            i.putExtra("scriptnavn", link);
+            startActivity(i);
         }
     }
 }

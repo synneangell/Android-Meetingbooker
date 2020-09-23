@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import androidx.fragment.app.Fragment;
-
 import java.util.ArrayList;
 
 public class Fragment_Mote extends Fragment {
@@ -34,6 +32,7 @@ public class Fragment_Mote extends Fragment {
     }
     public Fragment_Mote(){}
 
+    /**------------- METODER SOM GJØR AT VI KAN LESE FRA XML-FILENE --------------**/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceBundle){
         View v = inflater.inflate(R.layout.liste_mote_layout, container, false);

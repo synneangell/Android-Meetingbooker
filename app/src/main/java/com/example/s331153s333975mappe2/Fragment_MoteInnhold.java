@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import androidx.fragment.app.Fragment;
 
+import java.io.File;
+
 public class Fragment_MoteInnhold extends Fragment {
     private String scriptnavn;
 
@@ -18,13 +20,14 @@ public class Fragment_MoteInnhold extends Fragment {
         super.onActivityCreated(saveInstanceBundle);
     }
 
+    /**------------- METODER FOR  --------------**/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceBundle){
         View moteInnholdVindu = inflater.inflate(R.layout.innhold_mote_layout, container, false);
         if(moteInnholdVindu != null){
             WebView mote = (WebView) moteInnholdVindu.findViewById(R.id.innholdMote);
-            //File imgFile = new File("file:///android_asset/"+scriptNavn);
-            mote.loadUrl("file:///android_asset/"+scriptnavn);
+            File imgFile = new File("file:///android_asset/" + scriptnavn);
+            mote.loadUrl("file:///android_assets/" + scriptnavn);
         }
         return moteInnholdVindu;
     }
@@ -32,6 +35,6 @@ public class Fragment_MoteInnhold extends Fragment {
     public void updateUrl(String navn){
         scriptnavn = navn;
         WebView mittMote = (WebView) getView().findViewById(R.id.innholdMote);
-        mittMote.loadUrl("file:///android_asset/"+scriptnavn);
+        mittMote.loadUrl("file:///android_asset/" + scriptnavn);
     }
 }

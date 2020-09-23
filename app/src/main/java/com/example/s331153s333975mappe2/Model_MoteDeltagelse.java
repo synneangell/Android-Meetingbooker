@@ -3,42 +3,45 @@ package com.example.s331153s333975mappe2;
 import java.util.ArrayList;
 
 public class Model_MoteDeltagelse {
-        Long MoteID;
-        Long _ID;
+        Long _MDID;
+        Long _MID;
+        Long _KID;
         ArrayList<Model_Kontakt> deltagere = new ArrayList<>();
 
         public Model_MoteDeltagelse(){
 
         }
 
-        public Model_MoteDeltagelse(String navn, String telefon) {
+        public Model_MoteDeltagelse(Long _MID, Long _KID) {
         }
 
-        public Model_MoteDeltagelse(Long _ID, String navn, String telefon) {
+        public Model_MoteDeltagelse(Long _MDID, Long _MID, Long _KID) {
         }
 
-        public ArrayList<Model_Kontakt> getDeltagere() {
-            return deltagere;
+        public Long get_MDID() {
+            return _MDID;
         }
 
-        public void setDeltagere(ArrayList<Model_Kontakt> deltagere) {
-            this.deltagere = deltagere;
+        public void set_MDID(Long _MDID) {
+            this._MDID = _MDID;
         }
 
-        public Long get_ID() {
-            return _ID;
-        }
-
-        public void set_ID(Long _ID) {
-            this._ID = _ID;
-        }
-
-        public Long get_MoteID() {
-        return MoteID;
+        public Long get_MID() {
+        return _MID;
     }
 
-        public void set_MoteID(Long _ID) {
-        this.MoteID = MoteID;
+        public void set_MID(Long _MID) {
+        this._MID = _MID;
     }
+
+        public Long get_KID() {
+        return _KID;
+    }
+
+        public void set_KID(Long _KID) {
+        this._KID = _KID;
+    }
+
+
 }
 

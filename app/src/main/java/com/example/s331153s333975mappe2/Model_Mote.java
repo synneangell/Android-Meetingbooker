@@ -4,7 +4,7 @@ public class Model_Mote {
     String navn;
     String sted;
     String tidspunkt;
-    Long _ID;
+    Long _MID;
 
 
     public Model_Mote(){
@@ -41,11 +41,11 @@ public class Model_Mote {
         this.tidspunkt = tidspunkt;
     }
 
-    public Long get_ID() {
-        return _ID;
+    public Long get_MID() {
+        return _MID;
     }
 
-    public void set_ID(Long _ID) {
-        this._ID = _ID;
+    public void set_MID(Long _MID) {
+        this._MID = _MID;
     }
 }

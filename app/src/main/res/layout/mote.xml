@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/bakgrunn"
+    tools:context=".Aktivitet_Mote">
+
+    <Toolbar
+        android:id="@+id/moteToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:titleTextColor="@android:color/white"
+        android:background="@color/toolbar">
+    </Toolbar>
+
+    <fragment
+        android:id="@+id/listefragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="com.example.s331153s333975mappe2.Fragment_Mote"
+        tools:layout="@layout/liste_mote_layout" />
+
+</LinearLayout>

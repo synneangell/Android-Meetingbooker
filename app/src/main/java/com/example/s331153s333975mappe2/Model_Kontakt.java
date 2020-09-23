@@ -1,15 +1,15 @@
 package com.example.s331153s333975mappe2;
 
-public class Kontakt {
+public class Model_Kontakt {
     String navn;
     String telefon;
-    Long _KID;
+    Long _ID;
 
-    public Kontakt() {
+    public Model_Kontakt() {
     }
-    public Kontakt(String navn, String telefon) {
+    public Model_Kontakt(String navn, String telefon) {
     }
-    public Kontakt(Long _KID, String navn, String telefon) {
+    public Model_Kontakt(Long _ID, String navn, String telefon) {
     }
 
     public String getNavn() {
@@ -28,11 +28,11 @@ public class Kontakt {
         this.telefon = telefon;
     }
 
-    public Long get_KID() {
-        return _KID;
+    public Long get_ID() {
+        return _ID;
     }
 
-    public void set_KID(Long _KID) {
-        this._KID = _KID;
+    public void set_ID(Long _ID) {
+        this._ID = _ID;
     }
 }

@@ -1,20 +1,20 @@
 package com.example.s331153s333975mappe2;
 
-public class Mote {
+public class Model_Mote {
     String navn;
     String sted;
     String tidspunkt;
-    Long _MID;
+    Long _ID;
 
 
-    public Mote(){
+    public Model_Mote(){
 
     }
 
-    public Mote(String sted, String tidspunkt) {
+    public Model_Mote(String sted, String tidspunkt) {
     }
 
-    public Mote(Long _MID, String sted, String tidspunkt) {
+    public Model_Mote(Long _ID, String sted, String tidspunkt) {
     }
 
     public String getNavn() {
@@ -41,11 +41,11 @@ public class Mote {
         this.tidspunkt = tidspunkt;
     }
 
-    public Long get_MID() {
-        return _MID;
+    public Long get_ID() {
+        return _ID;
     }
 
-    public void set_MID(Long _MID) {
-        this._MID = _MID;
+    public void set_ID(Long _ID) {
+        this._ID = _ID;
     }
 }

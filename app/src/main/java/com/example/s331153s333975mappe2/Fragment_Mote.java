@@ -37,7 +37,7 @@ public class Fragment_Mote extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceBundle){
         View v = inflater.inflate(R.layout.liste_mote_layout, container, false);
         ListView lv = (ListView) v.findViewById(R.id.listeMote);
-        String[] values = new String[]{"mote1", "mote2"};
+        String[] values = new String[]{"mote1.txt", "mote2.txt"};
         final ArrayList<String> list = new ArrayList<>();
         for(int i = 0; i < values.length; i++){
             list.add(values[i]);

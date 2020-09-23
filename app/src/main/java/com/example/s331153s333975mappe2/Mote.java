@@ -4,7 +4,7 @@ public class Mote {
     String navn;
     String sted;
     String tidspunkt;
-    Long _ID;
+    Long _MID;
 
 
     public Mote(){
@@ -14,7 +14,7 @@ public class Mote {
     public Mote(String sted, String tidspunkt) {
     }
 
-    public Mote(Long _ID, String sted, String tidspunkt) {
+    public Mote(Long _MID, String sted, String tidspunkt) {
     }
 
     public String getNavn() {
@@ -41,11 +41,11 @@ public class Mote {
         this.tidspunkt = tidspunkt;
     }
 
-    public Long get_ID() {
-        return _ID;
+    public Long get_MID() {
+        return _MID;
     }
 
-    public void set_ID(Long _ID) {
-        this._ID = _ID;
+    public void set_MID(Long _MID) {
+        this._MID = _MID;
     }
 }

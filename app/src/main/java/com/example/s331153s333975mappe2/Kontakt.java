@@ -3,13 +3,13 @@ package com.example.s331153s333975mappe2;
 public class Kontakt {
     String navn;
     String telefon;
-    Long _ID;
+    Long _KID;
 
     public Kontakt() {
     }
     public Kontakt(String navn, String telefon) {
     }
-    public Kontakt(Long _ID, String navn, String telefon) {
+    public Kontakt(Long _KID, String navn, String telefon) {
     }
 
     public String getNavn() {
@@ -28,11 +28,11 @@ public class Kontakt {
         this.telefon = telefon;
     }
 
-    public Long get_ID() {
-        return _ID;
+    public Long get_KID() {
+        return _KID;
     }
 
-    public void set_ID(Long _ID) {
-        this._ID = _ID;
+    public void set_KID(Long _KID) {
+        this._KID = _KID;
     }
 }

@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".Aktivitet_Kontakt">
         </activity>
+        <activity android:name=".Aktivitet_MoteInnhold">
+        </activity>
     </application>
 
 </manifest>

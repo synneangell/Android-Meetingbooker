@@ -8,14 +8,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toolbar;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class Aktivitet_Mote extends AppCompatActivity implements Fragment_Mote.UrlEndret {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mote);
+
+        /**---- KNAPP FOR REGISTRERING ----**/
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Aktivitet_Mote.this, Registrer_Mote.class));
+            }
+        });
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.moteToolbar);

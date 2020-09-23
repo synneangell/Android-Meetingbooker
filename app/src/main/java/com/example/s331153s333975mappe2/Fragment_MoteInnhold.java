@@ -27,7 +27,7 @@ public class Fragment_MoteInnhold extends Fragment {
         if(moteInnholdVindu != null){
             WebView mote = (WebView) moteInnholdVindu.findViewById(R.id.innholdMote);
             File imgFile = new File("file:///android_asset/" + scriptnavn);
-            mote.loadUrl("file:///android_assets/" + scriptnavn);
+            mote.loadUrl("file:///android_asset/" + scriptnavn);
         }
         return moteInnholdVindu;
     }

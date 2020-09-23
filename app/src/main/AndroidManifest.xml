@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".Aktivitet_MoteInnhold">
         </activity>
+        <activity android:name=".Registrer_Mote">
+        </activity>
     </application>
 
 </manifest>

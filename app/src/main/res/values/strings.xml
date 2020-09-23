@@ -3,15 +3,10 @@
     <string name="moteRegistrering">Registrer møte</string>
     <string name="kontaktRegistrering">Registrer kontakt</string>
     <string name="navn">Navn</string>
-    <string name="txtNavn"></string>
     <string name="telefon">Telefon</string>
-    <string name="txtTelefon"></string>
     <string name="tidspunkt">Tidspunkt</string>
-    <string name="txtTidspunkt"></string>
     <string name="sted">Sted</string>
-    <string name="txtSted"></string>
     <string name="type">Type</string>
-    <string name="txtType"></string>
     <string name="registrer">Registrer</string>
     <string name="mote">Møte</string>
     <string name="kontakter">Kontakter</string>

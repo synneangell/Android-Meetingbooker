@@ -8,30 +8,29 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:background="@color/bakgrunn"
-    tools:context=".Aktivitet_Mote">
+    tools:context=".AktivitetMote">
 
     <Toolbar
-        android:id="@+id/moteToolbar"
-        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:titleTextColor="@android:color/white"
         android:background="@color/toolbar">
     </Toolbar>
 
-    <fragment
-        android:id="@+id/listefragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        class="com.example.s331153s333975mappe2.Fragment_Mote"
-        tools:layout="@layout/liste_mote_layout" />
+    <ListView
+        android:id="@+id/listView_mote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        app:backgroundTint="@color/knapp"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="355dp"
+            android:layout_marginBottom="675dp"
+            app:backgroundTint="@color/knapp"
+            app:srcCompat="@android:drawable/ic_input_add" />
+    </ListView>
 
 </LinearLayout>

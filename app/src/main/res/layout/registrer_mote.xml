@@ -121,8 +121,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnRegKontakt"
-        android:onClick="btnRegMote"
+        android:id="@+id/btnRegMote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
@@ -130,9 +129,39 @@
         android:layout_marginEnd="162dp"
         android:layout_marginBottom="167dp"
         android:background="@color/knapp"
+        android:onClick="regMote"
         android:text="@string/registrer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnVisMote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="516dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="167dp"
+        android:background="@color/knapp"
+        android:onClick="visMote"
+        android:text="Vis møte"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="636dp"
+        android:layout_marginBottom="76dp"
+        android:id="@+id/txtVisMote"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,20 @@
 package com.example.s331153s333975mappe2;
 
-public class Model_Mote {
+public class Mote {
     String navn;
     String sted;
     String tidspunkt;
     Long _MID;
 
 
-    public Model_Mote(){
+    public Mote(){
 
     }
 
-    public Model_Mote(String sted, String tidspunkt) {
+    public Mote(String sted, String tidspunkt) {
     }
 
-    public Model_Mote(Long _ID, String sted, String tidspunkt) {
+    public Mote(String navn, String sted, String tidspunkt) {
     }
 
     public String getNavn() {

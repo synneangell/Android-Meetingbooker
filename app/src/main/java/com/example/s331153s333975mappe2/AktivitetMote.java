@@ -1,7 +1,5 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,29 +7,52 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-public class Aktivitet_Mote extends AppCompatActivity implements Fragment_Mote.UrlEndret {
+public class AktivitetMote extends AppCompatActivity {
+
+    ListView listView_mote;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mote);
+
+        listView_mote = findViewById(R.id.listView_mote);
+        String[] verdier = new String[]{"Nikola", "Synne", "Martine", "Camilla"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, verdier);
+
+        listView_mote.setAdapter(adapter);
+        listView_mote.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
+                if(i == 0){
+                    Intent intent = new Intent(view.getContext(), AktivitetMoteDeltagelse.class);
+                    startActivity(intent);
+                } else if (i == 1){
+                    Intent intent = new Intent(view.getContext(), AktivitetKontakt.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
         /**---- KNAPP FOR REGISTRERING ----**/
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Aktivitet_Mote.this, Registrer_Mote.class));
+                startActivity(new Intent(AktivitetMote.this, RegistrerMote.class));
             }
         });
 
         /**---- TOOLBAR OPPRETTES ----**/
-        Toolbar toolbar = (Toolbar) findViewById(R.id.moteToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setSubtitle("Inne på møter");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
@@ -45,43 +66,20 @@ public class Aktivitet_Mote extends AppCompatActivity implements Fragment_Mote.U
         return true;
     }
 
-    @Override
+    //@Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.kontakter:
-                Intent i = new Intent(this, Aktivitet_Kontakt.class);
+                Intent i = new Intent(this, AktivitetKontakt.class);
                 startActivity(i);
                 break;
             case R.id.innstillinger:
-                Intent i2 = new Intent(this, Aktivitet_Innstillinger.class);
+                Intent i2 = new Intent(this, AktivitetInnstillinger.class);
                 startActivity(i2);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
-    }
-
-    /**------------- METODE SOM BESTEMMER OM DET ER STÅENDE ELLER LIGGENDE MODUS --------------**/
-    //viser skjermbildet ut ifra om det er stående eller liggende modus
-    @Override
-    public void linkEndret(String link) {
-        if(findViewById(R.id.innholdMote) != null){
-            Fragment_MoteInnhold visMoter = (Fragment_MoteInnhold) getSupportFragmentManager().findFragmentById(R.id.innholdMote);
-            if(visMoter == null){
-                visMoter = new Fragment_MoteInnhold();
-                visMoter.init(link);
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.listefragment, visMoter);
-                ft.commit();
-            } else {
-                visMoter.updateUrl(link);
-            }
-        } else {
-            Intent i = new Intent(this, Aktivitet_MoteInnhold.class);
-            i.putExtra("scriptnavn", link);
-            startActivity(i);
-        }
     }
 }

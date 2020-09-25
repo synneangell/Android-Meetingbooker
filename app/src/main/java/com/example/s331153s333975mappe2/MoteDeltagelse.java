@@ -2,20 +2,20 @@ package com.example.s331153s333975mappe2;
 
 import java.util.ArrayList;
 
-public class Model_MoteDeltagelse {
+public class MoteDeltagelse {
         Long _MDID;
         Long _MID;
         Long _KID;
-        ArrayList<Model_Kontakt> deltagere = new ArrayList<>();
+        ArrayList<Kontakt> deltagere = new ArrayList<>();
 
-        public Model_MoteDeltagelse(){
+        public MoteDeltagelse(){
 
         }
 
-        public Model_MoteDeltagelse(Long _MID, Long _KID) {
+        public MoteDeltagelse(Long _MID, Long _KID) {
         }
 
-        public Model_MoteDeltagelse(Long _MDID, Long _MID, Long _KID) {
+        public MoteDeltagelse(Long _MDID, Long _MID, Long _KID) {
         }
 
         public Long get_MDID() {

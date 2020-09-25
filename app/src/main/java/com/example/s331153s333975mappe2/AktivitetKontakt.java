@@ -7,30 +7,30 @@ import android.view.MenuItem;
 import android.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Aktivitet_Kontakt extends AppCompatActivity {
+public class AktivitetKontakt extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.kontakt);
+        //setContentView(R.layout.kontakt);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.kontakterToolbar);
-        toolbar.setSubtitle("Inne på kontakter");
-        toolbar.inflateMenu(R.menu.menu_kontakter);
-        setActionBar(toolbar);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.kontakterToolbar);
+        //toolbar.setSubtitle("Inne på kontakter");
+        //toolbar.inflateMenu(R.menu.menu_kontakter);
+        //setActionBar(toolbar);
     }
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_kontakter, menu);
         return true;
-    }
+    }*/
 
-    @Override
+/*    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.mote:
-                Intent i = new Intent(this, Aktivitet_Mote.class);
+                Intent i = new Intent(this, AktivitetMote.class);
                 startActivity(i);
                 break;
             case R.id.innstillinger:
@@ -41,5 +41,5 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return true;
-    }
+    }*/
 }

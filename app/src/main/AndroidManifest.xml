@@ -9,17 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".AktivitetMoteDeltagelse"></activity>
         <activity android:name=".AktivitetMote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AktivitetKontakt"></activity>
-        <activity android:name=".Aktivitet_MoteInnhold"></activity>
-        <activity android:name=".RegistrerMote"></activity>
+        <activity android:name=".AktivitetMoteDeltagelse"
+            android:parentActivityName=".AktivitetMote"/>
+        <activity android:name=".AktivitetKontakt"
+            android:parentActivityName=".AktivitetMote"/>
+        <activity android:name=".RegistrerMote"
+            android:parentActivityName=".AktivitetMote"/>
+        <activity android:name=".RegistrerKontakt"
+            android:parentActivityName=".AktivitetKontakt"/>
+        <activity android:name=".RedigerMote"
+            android:parentActivityName=".AktivitetMoteDeltagelse"/>
+        <activity android:name=".RedigerKontakt"
+            android:parentActivityName=".AktivitetKontakt"/>
     </application>
-
 </manifest>

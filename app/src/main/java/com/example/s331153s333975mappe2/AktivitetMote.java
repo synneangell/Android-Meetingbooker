@@ -28,7 +28,7 @@ public class AktivitetMote extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, verdier);
 
         listView_mote.setAdapter(adapter);
-        listView_mote.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+/*        listView_mote.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 if(i == 0){
@@ -40,7 +40,7 @@ public class AktivitetMote extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-        });
+        });*/
 
         /**---- KNAPP FOR REGISTRERING ----**/
         FloatingActionButton fab = findViewById(R.id.fab);

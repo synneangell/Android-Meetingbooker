@@ -36,7 +36,7 @@ public class RegistrerMote extends AppCompatActivity {
         Log.d("Legger inn møte", mote.navn + " "+mote.sted + " "+mote.tidspunkt);
     }
 
-    //---- onClick fra layout på knapp for å vise mote i TextView----//
+    //---- onClick fra layout på knapp for å vise mote i TextView i samme skjermbildet----//
     public void visMote(View v){
         String tekst = "";
         List<Mote> moter = db.finnAlleMoter();

@@ -16,6 +16,7 @@ public class AktivitetMoteDeltagelse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.motedeltagelse);
 
+        //Alt dette er også feil. Her skal man få informasjon om det valgte møtet og listview med deltagerne under. Bare satt inn koden for nå
         ListView lv = (ListView) findViewById(R.id.listDeltagelse);
         String[] verdier = new String[]{"Nikola", "Synne", "Martine", "Camilla"};
 

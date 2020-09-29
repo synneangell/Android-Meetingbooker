@@ -25,7 +25,6 @@ public class AktivitetMote extends AppCompatActivity {
 
         listView_mote = findViewById(R.id.listView_mote);
         String[] verdier = new String[]{"Nikola", "Synne", "Martine", "Camilla"};
-
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, verdier);
 
         listView_mote.setAdapter(adapter);
@@ -33,6 +32,7 @@ public class AktivitetMote extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 if(i == 0){
+                    //Her skal man egt tas til en aktivitet utifra hvilken verdi man velger i ListView
                     Intent intent = new Intent(view.getContext(), AktivitetMoteDeltagelse.class);
                     startActivity(intent);
                 } else if (i == 1){
@@ -66,10 +66,11 @@ public class AktivitetMote extends AppCompatActivity {
         return true;
     }
 
-    //@Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.kontakter:
+                //Her er det egentlig meningen at det skal sendes verdier til neste aktivitet ut ifra det man trykker på i listview
                 Intent i = new Intent(this, AktivitetKontakt.class);
                 startActivity(i);
                 break;

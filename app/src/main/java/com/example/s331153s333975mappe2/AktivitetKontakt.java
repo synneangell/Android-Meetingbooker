@@ -31,20 +31,20 @@ public class AktivitetKontakt extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 if(i == 0){
                     //Her er det egentlig meningen at det skal sendes verdier til neste aktivitet ut ifra det man trykker på i listview
-                    Intent intent = new Intent(view.getContext(), AktivitetMoteDeltagelse.class);
+                    Intent intent = new Intent(view.getContext(), Aktivitet_InfoKontakt.class);
                     startActivity(intent);
                 }
             }
         });
 
         /**---- KNAPP FOR REGISTRERING ----**/
-        FloatingActionButton fab = findViewById(R.id.fab);
+/*        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AktivitetKontakt.this, RegistrerKontakt.class));
             }
-        });
+        });*/
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.kontaktToolbar);

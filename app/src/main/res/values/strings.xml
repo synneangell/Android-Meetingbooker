@@ -11,4 +11,7 @@
     <string name="mote">Møte</string>
     <string name="kontakter">Kontakter</string>
     <string name="innstillinger">Innstillinger</string>
+    <string name="seMoteDeltagelse">Se møtedeltagelse</string>
+    <string name="møteInformasjon">Møteinformasjon</string>
+    <string name="kontaktInformasjon">Kontaktinformasjon</string>
 </resources>

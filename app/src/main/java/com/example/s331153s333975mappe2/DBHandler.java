@@ -36,21 +36,21 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String LAG_KONTAKTER = "CREATE TABLE " + TABLE_KONTAKTER + "(" + KEY_KID +
-                " INTEGER PRIMARY KEY," + KEY_KONTAKT_NAVN + " TEXT," + KEY_TELEFON + " TEXT" + ")";
+                " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_KONTAKT_NAVN + " TEXT," + KEY_TELEFON + " TEXT" + ")";
         Log.d("Lag tabell KONTAKTER", LAG_KONTAKTER);
         db.execSQL(LAG_KONTAKTER);
 
         String LAG_MOTER = "CREATE TABLE " + TABLE_MOTER + "(" + KEY_MID +
-                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT," + KEY_STED + " TEXT," + KEY_TIDSPUNKT + "TEXT" + ")";
+                " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_MOTE_NAVN + " TEXT," + KEY_STED + " TEXT," + KEY_TIDSPUNKT + "TEXT" + ")";
         Log.d("Lag tabell MOTER", LAG_MOTER);
         db.execSQL(LAG_MOTER);
 
-        String LAG_MOTEDELTAGELSER = "CREATE TABLE " + TABLE_MOTEDELTAGELSER + "(" + KEY_MDID +
-                " INTEGER PRIMARY KEY," + KEY_FK_KID + "INTEGER," + KEY_FK_MID + "INTEGER," +
-                "FOREIGN KEY("+KEY_FK_KID+") REFERENCES "+DBHandler.TABLE_KONTAKTER+"("+KEY_KID+")"
-            + ", FOREIGN KEY("+KEY_FK_MID+") REFERENCES "+DBHandler.TABLE_MOTER+"("+KEY_MID+")" + ")";
+/*        String LAG_MOTEDELTAGELSER = "CREATE TABLE " + TABLE_MOTEDELTAGELSER + "(" + KEY_MDID +
+                " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_FK_KID + "INTEGER," + KEY_FK_MID + "INTEGER," +
+                "FOREIGN KEY("+ KEY_FK_KID +") REFERENCES " + DBHandler.TABLE_KONTAKTER +"("+ KEY_KID +")"
+            + ", FOREIGN KEY("+ KEY_FK_MID +") REFERENCES " + DBHandler.TABLE_MOTER + "("+ KEY_MID +")" + ")";
         Log.d("Lag tabell MOTEDEL", LAG_MOTEDELTAGELSER);
-        db.execSQL(LAG_MOTEDELTAGELSER);
+        db.execSQL(LAG_MOTEDELTAGELSER);*/
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {

@@ -12,9 +12,14 @@ public class Mote {
     }
 
     public Mote(String sted, String tidspunkt) {
+        this.sted = sted;
+        this.tidspunkt = tidspunkt;
     }
 
     public Mote(String navn, String sted, String tidspunkt) {
+        this.navn = navn;
+        this.sted = sted;
+        this.tidspunkt = tidspunkt;
     }
 
     public String getNavn() {

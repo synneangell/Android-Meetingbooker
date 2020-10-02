@@ -1,4 +1,6 @@
 package com.example.s331153s333975mappe2;
 
-public class AktivitetInnstillinger {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AktivitetInnstillinger extends AppCompatActivity {
 }

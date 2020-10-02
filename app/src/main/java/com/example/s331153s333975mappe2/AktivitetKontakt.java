@@ -33,9 +33,6 @@ public class AktivitetKontakt extends AppCompatActivity {
                     //Her er det egentlig meningen at det skal sendes verdier til neste aktivitet ut ifra det man trykker på i listview
                     Intent intent = new Intent(view.getContext(), AktivitetMoteDeltagelse.class);
                     startActivity(intent);
-                } else if (i == 1){
-                    Intent intent = new Intent(view.getContext(), AktivitetKontakt.class);
-                    startActivity(intent);
                 }
             }
         });

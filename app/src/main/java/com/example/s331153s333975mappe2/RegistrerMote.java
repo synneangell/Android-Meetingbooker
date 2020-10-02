@@ -1,4 +1,5 @@
 package com.example.s331153s333975mappe2;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,14 +9,14 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class RegistrerMote extends AppCompatActivity {
     EditText navn, sted, tidspunkt;
     DBHandler db;
-    Button regMote, visMote;
-    TextView txtVisMote;
-
+    Button regMote;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +25,6 @@ public class RegistrerMote extends AppCompatActivity {
         sted = (EditText) findViewById(R.id.txtSted);
         tidspunkt = (EditText) findViewById(R.id.txtTidspunkt);
         regMote = (Button) findViewById(R.id.btnRegMote);
-        visMote = (Button) findViewById(R.id.btnVisMote);
-        txtVisMote = (TextView) findViewById(R.id.txtVisMote);
         db = new DBHandler(this); //for å kunne bruke databasen.
     }
 
@@ -34,10 +33,12 @@ public class RegistrerMote extends AppCompatActivity {
         Mote mote = new Mote(navn.getText().toString(), sted.getText().toString(), tidspunkt.getText().toString());
         db.leggTilMote(mote);
         Log.d("Legger inn møte", mote.navn + " "+mote.sted + " "+mote.tidspunkt);
+        Intent intent = new Intent(this, AktivitetMote.class);
+        startActivity(intent);
     }
 
     //---- onClick fra layout på knapp for å vise mote i TextView i samme skjermbildet----//
-    public void visMote(View v){
+/*    public void visMote(View v){
         String tekst = "";
         List<Mote> moter = db.finnAlleMoter();
         for (Mote mote : moter) {
@@ -47,5 +48,5 @@ public class RegistrerMote extends AppCompatActivity {
             Log.d("Navn: ", tekst);
         }
         visMote.setText(tekst);
-    }
+    }*/
 }

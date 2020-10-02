@@ -15,7 +15,6 @@ import android.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AktivitetMote extends AppCompatActivity {
-
     ListView listView_mote;
 
     @Override
@@ -24,11 +23,11 @@ public class AktivitetMote extends AppCompatActivity {
         setContentView(R.layout.mote);
 
         listView_mote = findViewById(R.id.listView_mote);
-        String[] verdier = new String[]{"Nikola", "Synne", "Martine", "Camilla"};
+        String[] verdier = new String[]{"Møte 1", "Møte 2", "Møte 3", "Møte 4"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, verdier);
 
         listView_mote.setAdapter(adapter);
-/*        listView_mote.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        listView_mote.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 if(i == 0){
@@ -40,7 +39,7 @@ public class AktivitetMote extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-        });*/
+        });
 
         /**---- KNAPP FOR REGISTRERING ----**/
         FloatingActionButton fab = findViewById(R.id.fab);

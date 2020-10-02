@@ -1,21 +1,20 @@
 package com.example.s331153s333975mappe2;
-
-import java.util.ArrayList;
-
 public class MoteDeltagelse {
         Long _MDID;
         Long _MID;
         Long _KID;
-        ArrayList<Kontakt> deltagere = new ArrayList<>();
 
-        public MoteDeltagelse(){
-
-        }
+        public MoteDeltagelse(){}
 
         public MoteDeltagelse(Long _MID, Long _KID) {
+            this._MID = _MID;
+            this._KID = _KID;
         }
 
         public MoteDeltagelse(Long _MDID, Long _MID, Long _KID) {
+            this._MDID = _MDID;
+            this._MID = _MID;
+            this._KID = _KID;
         }
 
         public Long get_MDID() {
@@ -41,7 +40,5 @@ public class MoteDeltagelse {
         public void set_KID(Long _KID) {
         this._KID = _KID;
     }
-
-
 }
 

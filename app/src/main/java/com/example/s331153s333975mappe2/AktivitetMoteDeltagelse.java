@@ -23,17 +23,17 @@ public class AktivitetMoteDeltagelse extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, verdier);
 
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+/*        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 if(i == 0){
                     Intent intent = new Intent(view.getContext(), AktivitetMote.class);
                     startActivity(intent);
-                } else if (i == 1){
+                } else if (i == 1){ //dette er bare en test, denne koden er feil.
                     Intent intent = new Intent(view.getContext(), AktivitetKontakt.class);
                     startActivity(intent);
                 }
             }
-        });
+        });*/
     }
 }

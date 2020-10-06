@@ -8,8 +8,13 @@ public class Kontakt {
     public Kontakt() {
     }
     public Kontakt(String navn, String telefon) {
+        this.navn = navn;
+        this.telefon = telefon;
     }
-    public Kontakt(Long _MID, String navn, String telefon) {
+    public Kontakt(Long _KID, String navn, String telefon) {
+        this._KID = _KID;
+        this.navn = navn;
+        this.telefon = telefon;
     }
 
     public String getNavn() {

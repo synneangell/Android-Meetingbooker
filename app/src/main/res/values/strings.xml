@@ -14,4 +14,12 @@
     <string name="seMoteDeltagelse">Se møtedeltagelse</string>
     <string name="møteInformasjon">Møteinformasjon</string>
     <string name="kontaktInformasjon">Kontaktinformasjon</string>
+    <string name="endre">Endre</string>
+    <string name="slett">Slett</string>
+    <string name="endreKontakt">Endre kontakt</string>
+    <string name="endreMote">Endre møte</string>
+    <string name="lagre">Lagre</string>
+    <string name="ja">Ja</string>
+    <string name="nei">Nei</string>
+    <string name="slettKontakt">Er du sikker på at du vil slette kontakten?</string>
 </resources>

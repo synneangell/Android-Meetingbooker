@@ -26,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 1;
+    static int DATABASE_VERSION = 2;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -41,12 +41,12 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(LAG_KONTAKTER);
 
         String LAG_MOTER = "CREATE TABLE " + TABLE_MOTER + "(" + KEY_MID +
-                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT," + KEY_STED + " TEXT," + KEY_TIDSPUNKT + "TEXT" + ")";
+                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT," + KEY_STED + " TEXT," + KEY_TIDSPUNKT + " TEXT" + ")";
         Log.d("Lag tabell MOTER", LAG_MOTER);
         db.execSQL(LAG_MOTER);
 
         String LAG_MOTEDELTAGELSER = "CREATE TABLE " + TABLE_MOTEDELTAGELSER + "(" + KEY_MDID +
-                " INTEGER PRIMARY KEY," + KEY_FK_KID + "INTEGER," + KEY_FK_MID + "INTEGER," +
+                " INTEGER PRIMARY KEY," + KEY_FK_KID + " INTEGER," + KEY_FK_MID + " INTEGER," +
                 "FOREIGN KEY("+KEY_FK_KID+") REFERENCES "+DBHandler.TABLE_KONTAKTER+"("+KEY_KID+")"
                 + ", FOREIGN KEY("+KEY_FK_MID+") REFERENCES "+DBHandler.TABLE_MOTER+"("+KEY_MID+")" + ")";
         Log.d("Lag tabell MOTEDEL", LAG_MOTEDELTAGELSER);
@@ -55,6 +55,8 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_KONTAKTER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOTER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOTEDELTAGELSER);
         onCreate(db);
     }
 
@@ -182,8 +184,8 @@ public class DBHandler extends SQLiteOpenHelper {
     public void leggTilMoteDeltakelse(MoteDeltagelse moteDeltagelse) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_KID, moteDeltagelse.get_KID());
-        values.put(KEY_MID, moteDeltagelse.get_MID());
+        values.put(KEY_FK_KID, moteDeltagelse.get_KID());
+        values.put(KEY_FK_MID, moteDeltagelse.get_MID());
         db.insert(TABLE_MOTEDELTAGELSER, null, values);
         db.close();
     }

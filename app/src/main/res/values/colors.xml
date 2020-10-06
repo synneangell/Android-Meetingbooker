@@ -6,4 +6,5 @@
     <color name="bakgrunn">#d6e0f0</color>
     <color name="toolbar">#393b44</color>
     <color name="knapp">#8d93ab</color>
+    <color name="preferanseFarge">#d6e0f0</color>
 </resources>

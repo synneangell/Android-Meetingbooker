@@ -27,5 +27,7 @@
             android:parentActivityName=".AktivitetMoteDeltagelse"/>
         <activity android:name=".RedigerKontakt"
             android:parentActivityName=".AktivitetKontakt"/>
+        <activity android:name=".AktivitetInnstillinger"
+            android:parentActivityName=".AktivitetInnstillinger"/>
     </application>
 </manifest>

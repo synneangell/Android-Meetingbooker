@@ -37,10 +37,11 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 List<Kontakt> kontakter = db.finnAlleKontakter();
                 Kontakt kontakt = kontakter.get(i);
-                //adapterView.getOnItemClickListener();
                 Intent intent = new Intent(view.getContext(), Aktivitet_KontaktInfo.class);
+                long innKId = kontakt.get_KID();
                 String innNavn = kontakt.getNavn();
                 String innTelefonnr = kontakt.getTelefon();
+                intent.putExtra("KId", innKId);
                 intent.putExtra("navn", innNavn);
                 intent.putExtra("telefonnr", innTelefonnr);
                 startActivity(intent);

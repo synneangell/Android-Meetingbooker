@@ -11,11 +11,6 @@ public class MoteDeltagelse {
             this._KID = _KID;
         }
 
-        public MoteDeltagelse(Long _MDID, Long _MID, Long _KID) {
-            this._MDID = _MDID;
-            this._MID = _MID;
-            this._KID = _KID;
-        }
 
         public Long get_MDID() {
             return _MDID;

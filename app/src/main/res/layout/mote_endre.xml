@@ -15,7 +15,7 @@
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="580dp"
         android:layout_weight="1"
-        android:text="@string/moteRegistrering"
+        android:text="Endre møte"
         android:textColor="#040000"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/txtNavnMote"
+        android:id="@+id/txtNavn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
@@ -52,7 +52,7 @@
         android:textColorHint="@color/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNavnMote" />
+        app:layout_constraintTop_toBottomOf="@+id/txtNavn" />
 
     <EditText
         android:id="@+id/txtTidspunkt"
@@ -70,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtSted" />
 
     <Button
-        android:id="@+id/btnRegMote"
+        android:id="@+id/btnEndreKontakt"
         android:layout_width="141dp"
         android:layout_height="80dp"
         android:layout_marginStart="161dp"

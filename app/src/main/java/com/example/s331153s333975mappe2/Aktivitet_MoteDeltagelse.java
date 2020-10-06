@@ -1,8 +1,10 @@
 package com.example.s331153s333975mappe2;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,31 +18,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
-
     DBHandler db;
+    ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mote_deltagelse);
         db = new DBHandler(this);
+        lv = (ListView) findViewById(R.id.listDeltagelse);
 
-        ListView lv = (ListView) findViewById(R.id.listDeltagelse);
-
-        List <String> deltakere = visMoteDeltakelseListView();
+        final List<String> deltakere = visMoteDeltakelseListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, deltakere);
-
         lv.setAdapter(adapter);
+
+        //adapter.remove(i);
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
-                if(i == 0){
-                    Intent intent = new Intent(view.getContext(), Aktivitet_Kontakt.class);
-                    startActivity(intent);
-                } else if (i == 1){ //dette er bare en test, denne koden er feil.
-                    Intent intent = new Intent(view.getContext(), Aktivitet_Kontakt.class);
-                    startActivity(intent);
-                }
+                adapter.remove(Integer.toString(i));
+                //List<MoteDeltagelse> md = db.finnMoteDeltakelse();
+                //MoteDeltagelse moteDeltagelse = md.get(i);
+                //få opp en popup-boks med slett og avbryt og når man trykker på slett så tar adapter.remove(position) et eller annet
+                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this);
+                builder.setMessage(getResources().getString(R.string.slettKontakt))
+                        .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i2) -> slettMoteDeltagelse())
+                        .setNegativeButton(getResources().getString(R.string.nei), null)
+                        .show();
             }
         });
 
@@ -48,6 +53,11 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         toolbar.setSubtitle("Inne på møteDeltagelse");
         toolbar.inflateMenu(R.menu.menu_motedeltagelse);
         setActionBar(toolbar);
+    }
+
+    public void slettMoteDeltagelse() {
+        //long innMDID = MoteDeltagelse.get_KID();
+        //db.slettMoteDeltakelse(innMDID);
     }
 
     /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/

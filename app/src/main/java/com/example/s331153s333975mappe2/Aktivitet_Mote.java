@@ -37,18 +37,9 @@ public class Aktivitet_Mote extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 List<Mote> moter = db.finnAlleMoter();
                 Mote mote = moter.get(i);
-                //adapterView.getOnItemClickListener();
                 Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
-
                 long moteID = mote.get_MID();
                 intent.putExtra("moteID", moteID);
-                /*
-                String innNavn = mote.getNavn();
-                String innSted = mote.getSted();
-                String innTidspunkt = mote.getTidspunkt();
-                intent.putExtra("navn", innNavn);
-                intent.putExtra("sted", innSted);
-                intent.putExtra("tidspunkt", innTidspunkt);*/
                 startActivity(intent);
             }
         });
@@ -64,7 +55,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setSubtitle("Inne på møter");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
     }
@@ -91,7 +81,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.kontakter:
-                //Her er det egentlig meningen at det skal sendes verdier til neste aktivitet ut ifra det man trykker på i listview
                 Intent i = new Intent(this, Aktivitet_Kontakt.class);
                 startActivity(i);
                 break;

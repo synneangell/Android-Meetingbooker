@@ -31,7 +31,6 @@ public class Aktivitet_KontaktEndre extends AppCompatActivity {
                 kontakt.setNavn(navn.getText().toString());
                 kontakt.setTelefon(telefonnr.getText().toString());
                 db.oppdaterKontakt(kontakt);
-                //må muligens bruke sharedPreferences for å få hentet den konkrete kontakten og dataene som følger med?
             }
         });
     }

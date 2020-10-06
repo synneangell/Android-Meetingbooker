@@ -198,7 +198,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public List<Kontakt> finnMoteDeltakelse(Long mote_id){
-        List<Kontakt> deltakere = new ArrayList<Kontakt>();
+        List<Kontakt> deltakere = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT * FROM" + TABLE_MOTEDELTAGELSER + "WHERE" + KEY_FK_MID + "=" + mote_id;
         Cursor cursor = db.rawQuery(sql, null);
@@ -214,6 +214,5 @@ public class DBHandler extends SQLiteOpenHelper {
             db.close();
         }
         return deltakere;
-
     }
 }

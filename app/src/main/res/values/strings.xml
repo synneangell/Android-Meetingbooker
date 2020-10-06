@@ -22,4 +22,5 @@
     <string name="ja">Ja</string>
     <string name="nei">Nei</string>
     <string name="slettKontakt">Er du sikker på at du vil slette kontakten?</string>
+    <string name="slettMoteDeltagelse">Er du sikker på at du vil slette møtedeltagelsen?</string>
 </resources>

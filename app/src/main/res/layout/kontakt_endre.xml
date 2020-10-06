@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bakgrunn">
+
+    <TextView
+        android:id="@+id/endreKontakt"
+        android:layout_width="200dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="580dp"
+        android:layout_weight="1"
+        android:text="@string/endreKontakt"
+        android:textColor="#040000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtNavn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="100dp"
+        android:ems="10"
+        android:hint="@string/navn"
+        android:textColorHint="@color/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtTelefonnr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/telefon"
+        android:textColorHint="@color/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNavn" />
+
+    <Button
+        android:id="@+id/btnEndreKontakt"
+        android:layout_width="141dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="516dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="167dp"
+        android:background="@color/knapp"
+        android:text="@string/lagre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

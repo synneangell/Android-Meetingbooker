@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bakgrunn"
     android:fitsSystemWindows="true"
-    tools:context=".AktivitetMote"
+    tools:context=".Aktivitet_Mote"
     android:orientation="vertical">
 
     <Toolbar

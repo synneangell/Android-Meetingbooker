@@ -14,9 +14,8 @@ import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AktivitetMote extends AppCompatActivity {
+public class Aktivitet_Mote extends AppCompatActivity {
     ListView listView_mote;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +32,10 @@ public class AktivitetMote extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 if(i == 0){
                     //Her skal man egt tas til en aktivitet utifra hvilken verdi man velger i ListView
-                    Intent intent = new Intent(view.getContext(), AktivitetMoteDeltagelse.class);
+                    Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
                     startActivity(intent);
                 } else if (i == 1){
-                    Intent intent = new Intent(view.getContext(), AktivitetKontakt.class);
+                    Intent intent = new Intent(view.getContext(), Aktivitet_Kontakt.class);
                     startActivity(intent);
                 }
             }
@@ -47,7 +46,7 @@ public class AktivitetMote extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AktivitetMote.this, RegistrerMote.class));
+                startActivity(new Intent(Aktivitet_Mote.this, Aktivitet_MoteReg.class));
             }
         });
 
@@ -71,7 +70,7 @@ public class AktivitetMote extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.kontakter:
                 //Her er det egentlig meningen at det skal sendes verdier til neste aktivitet ut ifra det man trykker på i listview
-                Intent i = new Intent(this, AktivitetKontakt.class);
+                Intent i = new Intent(this, Aktivitet_Kontakt.class);
                 startActivity(i);
                 break;
             case R.id.innstillinger:

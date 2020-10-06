@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:background="@color/bakgrunn"
-    tools:context=".AktivitetKontakt">
+    tools:context=".Aktivitet_Kontakt">
 
     <Toolbar
         android:id="@+id/kontaktToolbar"
@@ -19,16 +19,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="355dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/knapp"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
     <ListView
         android:id="@+id/listView_kontakter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="656dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            app:srcCompat="@android:drawable/ic_input_add" />
 </LinearLayout>

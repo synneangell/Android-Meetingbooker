@@ -9,23 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".AktivitetMote">
+        <activity android:name=".Aktivitet_Mote">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AktivitetMoteDeltagelse"
-            android:parentActivityName=".AktivitetMote"/>
-        <activity android:name=".AktivitetKontakt"
-            android:parentActivityName=".AktivitetMote"/>
-        <activity android:name=".RegistrerMote"
-            android:parentActivityName=".AktivitetMote"/>
-        <activity android:name=".RegistrerKontakt"
-            android:parentActivityName=".AktivitetKontakt"/>
-        <activity android:name=".RedigerMote"
-            android:parentActivityName=".AktivitetMoteDeltagelse"/>
-        <activity android:name=".RedigerKontakt"
-            android:parentActivityName=".AktivitetKontakt"/>
+        <activity android:name=".Aktivitet_MoteDeltagelse"
+            android:parentActivityName=".Aktivitet_Mote"/>
+        <activity android:name=".Aktivitet_MoteReg"
+            android:parentActivityName=".Aktivitet_Mote"/>
+        <activity android:name=".Aktivitet_MoteEndre"
+            android:parentActivityName=".Aktivitet_MoteDeltagelse"/>
+        <activity android:name=".Aktivitet_MoteEndreDeltagelse"
+            android:parentActivityName=".Aktivitet_MoteEndre"/>
+        <activity android:name=".Aktivitet_Kontakt"
+            android:parentActivityName=".Aktivitet_Mote"/>
+        <activity android:name=".Aktivitet_KontaktReg"
+            android:parentActivityName=".Aktivitet_Kontakt"/>
+        <activity android:name=".Aktivitet_KontaktInfo"
+            android:parentActivityName=".Aktivitet_Kontakt"/>
+        <activity android:name=".Aktivitet_KontaktEndre"
+            android:parentActivityName=".Aktivitet_KontaktInfo"/>
     </application>
 </manifest>

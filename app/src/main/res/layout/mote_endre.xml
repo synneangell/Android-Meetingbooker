@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bakgrunn">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="205dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="580dp"
+        android:layout_weight="1"
+        android:text="@string/moteRegistrering"
+        android:textColor="#040000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtNavnMote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="100dp"
+        android:ems="10"
+        android:hint="@string/navn"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtSted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:ems="10"
+        android:hint="@string/sted"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNavnMote" />
+
+    <EditText
+        android:id="@+id/txtTidspunkt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="97dp"
+        android:ems="10"
+        android:hint="@string/tidspunkt"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSted" />
+
+    <Button
+        android:id="@+id/btnRegMote"
+        android:layout_width="141dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="516dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="167dp"
+        android:background="@color/knapp"
+        android:onClick="regMote"
+        android:text="@string/registrer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

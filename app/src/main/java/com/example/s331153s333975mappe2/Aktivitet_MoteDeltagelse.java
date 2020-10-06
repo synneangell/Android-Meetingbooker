@@ -41,10 +41,20 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.motedeltagelse);
-        toolbar.setSubtitle("Inne på møteDeltagelse");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Deltakere til møte");
+        setActionBar(toolbar);
         toolbar.inflateMenu(R.menu.menu_motedeltagelse);
         setActionBar(toolbar);
+
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
+                startActivity(intent);
+            }
+        });
 
         /**---- KNAPP FOR REGISTRERING AV MØTEDELTAGELSE ----**/
         FloatingActionButton fab = findViewById(R.id.fab);

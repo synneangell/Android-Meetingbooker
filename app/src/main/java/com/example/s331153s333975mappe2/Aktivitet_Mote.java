@@ -60,7 +60,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setSubtitle("Inne på møter");
+        toolbar.setTitle("Planlagte møter");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
     }

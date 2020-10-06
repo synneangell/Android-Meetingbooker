@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,5 +42,20 @@ public class Aktivitet_KontaktEndre extends AppCompatActivity {
                 //må muligens bruke sharedPreferences for å få hentet den konkrete kontakten og dataene som følger med?
             }
         });
+
+        /**---- TOOLBAR OPPRETTES ----**/
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Endre kontakt");
+        toolbar.inflateMenu(R.menu.menu_mote);
+        setActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_KontaktEndre.this, Aktivitet_KontaktInfo.class);
+                startActivity(intent);
+            }
+        });
     }
 }
+

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +36,19 @@ public class Aktivitet_KontaktReg extends AppCompatActivity {
                 } else {
                     Toast.makeText(Aktivitet_KontaktReg.this, "Du må fylle ut alle feltene", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("\t\t Registrer kontakt ");
+        toolbar.inflateMenu(R.menu.menu_kontaktinfo);
+        setActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_KontaktReg.this, Aktivitet_Kontakt.class);
+                startActivity(intent);
             }
         });
     }

@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/bakgrunn"
     android:fitsSystemWindows="true"
-    tools:context=".Aktivitet_Mote"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Aktivitet_Mote">
 
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+     />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -25,24 +22,27 @@
 
         <ListView
             android:id="@+id/listView_mote"
-            android:layout_width="410dp"
-            android:layout_height="670dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="55dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        </ListView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="70dp"
-            android:layout_height="97dp"
-            android:layout_gravity="top|bottom"
-            android:layout_marginEnd="355dp"
-            android:layout_marginBottom="675dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
             app:backgroundTint="@color/knapp"
             app:srcCompat="@android:drawable/ic_input_add" />
+
+
     </FrameLayout>
 
-</LinearLayout>
+</RelativeLayout>
 

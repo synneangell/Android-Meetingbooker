@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,6 +28,19 @@ public class Aktivitet_MoteReg extends AppCompatActivity {
         tidspunkt = (EditText) findViewById(R.id.txtTidspunkt);
         btnReg = (Button) findViewById(R.id.btnRegMote);
         db = new DBHandler(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("\t\t Registrer møte ");
+        toolbar.inflateMenu(R.menu.menu_mote);
+        setActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_MoteReg.this, Aktivitet_Mote.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void regMote(View v){
@@ -36,4 +50,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity {
         Intent intent = new Intent(this, Aktivitet_Mote.class);
         startActivity(intent);
     }
+
+
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mote"
-        android:title="@string/mote"/>
+        android:title="@string/allemoter"/>
     <item
         android:id="@+id/innstillinger"
         android:title="@string/innstillinger"/>

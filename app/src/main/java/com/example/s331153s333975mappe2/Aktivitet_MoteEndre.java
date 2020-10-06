@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,6 +48,19 @@ public class Aktivitet_MoteEndre extends AppCompatActivity {
 
                 Intent intent2 = new Intent(Aktivitet_MoteEndre.this, Aktivitet_Mote.class);
                 startActivity(intent2);
+            }
+        });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("\t\t Endre møteinformasjon ");
+        toolbar.inflateMenu(R.menu.menu_mote);
+        setActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_Mote.class);
+                startActivity(intent);
             }
         });
     }

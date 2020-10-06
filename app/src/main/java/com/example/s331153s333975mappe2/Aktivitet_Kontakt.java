@@ -57,8 +57,8 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
         });
 
         /**---- TOOLBAR OPPRETTES ----**/
-        Toolbar toolbar = (Toolbar) findViewById(R.id.kontaktToolbar);
-        toolbar.setSubtitle("Inne på kontakter");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("\t\t Alle kontakter ");
         toolbar.inflateMenu(R.menu.menu_kontakter);
         setActionBar(toolbar);
     }
@@ -98,4 +98,5 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
         }
         return true;
     }
+
 }

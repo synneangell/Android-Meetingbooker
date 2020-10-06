@@ -51,9 +51,17 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setSubtitle("Inne på registrer deltakere");
+        toolbar.setTitle("Velg på deltakere til møte");
         toolbar.inflateMenu(R.menu.menu_mote_reg_deltagelse);
         setActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_MoteRegDeltagelse.this, Aktivitet_MoteDeltagelse.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**----- Populere listview ------**/

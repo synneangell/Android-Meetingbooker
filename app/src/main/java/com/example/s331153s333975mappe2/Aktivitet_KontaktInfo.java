@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -28,9 +29,18 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
         txtNavn.setText(getIntent().getStringExtra("navn"));
         txtTelefonnr.setText(getIntent().getStringExtra("telefonnr"));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.kontaktInfo);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Kontaktinformasjon");
         toolbar.inflateMenu(R.menu.menu_kontaktinfo);
         setActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_KontaktInfo.this, Aktivitet_Kontakt.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**------------- METODER FOR NEDTREKKSMENY --------------**/

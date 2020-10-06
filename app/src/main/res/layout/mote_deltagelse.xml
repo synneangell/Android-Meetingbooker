@@ -1,40 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
     android:background="@color/bakgrunn"
-    tools:context=".Aktivitet_Kontakt">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".Aktivitet_MoteDeltagelse">
 
     <Toolbar
-        android:id="@+id/motedeltagelse"
+        android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolbar"
+        android:background="@color/toolbar" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+    <ListView
+        android:id="@+id/listView_kontakter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/motedeltagelse" >
+
+    </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="355dp"
-        android:clickable="true"
-        android:focusable="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
         app:backgroundTint="@color/knapp"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"/>
 
-    <ListView
-        android:id="@+id/listView_kontakter"
-        android:layout_width="match_parent"
-        android:layout_height="656dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp" />
+    </FrameLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

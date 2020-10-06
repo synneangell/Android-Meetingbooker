@@ -7,7 +7,7 @@
     android:background="@color/bakgrunn">
 
     <Toolbar
-        android:id="@+id/kontaktInfo"
+        android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar"

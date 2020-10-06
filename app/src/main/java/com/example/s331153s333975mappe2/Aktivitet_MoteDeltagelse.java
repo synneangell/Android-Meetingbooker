@@ -12,18 +12,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toolbar;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
+
+    DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mote_deltagelse);
+        db = new DBHandler(this);
 
-        //Alt dette er også feil. Her skal man få informasjon om det valgte møtet og listview med deltagerne under. Bare satt inn koden for nå
         ListView lv = (ListView) findViewById(R.id.listDeltagelse);
-        String[] verdier = new String[]{"Nikola", "Synne", "Martine", "Camilla"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, verdier);
+        List <String> deltakere = visMoteDeltakelseListView();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, deltakere);
 
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -44,6 +49,20 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         toolbar.inflateMenu(R.menu.menu_motedeltagelse);
         setActionBar(toolbar);
     }
+
+    /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/
+    public List<String> visMoteDeltakelseListView(){
+        Intent intent = getIntent();
+        long moteid = intent.getLongExtra("moteID", 0);
+
+        List <String> stringKontakter = new ArrayList<>();
+        List<Kontakt> kontakter = db.finnMoteDeltakelse(moteid);
+        for(int i = 0; i < kontakter.size(); i++){
+            stringKontakter.add("ID: "+kontakter.get(i)._KID+", navn: "+kontakter.get(i).navn+", telefon: "+kontakter.get(i).telefon);
+        }
+        return stringKontakter;
+    }
+
 
     /**------------- METODER FOR NEDTREKKSMENY --------------**/
     @Override

@@ -26,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 4;
+    static int DATABASE_VERSION = 5;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -200,7 +200,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public List<Kontakt> finnMoteDeltakelse(Long mote_id){
         List<Kontakt> deltakere = new ArrayList<Kontakt>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT * FROM" + TABLE_MOTEDELTAGELSER + "WHERE" + KEY_FK_MID + "=" + mote_id;
+        String sql = "SELECT * FROM " + TABLE_MOTEDELTAGELSER + " WHERE " + KEY_FK_MID + " = " + mote_id;
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()) {
             do {

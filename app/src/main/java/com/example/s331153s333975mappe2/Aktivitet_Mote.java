@@ -69,7 +69,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
         setActionBar(toolbar);
     }
 
-    /**----- Populere listview ------**/
+    /**----- METODE FOR Å POPULERE LISTVIEW ------**/
     public List<String> visMoterListView(){
         List <String> stringMoter = new ArrayList<>();
         List<Mote> moter = db.finnAlleMoter();

@@ -3,6 +3,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,30 +26,25 @@ public class Aktivitet_Mote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mote);
+        lv = findViewById(R.id.listView_mote);
         db = new DBHandler(this);
 
-        lv = findViewById(R.id.listView_mote);
-        List<String> visMoter = visMoterListView();
+        final List<String> visMoter = visMoterListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visMoter);
-
         lv.setAdapter(adapter);
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 List<Mote> moter = db.finnAlleMoter();
                 Mote mote = moter.get(i);
-                //adapterView.getOnItemClickListener();
                 Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
-
-                long moteID = mote.get_MID();
-                intent.putExtra("moteID", moteID);
-                /*
-                String innNavn = mote.getNavn();
-                String innSted = mote.getSted();
-                String innTidspunkt = mote.getTidspunkt();
-                intent.putExtra("navn", innNavn);
-                intent.putExtra("sted", innSted);
-                intent.putExtra("tidspunkt", innTidspunkt);*/
+                long MId = mote.get_MID();
+                Log.d("Id til møtet: ", Long.toString(MId));
+                intent.putExtra("MId", MId);
+                intent.putExtra("navn", mote.getNavn());
+                intent.putExtra("sted", mote.getSted());
+                intent.putExtra("tidspunkt", mote.getTidspunkt());
                 startActivity(intent);
             }
         });

@@ -26,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 6;
+    static int DATABASE_VERSION = 10;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -81,7 +81,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public int oppdaterMote(Mote mote) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_KONTAKT_NAVN, mote.getNavn());
+        values.put(KEY_MOTE_NAVN, mote.getNavn());
         values.put(KEY_STED, mote.getSted());
         values.put(KEY_TIDSPUNKT, mote.getTidspunkt());
         int endret = db.update(TABLE_MOTER, values, KEY_MID + "= ?",
@@ -166,7 +166,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return antall;
     }
 
-    public Kontakt finnKontakt(int id) {
+    public Kontakt finnKontakt(Long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_KONTAKTER, new String[]{
                         KEY_KID, KEY_KONTAKT_NAVN, KEY_TELEFON}, KEY_KID + "=?",
@@ -184,11 +184,12 @@ public class DBHandler extends SQLiteOpenHelper {
     public void leggTilMoteDeltakelse(MoteDeltagelse moteDeltagelse) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_FK_KID, moteDeltagelse.get_KID());
         values.put(KEY_FK_MID, moteDeltagelse.get_MID());
+        values.put(KEY_FK_KID, moteDeltagelse.get_KID());
         db.insert(TABLE_MOTEDELTAGELSER, null, values);
         db.close();
     }
+
 
     public void slettMoteDeltakelse(Long inn_id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -197,23 +198,36 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<Kontakt> finnMoteDeltakelse(Long mote_id){
-        List<Kontakt> deltakere = new ArrayList<Kontakt>();
+    public List<Long> finnMoteDeltakelse(Long mote_id){
+        List<Long> deltakere = new ArrayList<Long>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String sql = "SELECT * FROM" + TABLE_MOTEDELTAGELSER + "WHERE" + KEY_FK_MID + "=" + mote_id;
+        String sql = "SELECT _KID FROM " + TABLE_MOTEDELTAGELSER + " WHERE _MID  = " + mote_id;
         Cursor cursor = db.rawQuery(sql, null);
-        if (cursor.moveToFirst()) {
-            do {
-                Kontakt kontakt = new Kontakt();
-                kontakt.set_KID(cursor.getLong(0));
-                kontakt.setNavn(cursor.getString(1));
-                kontakt.setTelefon(cursor.getString(2));
-                deltakere.add(kontakt);
-            } while (cursor.moveToNext());
-            cursor.close();
-            db.close();
+        cursor.moveToFirst();
+        while(cursor.isAfterLast() == false) {
+            deltakere.add(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID)));
+            Log.d("Cursor innhold ",Long.toString(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID))));
+            cursor.moveToNext();
         }
-        return deltakere;
+        cursor.close();
+        db.close();
 
+        return deltakere;
+    }
+
+    public boolean sjekkMoteDeltagelse(Long KId, Long MId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        String sql ="SELECT "+KEY_FK_KID+ " FROM "+TABLE_MOTEDELTAGELSER+" WHERE "+KEY_FK_MID+" = "+MId+" AND "+KEY_FK_KID+" = "+KId;
+        cursor= db.rawQuery(sql,null);
+        Log.d("CursorCount ", Integer.toString(cursor.getCount()));
+        int cursorCount = cursor.getCount();
+        cursor.close();
+
+        if(cursorCount>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

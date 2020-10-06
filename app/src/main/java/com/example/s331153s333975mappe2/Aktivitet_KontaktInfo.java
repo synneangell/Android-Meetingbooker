@@ -13,20 +13,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Aktivitet_KontaktInfo extends AppCompatActivity {
-    TextView navn, telefonnr;
+    TextView txtNavn, txtTelefonnr;
     DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kontakt_info);
-        navn = (TextView) findViewById(R.id.txtNavn);
-        telefonnr = (TextView) findViewById(R.id.txtTelefonnr);
+        txtNavn = (TextView) findViewById(R.id.txtNavn);
+        txtTelefonnr = (TextView) findViewById(R.id.txtTelefonnr);
         db = new DBHandler(this);
 
 
-        navn.setText(getIntent().getStringExtra("navn"));
-        telefonnr.setText(getIntent().getStringExtra("telefonnr"));
+        txtNavn.setText(getIntent().getStringExtra("navn"));
+        txtTelefonnr.setText(getIntent().getStringExtra("telefonnr"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.kontaktInfo);
         toolbar.inflateMenu(R.menu.menu_kontaktinfo);
@@ -45,10 +45,16 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.endre:
-                Intent intent = new Intent(this, Aktivitet_KontaktEndre.class);
-                intent.putExtra("navn",  navn.toString());
-                intent.putExtra("telefonnr", telefonnr.toString());
-                startActivity(intent);
+                Intent intent = getIntent();
+                long kontaktId = intent.getLongExtra("KId", 0);
+                String navn = intent.getStringExtra("navn");
+                String telefonnr = intent.getStringExtra("telefonnr");
+
+                Intent intent2 = new Intent(this, Aktivitet_KontaktEndre.class);
+                intent2.putExtra("KId", kontaktId);
+                intent2.putExtra("navn", navn);
+                intent2.putExtra("telefonnr", telefonnr);
+                startActivity(intent2);
                 break;
             case R.id.slett:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

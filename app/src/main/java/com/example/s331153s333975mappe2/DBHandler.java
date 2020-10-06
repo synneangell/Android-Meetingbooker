@@ -26,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 2;
+    static int DATABASE_VERSION = 4;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -41,7 +41,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(LAG_KONTAKTER);
 
         String LAG_MOTER = "CREATE TABLE " + TABLE_MOTER + "(" + KEY_MID +
-                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT," + KEY_STED + " TEXT," + KEY_TIDSPUNKT + " TEXT" + ")";
+                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT, " + KEY_STED + " TEXT," + KEY_TIDSPUNKT + " TEXT" + ")";
         Log.d("Lag tabell MOTER", LAG_MOTER);
         db.execSQL(LAG_MOTER);
 
@@ -101,7 +101,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 mote.set_MID(cursor.getLong(0));
                 mote.setNavn(cursor.getString(1));
                 mote.setSted(cursor.getString(2));
-                mote.setTidspunkt(cursor.getString(2));
+                mote.setTidspunkt(cursor.getString(3));
                 moteListe.add(mote);
             } while (cursor.moveToNext());
             cursor.close();

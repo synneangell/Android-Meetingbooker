@@ -14,30 +14,42 @@ import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Aktivitet_Mote extends AppCompatActivity {
-    ListView listView_mote;
+    ListView lv;
+    DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mote);
+        db = new DBHandler(this);
 
-        listView_mote = findViewById(R.id.listView_mote);
-        String[] verdier = new String[]{"Møte 1", "Møte 2", "Møte 3", "Møte 4"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, verdier);
+        lv = findViewById(R.id.listView_mote);
+        List<String> visMoter = visMoterListView();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visMoter);
 
-        listView_mote.setAdapter(adapter);
-        listView_mote.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
-                if(i == 0){
-                    //Her skal man egt tas til en aktivitet utifra hvilken verdi man velger i ListView
-                    Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
-                    startActivity(intent);
-                } else if (i == 1){
-                    Intent intent = new Intent(view.getContext(), Aktivitet_Kontakt.class);
-                    startActivity(intent);
-                }
+                List<Mote> moter = db.finnAlleMoter();
+                Mote mote = moter.get(i);
+                //adapterView.getOnItemClickListener();
+                Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
+
+                long moteID = mote.get_MID();
+                intent.putExtra("moteID", moteID);
+                /*
+                String innNavn = mote.getNavn();
+                String innSted = mote.getSted();
+                String innTidspunkt = mote.getTidspunkt();
+                intent.putExtra("navn", innNavn);
+                intent.putExtra("sted", innSted);
+                intent.putExtra("tidspunkt", innTidspunkt);*/
+                startActivity(intent);
             }
         });
 
@@ -57,6 +69,16 @@ public class Aktivitet_Mote extends AppCompatActivity {
         setActionBar(toolbar);
     }
 
+    /**----- Populere listview ------**/
+    public List<String> visMoterListView(){
+        List <String> stringMoter = new ArrayList<>();
+        List<Mote> moter = db.finnAlleMoter();
+        for(int i = 0; i < moter.size(); i++){
+            stringMoter.add("ID: "+moter.get(i)._MID+", navn: "+moter.get(i).navn+", sted: "+moter.get(i).sted+", tid: "+moter.get(i).tidspunkt);
+        }
+        return stringMoter;
+    }
+
     /**------------- METODER FOR NEDTREKKSMENY --------------**/
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -74,7 +96,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
                 startActivity(i);
                 break;
             case R.id.innstillinger:
-                Intent i2 = new Intent(this, AktivitetInnstillinger.class);
+                Intent i2 = new Intent(this, Aktivitet_Innstillinger.class);
                 startActivity(i2);
                 break;
             default:

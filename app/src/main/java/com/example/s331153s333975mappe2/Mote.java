@@ -34,7 +34,7 @@ public class Mote {
         return sted;
     }
 
-    public void setSted(String navn) {
+    public void setSted(String sted) {
         this.sted = sted;
     }
 

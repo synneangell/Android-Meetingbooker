@@ -9,9 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class AktivitetInnstillinger extends PreferenceActivity {
+public class Aktivitet_Innstillinger extends PreferenceActivity {
 
     public static class PrefsFragment extends PreferenceFragment {
         @Override
@@ -40,11 +38,11 @@ public class AktivitetInnstillinger extends PreferenceActivity {
         switch (item.getItemId()){
             case R.id.kontakter:
                 //Her er det egentlig meningen at det skal sendes verdier til neste aktivitet ut ifra det man trykker på i listview
-                Intent i = new Intent(this, AktivitetKontakt.class);
+                Intent i = new Intent(this, Aktivitet_Kontakt.class);
                 startActivity(i);
                 break;
             case R.id.innstillinger:
-                Intent i2 = new Intent(this, AktivitetInnstillinger.class);
+                Intent i2 = new Intent(this, Aktivitet_Innstillinger.class);
                 startActivity(i2);
                 break;
             default:

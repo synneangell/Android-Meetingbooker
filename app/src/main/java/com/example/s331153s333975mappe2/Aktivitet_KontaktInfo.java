@@ -22,14 +22,13 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
         setContentView(R.layout.kontakt_info);
         navn = (TextView) findViewById(R.id.txtNavn);
         telefonnr = (TextView) findViewById(R.id.txtTelefonnr);
+        db = new DBHandler(this);
+
 
         navn.setText(getIntent().getStringExtra("navn"));
         telefonnr.setText(getIntent().getStringExtra("telefonnr"));
-        Log.d("Navn ", navn.toString());
-        Log.d("Telefonnr ", telefonnr.toString());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.kontaktInfo);
-        toolbar.setSubtitle("Inne på kontakterInfo");
         toolbar.inflateMenu(R.menu.menu_kontaktinfo);
         setActionBar(toolbar);
     }
@@ -65,7 +64,10 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
     }
 
     public void slettKontakt(){
-
-        //slettKontakt(kontakt.getKId());
+        Intent intent = getIntent();
+        long kontaktId = intent.getLongExtra("KId", 0);
+        db.slettKontakt(kontaktId);
+        Intent i = new Intent(this, Aktivitet_Kontakt.class);
+        startActivity(i);
     }
 }

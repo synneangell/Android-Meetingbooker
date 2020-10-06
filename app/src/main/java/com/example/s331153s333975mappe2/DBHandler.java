@@ -26,7 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 4;
+    static int DATABASE_VERSION = 6;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -140,7 +140,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
     public void slettKontakt(Long inn_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_KONTAKTER, KEY_KID + " =? ",
+        db.delete(TABLE_KONTAKTER, KEY_KID + " = ? ",
                 new String[]{Long.toString(inn_id)});
         db.close();
     }

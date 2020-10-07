@@ -46,7 +46,17 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
+                String moteDeltager = deltakere.get(i);
+                Log.d("MøteDeltager ", moteDeltager);
+                //Intent intent = getIntent();
+                //intent.putExtra("MoteDeltager", moteDeltager);
 
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this);
+                builder.setMessage(getResources().getString(R.string.slettMoteDeltagelse))
+                        .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i2) -> slettMoteDeltagelse())
+                        .setNegativeButton(getResources().getString(R.string.nei), null)
+                        .show();
             }
         });
 
@@ -79,6 +89,15 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void slettMoteDeltagelse(){
+        //Long MId = sp.getLong("MId", 0);
+        //Long KId = sp.getLong("KId", 0);
+        //Intent intent = getIntent();
+        //intent.getExtras("MøteDeltager", ):
+        //String moteDeltager = intent.get
+
     }
 
     /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/

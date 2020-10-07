@@ -28,6 +28,7 @@
     <string name="slettMote">Slett møte</string>
     <string name="velgDato">Velg dato</string>
     <string name="velgTid">Velg tid</string>
+    <string name="slettMoteDeltagelse">Er du sikker på at du vil slette møtedeltagelsen?</string>
 
 
 </resources>

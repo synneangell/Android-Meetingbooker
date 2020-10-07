@@ -195,10 +195,10 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void slettMoteDeltakelse(Long inn_id) {
+    public void slettMoteDeltakelse(Long KId, Long MId) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_MOTEDELTAGELSER, KEY_MDID + " =? ",
-                new String[]{Long.toString(inn_id)});
+                new String[]{Long.toString(KId)});
         db.close();
     }
 

@@ -25,6 +25,7 @@
     <string name="allemoter">Alle møter</string>
     <string name="alleKontakter">Alle kontakter</string>
     <string name="slettEnKontakt">Slett kontakt</string>
+    <string name="slettMote">Slett møte</string>
     <string name="velgDato">Velg dato</string>
     <string name="velgTid">Velg tid</string>
 

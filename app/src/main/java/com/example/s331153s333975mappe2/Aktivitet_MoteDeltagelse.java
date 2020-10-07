@@ -119,7 +119,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 String innTidspunkt = sp.getString("moteTidspunkt", "feil");
 
 
-                SharedPreferences.Editor editor = sp.edit();
+                SharedPreferences.Editor editor = sp2.edit();
                 editor.putLong("MId", MId);
                 editor.putString("moteNavn", innNavn);
                 editor.putString("moteSted", innSted);

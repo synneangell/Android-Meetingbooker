@@ -96,7 +96,7 @@
 
 
         <Button
-            android:id="@+id/btnRegMote"
+            android:id="@+id/endre"
             android:layout_width="141dp"
             android:layout_height="80dp"
             android:layout_marginStart="161dp"
@@ -104,6 +104,6 @@
             android:layout_marginEnd="162dp"
             android:layout_marginBottom="167dp"
             android:background="@color/knapp"
-            android:text="@string/registrer" />
+            android:text="@string/lagre" />
 
 </RelativeLayout>

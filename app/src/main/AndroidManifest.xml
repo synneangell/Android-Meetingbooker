@@ -21,8 +21,6 @@
             android:parentActivityName=".Aktivitet_Mote"/>
         <activity android:name=".Aktivitet_MoteEndre"
             android:parentActivityName=".Aktivitet_MoteDeltagelse"/>
-        <activity android:name=".Aktivitet_MoteEndreDeltagelse"
-            android:parentActivityName=".Aktivitet_MoteEndre"/>
         <activity android:name=".Aktivitet_Kontakt"
             android:parentActivityName=".Aktivitet_Mote"/>
         <activity android:name=".Aktivitet_KontaktReg"
@@ -33,5 +31,7 @@
             android:parentActivityName=".Aktivitet_KontaktInfo"/>
         <activity android:name=".Aktivitet_MoteRegDeltagelse"
             android:parentActivityName=".Aktivitet_MoteDeltagelse"/>
+        <activity android:name=".Aktivitet_Innstillinger"
+            android:parentActivityName=".Aktivitet_Mote"/>
     </application>
 </manifest>

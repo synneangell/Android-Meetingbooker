@@ -1,4 +1,5 @@
 package com.example.s331153s333975mappe2;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -131,13 +132,24 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.slett:
-                //her skal det være kode som sletter valgte møte
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(getResources().getString(R.string.slettMote))
+                        .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i) -> slettMote())
+                        .setNegativeButton(getResources().getString(R.string.nei), null)
+                        .show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
+    }
 
+    public void slettMote() {
+        Intent intent = getIntent();
+        long MoteId = intent.getLongExtra("MId", 0);
+        db.slettMote(MoteId);
+        Intent i = new Intent(this, Aktivitet_Mote.class);
+        startActivity(i);
     }
 
 }

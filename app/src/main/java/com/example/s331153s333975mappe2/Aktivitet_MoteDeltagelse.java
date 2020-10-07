@@ -161,7 +161,19 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.slett:
-                //her skal det være kode som sletter valgte møte
+                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this);
+                builder.setMessage(getResources().getString(R.string.slettMote));
+                builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        long MId = sp.getLong("MId", 0);
+                        db.slettMote(MId);
+                        Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(getResources().getString(R.string.nei), null);
+                builder.show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);

@@ -1,8 +1,11 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,10 +24,13 @@ import java.util.List;
 public class Aktivitet_Mote extends AppCompatActivity {
     ListView lv;
     DBHandler db;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sp = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
+
         setContentView(R.layout.mote);
         lv = findViewById(R.id.listView_mote);
         db = new DBHandler(this);
@@ -38,13 +44,16 @@ public class Aktivitet_Mote extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 List<Mote> moter = db.finnAlleMoter();
                 Mote mote = moter.get(i);
-                Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
                 long MId = mote.get_MID();
-                Log.d("Id til møtet: ", Long.toString(MId));
-                intent.putExtra("MId", MId);
-                intent.putExtra("navn", mote.getNavn());
-                intent.putExtra("sted", mote.getSted());
-                intent.putExtra("tidspunkt", mote.getTidspunkt());
+
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putLong("MId", MId);
+                editor.putString("moteNavn", mote.getNavn());
+                editor.putString("moteSted", mote.getSted());
+                editor.putString("moteDato", mote.getDato());
+                editor.putString("moteTid", mote.getTid());
+                editor.apply();
+                Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
                 startActivity(intent);
             }
         });
@@ -70,7 +79,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
         List <String> stringMoter = new ArrayList<>();
         List<Mote> moter = db.finnAlleMoter();
         for(int i = 0; i < moter.size(); i++){
-            stringMoter.add("ID: "+moter.get(i)._MID+", navn: "+moter.get(i).navn+", sted: "+moter.get(i).sted+", tid: "+moter.get(i).tidspunkt);
+            stringMoter.add("Møtenavn: "+moter.get(i).navn+", sted: "+moter.get(i).sted+", dato:"+ moter.get(i).dato +", tid: "+moter.get(i).tid);
         }
         return stringMoter;
     }

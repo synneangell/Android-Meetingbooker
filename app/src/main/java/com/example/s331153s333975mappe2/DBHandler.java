@@ -19,14 +19,15 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_MID = "_MID";
     static String KEY_MOTE_NAVN = "Navn";
     static String KEY_STED = "Sted";
-    static String KEY_TIDSPUNKT = "Tidspunkt";
+    static String KEY_DATO = "Dato";
+    static String KEY_TID = "Tid";
 
     static String TABLE_MOTEDELTAGELSER = "Motedeltagelser";
     static String KEY_MDID = "_MDID";
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 10;
+    static int DATABASE_VERSION = 12;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -41,7 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(LAG_KONTAKTER);
 
         String LAG_MOTER = "CREATE TABLE " + TABLE_MOTER + "(" + KEY_MID +
-                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT, " + KEY_STED + " TEXT," + KEY_TIDSPUNKT + " TEXT" + ")";
+                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT, " + KEY_STED + " TEXT," + KEY_DATO + " TEXT, " + KEY_TID + " TEXT" + ")";
         Log.d("Lag tabell MOTER", LAG_MOTER);
         db.execSQL(LAG_MOTER);
 
@@ -66,7 +67,8 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_KONTAKT_NAVN, mote.getNavn());
         values.put(KEY_STED, mote.getSted());
-        values.put(KEY_TIDSPUNKT, mote.getTidspunkt());
+        values.put(KEY_DATO, mote.getDato());
+        values.put(KEY_TID, mote.getTid());
         db.insert(TABLE_MOTER, null, values);
         db.close();
     }
@@ -83,7 +85,8 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_MOTE_NAVN, mote.getNavn());
         values.put(KEY_STED, mote.getSted());
-        values.put(KEY_TIDSPUNKT, mote.getTidspunkt());
+        values.put(KEY_DATO, mote.getDato());
+        values.put(KEY_TID, mote.getTid());
         int endret = db.update(TABLE_MOTER, values, KEY_MID + "= ?",
                 new String[]{String.valueOf(mote.get_MID())});
         db.close();
@@ -101,7 +104,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 mote.set_MID(cursor.getLong(0));
                 mote.setNavn(cursor.getString(1));
                 mote.setSted(cursor.getString(2));
-                mote.setTidspunkt(cursor.getString(3));
+                mote.setDato(cursor.getString(3));
+                mote.setTid(cursor.getString(4));
                 moteListe.add(mote);
             } while (cursor.moveToNext());
             cursor.close();

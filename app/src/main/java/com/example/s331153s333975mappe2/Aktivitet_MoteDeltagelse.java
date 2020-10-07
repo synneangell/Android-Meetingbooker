@@ -1,8 +1,11 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
-
+    ListView lv;
     DBHandler db;
+    SharedPreferences sp;
+    SharedPreferences sp2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,10 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         setContentView(R.layout.mote_deltagelse);
         db = new DBHandler(this);
 
-        ListView lv = (ListView) findViewById(R.id.listView_kontakter);
+        sp = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
+        sp2 = getApplicationContext().getSharedPreferences("Aktivitet_MoteDeltagelse", Context.MODE_PRIVATE);
+
+        lv = (ListView) findViewById(R.id.listView_kontakter);
 
         List <String> deltakere = visMoteDeltakelseListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, deltakere);
@@ -61,20 +69,21 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                long moteid = intent.getLongExtra("moteID", 0);
+                long moteid = sp.getLong("MId", 0);
 
-                Intent intent2 = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_MoteRegDeltagelse.class);
-                intent2.putExtra("MId", moteid);
-                startActivity(intent2);
+                SharedPreferences.Editor editor = sp2.edit();
+                editor.putLong("MId", moteid);
+                editor.apply();
+                Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_MoteRegDeltagelse.class);
+                startActivity(intent);
             }
         });
     }
 
     /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/
     public List<String> visMoteDeltakelseListView(){
-        Intent intent = getIntent();
-        long moteid = intent.getLongExtra("moteID", 0);
+        long moteid = sp.getLong("MId", 0);
+        Log.d("Moteid i motedeltagelse", Long.toString(moteid));
 
         List <Long> kontaktId = db.finnMoteDeltakelse(moteid);
         List <String> stringKontakter = new ArrayList<>();
@@ -103,18 +112,21 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.endre:
-                Intent intent1 = getIntent();
-                long MId = intent1.getLongExtra("MId", 0);
-                String innNavn = intent1.getStringExtra("navn");
-                String innSted = intent1.getStringExtra("sted");
-                String innTidspunkt = intent1.getStringExtra("tidspunkt");
 
-                Intent intent2 = new Intent(this, Aktivitet_MoteEndre.class);
-                intent2.putExtra("MId", MId);
-                intent2.putExtra("navn", innNavn);
-                intent2.putExtra("sted", innSted);
-                intent2.putExtra("tidspunkt", innTidspunkt);
-                startActivity(intent2);
+                long MId = sp.getLong("MId", 0);
+                String innNavn = sp.getString("moteNavn", "feil");
+                String innSted = sp.getString("moteSted", "feil");
+                String innTidspunkt = sp.getString("moteTidspunkt", "feil");
+
+
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putLong("MId", MId);
+                editor.putString("moteNavn", innNavn);
+                editor.putString("moteSted", innSted);
+                editor.putString("moteTidspunkt", innTidspunkt);
+                editor.apply();
+                Intent intent = new Intent(this, Aktivitet_MoteEndre.class);
+                startActivity(intent);
                 break;
             case R.id.slett:
                 //her skal det være kode som sletter valgte møte

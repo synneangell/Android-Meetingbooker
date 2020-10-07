@@ -3,7 +3,8 @@ package com.example.s331153s333975mappe2;
 public class Mote {
     String navn;
     String sted;
-    String tidspunkt;
+    String dato;
+    String tid;
     Long _MID;
 
 
@@ -11,15 +12,12 @@ public class Mote {
 
     }
 
-    public Mote(String sted, String tidspunkt) {
-        this.sted = sted;
-        this.tidspunkt = tidspunkt;
-    }
 
-    public Mote(String navn, String sted, String tidspunkt) {
+    public Mote(String navn, String sted, String dato, String tid) {
         this.navn = navn;
         this.sted = sted;
-        this.tidspunkt = tidspunkt;
+        this.dato = dato;
+        this.tid = tid;
     }
 
     public String getNavn() {
@@ -38,12 +36,20 @@ public class Mote {
         this.sted = sted;
     }
 
-    public String getTidspunkt() {
-        return tidspunkt;
+    public String getTid() {
+        return tid;
     }
 
-    public void setTidspunkt(String tidspunkt) {
-        this.tidspunkt = tidspunkt;
+    public void setTid(String tid) {
+        this.tid = tid;
+    }
+
+    public String getDato() {
+        return dato;
+    }
+
+    public void setDato(String dato) {
+        this.dato = dato;
     }
 
     public Long get_MID() {

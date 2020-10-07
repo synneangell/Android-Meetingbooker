@@ -28,12 +28,9 @@
     <string name="slettMote">Slett møte</string>
     <string name="velgDato">Velg dato</string>
     <string name="velgTid">Velg tid</string>
-    <string name="slettMoteDeltagelse">Er du sikker på at du vil slette møtedeltagelsen?</string>
-    <string name="settPaVarsel">Sett på varsel</string>
-    <string name="av">av</string>
-    <string name="på">på</string>
-    <string name="varslerPa">Varsler på</string>
-    <string name="varslerAv">Varsler av</string>
+    <string name="tid">Tid</string>
+    <string name="dato">Dato</string>
+
 
 
 </resources>

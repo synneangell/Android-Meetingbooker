@@ -3,8 +3,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -12,9 +14,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,26 +43,41 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.listView_kontakter);
 
-        List <String> deltakere = visMoteDeltakelseListView();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, deltakere);
-
+        final List <String> deltakere = visMoteDeltakelseListView();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, deltakere){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+            View view = super.getView(position, convertView, parent);
+            TextView textView = (TextView) view.findViewById(android.R.id.text1);
+            textView.setTextColor(Color.BLACK);
+            return view;
+            }
+        };
         lv.setAdapter(adapter);
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
-                String moteDeltager = deltakere.get(i);
-                Log.d("MøteDeltager ", moteDeltager);
-                //Intent intent = getIntent();
-                //intent.putExtra("MoteDeltager", moteDeltager);
-
-
+                int indeks = i;
                 AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this);
-                builder.setMessage(getResources().getString(R.string.slettMoteDeltagelse))
-                        .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i2) -> slettMoteDeltagelse())
-                        .setNegativeButton(getResources().getString(R.string.nei), null)
-                        .show();
+                builder.setMessage(getResources().getString(R.string.slettKontakt));
+                builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        long MId = sp.getLong("MId", 0);
+                        List<Long> deltakere = db.finnMoteDeltakelse(MId);
+                        long KId = deltakere.get(indeks);
+                        db.slettMoteDeltakelse(MId, KId);
+                        Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_MoteDeltagelse.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(getResources().getString(R.string.nei), null);
+                builder.show();
             }
         });
+
+        /**---- TOOLBAR OPPRETTES ----**/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Deltakere til møte");
@@ -91,15 +110,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         });
     }
 
-    public void slettMoteDeltagelse(){
-        //Long MId = sp.getLong("MId", 0);
-        //Long KId = sp.getLong("KId", 0);
-        //Intent intent = getIntent();
-        //intent.getExtras("MøteDeltager", ):
-        //String moteDeltager = intent.get
-
-    }
-
     /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/
     public List<String> visMoteDeltakelseListView(){
         long moteid = sp.getLong("MId", 0);
@@ -112,11 +122,13 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
             Log.d("Kontaktid", Long.toString(kontaktId.get(i)));
             kontakter.add(db.finnKontakt(kontaktId.get(i)));
         }
+
         for(int i = 0; i < kontakter.size(); i++){
-            stringKontakter.add("ID: "+kontakter.get(i)._KID+", navn: "+kontakter.get(i).navn+", telefon: "+kontakter.get(i).telefon);
+            stringKontakter.add("\nID: "+kontakter.get(i)._KID+"\nNavn: "+kontakter.get(i).navn+"\nTelefon: "+kontakter.get(i).telefon);
         }
         return stringKontakter;
     }
+
 
     /**------------- METODER FOR NEDTREKKSMENY --------------**/
     @Override
@@ -130,11 +142,13 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.endre:
+
                 long MId = sp.getLong("MId", 0);
                 String innNavn = sp.getString("moteNavn", "feil");
                 String innSted = sp.getString("moteSted", "feil");
                 String innDato = sp.getString("moteDato", "feil");
                 String innTid = sp.getString("moteTid","feil");
+
 
                 SharedPreferences.Editor editor = sp2.edit();
                 editor.putLong("MId", MId);
@@ -147,23 +161,25 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.slett:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(getResources().getString(R.string.slettMote))
-                        .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i) -> slettMote())
-                        .setNegativeButton(getResources().getString(R.string.nei), null)
-                        .show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this);
+                builder.setMessage(getResources().getString(R.string.slettMote));
+                builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        long MId = sp.getLong("MId", 0);
+                        db.slettMote(MId);
+                        Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton(getResources().getString(R.string.nei), null);
+                builder.show();
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         return true;
-    }
 
-    public void slettMote() {
-        long MoteId = sp.getLong("MId", 0);
-        db.slettMote(MoteId);
-        Intent i = new Intent(this, Aktivitet_Mote.class);
-        startActivity(i);
     }
 
 }

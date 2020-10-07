@@ -26,7 +26,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity {
     public void regMote(View v){
         Mote mote = new Mote(navn.getText().toString(), sted.getText().toString(), tidspunkt.getText().toString());
         db.leggTilMote(mote);
-        Log.d("Legger inn møte", "Navn: "+mote.navn + ", Sted: "+mote.sted + ", Tidspunkt: "+mote.tidspunkt);
         Intent intent = new Intent(this, Aktivitet_Mote.class);
         startActivity(intent);
     }

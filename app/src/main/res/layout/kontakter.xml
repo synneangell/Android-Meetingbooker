@@ -18,14 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/listView_kontakter"
-        android:layout_width="match_parent"
-        android:layout_height="651dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp"/>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="78dp"
@@ -34,5 +26,14 @@
         android:focusable="true"
         app:backgroundTint="@color/knapp"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ListView
+        android:id="@+id/listView_kontakter"
+        android:layout_width="match_parent"
+        android:layout_height="651dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="3dp"/>
+
+
 
 </LinearLayout>

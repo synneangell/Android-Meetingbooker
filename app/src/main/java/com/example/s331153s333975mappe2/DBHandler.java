@@ -1,5 +1,4 @@
 package com.example.s331153s333975mappe2;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -26,7 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 10;
+    static int DATABASE_VERSION = 11;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -91,7 +90,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public List<Mote> finnAlleMoter() {
-        List<Mote> moteListe = new ArrayList<Mote>();
+        List<Mote> moteListe = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_MOTER;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -156,6 +155,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return endret;
     }
 
+    //Trenger kanskje ikke denne?
     public int finnAntallKontakter() {
         String sql = "SELECT * FROM " + TABLE_KONTAKTER;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -190,16 +190,15 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-
-    public void slettMoteDeltakelse(Long inn_id) {
+    public void slettMoteDeltakelse(Long KId, Long MId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_MOTEDELTAGELSER, KEY_MDID + " =? ",
-                new String[]{Long.toString(inn_id)});
+        db.delete(TABLE_MOTEDELTAGELSER, KEY_KID + " = ? ",
+                new String[]{Long.toString(KId)});
         db.close();
     }
 
     public List<Long> finnMoteDeltakelse(Long mote_id){
-        List<Long> deltakere = new ArrayList<Long>();
+        List<Long> deltakere = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT _KID FROM " + TABLE_MOTEDELTAGELSER + " WHERE _MID  = " + mote_id;
         Cursor cursor = db.rawQuery(sql, null);

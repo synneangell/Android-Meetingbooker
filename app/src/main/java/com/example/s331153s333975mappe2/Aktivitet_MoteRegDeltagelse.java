@@ -28,7 +28,6 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visKontaker);
         lv.setAdapter(adapter);
 
-
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){

@@ -36,7 +36,6 @@ public class Aktivitet_MoteEndre extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = getIntent();
                 long MId = intent.getLongExtra("MId", 0);
-                Log.d("MoteId i endre:", Long.toString(MId));
 
                 Mote mote = new Mote();
                 mote.set_MID(MId);

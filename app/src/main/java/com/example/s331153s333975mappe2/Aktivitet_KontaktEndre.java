@@ -38,7 +38,6 @@ public class Aktivitet_KontaktEndre extends AppCompatActivity {
                 db.oppdaterKontakt(kontakt);
                 Intent intent2 = new Intent(Aktivitet_KontaktEndre.this, Aktivitet_Kontakt.class);
                 startActivity(intent2);
-                //må muligens bruke sharedPreferences for å få hentet den konkrete kontakten og dataene som følger med?
             }
         });
     }

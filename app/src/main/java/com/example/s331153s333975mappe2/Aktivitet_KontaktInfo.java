@@ -24,7 +24,6 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
         txtTelefonnr = (TextView) findViewById(R.id.txtTelefonnr);
         db = new DBHandler(this);
 
-
         txtNavn.setText(getIntent().getStringExtra("navn"));
         txtTelefonnr.setText(getIntent().getStringExtra("telefonnr"));
 

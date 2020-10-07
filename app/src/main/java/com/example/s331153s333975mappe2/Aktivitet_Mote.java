@@ -40,7 +40,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
                 Mote mote = moter.get(i);
                 Intent intent = new Intent(view.getContext(), Aktivitet_MoteDeltagelse.class);
                 long MId = mote.get_MID();
-                Log.d("Id til møtet: ", Long.toString(MId));
                 intent.putExtra("MId", MId);
                 intent.putExtra("navn", mote.getNavn());
                 intent.putExtra("sted", mote.getSted());

@@ -1,7 +1,9 @@
 package com.example.s331153s333975mappe2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +18,7 @@ import java.util.List;
 public class Aktivitet_MoteRegDeltagelse extends Activity {
     ListView lv;
     DBHandler db;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,8 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
         setContentView(R.layout.mote_registrer_deltakere);
         lv = (ListView) findViewById(R.id.listView_kontakter);
         db = new DBHandler(this);
+
+        sp = getApplicationContext().getSharedPreferences("Aktivitet_MoteDeltagelse", Context.MODE_PRIVATE);
 
         final List<String> visKontaker = visKontakerListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visKontaker);
@@ -35,8 +40,7 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
                 Kontakt kontakt = kontakter.get(i);
                 long KId = kontakt.get_KID();
 
-                Intent intent = getIntent();
-                long MId = intent.getLongExtra("MId", 0);
+                long MId = sp.getLong("MId", 0);
                 if(db.sjekkMoteDeltagelse(KId, MId)){
                     Toast.makeText(Aktivitet_MoteRegDeltagelse.this, "Deltaker er allerede lagt til", Toast.LENGTH_SHORT).show();
                 }
@@ -50,9 +54,17 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setSubtitle("Inne på registrer deltakere");
+        toolbar.setTitle("Velg deltakere til møte");
         toolbar.inflateMenu(R.menu.menu_mote_reg_deltagelse);
         setActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_MoteRegDeltagelse.this, Aktivitet_MoteDeltagelse.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**----- Populere listview ------**/

@@ -1,6 +1,9 @@
 package com.example.s331153s333975mappe2;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,10 +22,13 @@ import java.util.List;
 public class Aktivitet_Kontakt extends AppCompatActivity {
     ListView lv;
     DBHandler db;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sp = getApplicationContext().getSharedPreferences("Aktivitet_Kontakt", Context.MODE_PRIVATE);
+
         setContentView(R.layout.kontakter);
         lv = (ListView) findViewById(R.id.listView_kontakter);
         db = new DBHandler(this);
@@ -36,13 +42,16 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 List<Kontakt> kontakter = db.finnAlleKontakter();
                 Kontakt kontakt = kontakter.get(i);
-                Intent intent = new Intent(view.getContext(), Aktivitet_KontaktInfo.class);
                 long innKId = kontakt.get_KID();
                 String innNavn = kontakt.getNavn();
                 String innTelefonnr = kontakt.getTelefon();
-                intent.putExtra("KId", innKId);
-                intent.putExtra("navn", innNavn);
-                intent.putExtra("telefonnr", innTelefonnr);
+
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putString("kontaktNavn", innNavn);
+                editor.putString("kontaktTelefonnr", innTelefonnr);
+                editor.putLong("KId", innKId);
+                editor.apply();
+                Intent intent = new Intent(view.getContext(), Aktivitet_KontaktInfo.class);
                 startActivity(intent);
             }
         });
@@ -57,8 +66,8 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
         });
 
         /**---- TOOLBAR OPPRETTES ----**/
-        Toolbar toolbar = (Toolbar) findViewById(R.id.kontaktToolbar);
-        toolbar.setSubtitle("Inne på kontakter");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Alle kontakter");
         toolbar.inflateMenu(R.menu.menu_kontakter);
         setActionBar(toolbar);
     }
@@ -98,4 +107,5 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
         }
         return true;
     }
+
 }

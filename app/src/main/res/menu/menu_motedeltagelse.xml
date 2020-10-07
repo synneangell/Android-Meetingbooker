@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/endre"
-        android:title="@string/endre"/>
+        android:title="@string/endreMote"/>
     <item
         android:id="@+id/slett"
-        android:title="@string/slett"/>
+        android:title="@string/slettMote"/>
+
 </menu>

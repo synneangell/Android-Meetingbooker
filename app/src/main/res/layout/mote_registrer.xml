@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context=".Aktivitet_MoteReg"
     android:background="@color/bakgrunn">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="675dp"
+        android:background="@color/toolbar" />
 
     <TextView
         android:id="@+id/textView"
@@ -14,15 +26,10 @@
         android:layout_marginTop="112dp"
         android:layout_marginEnd="85dp"
         android:layout_marginBottom="580dp"
-        android:layout_weight="1"
         android:text="@string/moteRegistrering"
         android:textColor="#040000"
         android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/txtNavnMote"
@@ -34,40 +41,59 @@
         android:ems="10"
         android:hint="@string/navn"
         android:inputType="textPersonName"
-        android:textColorHint="@color/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColorHint="@color/toolbar" />
 
     <EditText
         android:id="@+id/txtSted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="280dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="@string/sted"
         android:inputType="textPersonName"
-        android:textColorHint="@color/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNavnMote" />
+        android:textColorHint="@color/toolbar" />
+
 
     <EditText
-        android:id="@+id/txtTidspunkt"
-        android:layout_width="wrap_content"
+        android:id="@+id/dato"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="97dp"
-        android:ems="10"
-        android:hint="@string/tidspunkt"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSted" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="50dp" />
+
+    <Button
+        android:id="@+id/btn_dato"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/dato"
+        android:layout_toEndOf="@+id/dato"
+        android:layout_toRightOf="@+id/dato"
+        android:text="@string/velgDato" />
+
+    <EditText
+        android:id="@+id/tid"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dato"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp"/>
+
+
+    <Button
+        android:id="@+id/btn_tid"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_dato"
+        android:layout_alignStart="@+id/btn_dato"
+        android:layout_alignLeft="@+id/btn_dato"
+        android:text="@string/velgTid" />
+
 
     <Button
         android:id="@+id/btnRegMote"
@@ -79,10 +105,6 @@
         android:layout_marginBottom="167dp"
         android:background="@color/knapp"
         android:onClick="regMote"
-        android:text="@string/registrer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/registrer" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

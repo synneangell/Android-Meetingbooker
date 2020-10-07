@@ -12,7 +12,7 @@
     <string name="kontakter">Kontakter</string>
     <string name="innstillinger">Innstillinger</string>
     <string name="seMoteDeltagelse">Se møtedeltagelse</string>
-    <string name="møteInformasjon">Møteinformasjon</string>
+    <string name="moteInformasjon">Møteinformasjon</string>
     <string name="kontaktInformasjon">Kontaktinformasjon</string>
     <string name="endre">Endre</string>
     <string name="slett">Slett</string>
@@ -22,6 +22,12 @@
     <string name="ja">Ja</string>
     <string name="nei">Nei</string>
     <string name="slettKontakt">Er du sikker på at du vil slette kontakten?</string>
-    <string name="slettMote">Er du sikker på at du vil slette møte?</string>
-    <string name="slettMoteDeltagelse">Vil du slette møtedeltagelsen?</string>
+    <string name="allemoter">Alle møter</string>
+    <string name="alleKontakter">Alle kontakter</string>
+    <string name="slettEnKontakt">Slett kontakt</string>
+    <string name="slettMote">Slett møte</string>
+    <string name="velgDato">Velg dato</string>
+    <string name="velgTid">Velg tid</string>
+
+
 </resources>

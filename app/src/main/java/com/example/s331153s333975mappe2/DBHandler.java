@@ -1,4 +1,5 @@
 package com.example.s331153s333975mappe2;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -18,14 +19,15 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_MID = "_MID";
     static String KEY_MOTE_NAVN = "Navn";
     static String KEY_STED = "Sted";
-    static String KEY_TIDSPUNKT = "Tidspunkt";
+    static String KEY_DATO = "Dato";
+    static String KEY_TID = "Tid";
 
     static String TABLE_MOTEDELTAGELSER = "Motedeltagelser";
     static String KEY_MDID = "_MDID";
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 11;
+    static int DATABASE_VERSION = 12;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -40,7 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(LAG_KONTAKTER);
 
         String LAG_MOTER = "CREATE TABLE " + TABLE_MOTER + "(" + KEY_MID +
-                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT, " + KEY_STED + " TEXT," + KEY_TIDSPUNKT + " TEXT" + ")";
+                " INTEGER PRIMARY KEY," + KEY_MOTE_NAVN + " TEXT, " + KEY_STED + " TEXT," + KEY_DATO + " TEXT, " + KEY_TID + " TEXT" + ")";
         Log.d("Lag tabell MOTER", LAG_MOTER);
         db.execSQL(LAG_MOTER);
 
@@ -65,7 +67,8 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_KONTAKT_NAVN, mote.getNavn());
         values.put(KEY_STED, mote.getSted());
-        values.put(KEY_TIDSPUNKT, mote.getTidspunkt());
+        values.put(KEY_DATO, mote.getDato());
+        values.put(KEY_TID, mote.getTid());
         db.insert(TABLE_MOTER, null, values);
         db.close();
     }
@@ -82,7 +85,8 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(KEY_MOTE_NAVN, mote.getNavn());
         values.put(KEY_STED, mote.getSted());
-        values.put(KEY_TIDSPUNKT, mote.getTidspunkt());
+        values.put(KEY_DATO, mote.getDato());
+        values.put(KEY_TID, mote.getTid());
         int endret = db.update(TABLE_MOTER, values, KEY_MID + "= ?",
                 new String[]{String.valueOf(mote.get_MID())});
         db.close();
@@ -90,7 +94,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public List<Mote> finnAlleMoter() {
-        List<Mote> moteListe = new ArrayList<>();
+        List<Mote> moteListe = new ArrayList<Mote>();
         String selectQuery = "SELECT * FROM " + TABLE_MOTER;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -100,7 +104,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 mote.set_MID(cursor.getLong(0));
                 mote.setNavn(cursor.getString(1));
                 mote.setSted(cursor.getString(2));
-                mote.setTidspunkt(cursor.getString(3));
+                mote.setDato(cursor.getString(3));
+                mote.setTid(cursor.getString(4));
                 moteListe.add(mote);
             } while (cursor.moveToNext());
             cursor.close();
@@ -155,7 +160,6 @@ public class DBHandler extends SQLiteOpenHelper {
         return endret;
     }
 
-    //Trenger kanskje ikke denne?
     public int finnAntallKontakter() {
         String sql = "SELECT * FROM " + TABLE_KONTAKTER;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -190,15 +194,16 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void slettMoteDeltakelse(Long KId, Long MId) {
+
+    public void slettMoteDeltakelse(Long inn_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_MOTEDELTAGELSER, KEY_KID + " = ? ",
-                new String[]{Long.toString(KId)});
+        db.delete(TABLE_MOTEDELTAGELSER, KEY_MDID + " =? ",
+                new String[]{Long.toString(inn_id)});
         db.close();
     }
 
     public List<Long> finnMoteDeltakelse(Long mote_id){
-        List<Long> deltakere = new ArrayList<>();
+        List<Long> deltakere = new ArrayList<Long>();
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "SELECT _KID FROM " + TABLE_MOTEDELTAGELSER + " WHERE _MID  = " + mote_id;
         Cursor cursor = db.rawQuery(sql, null);

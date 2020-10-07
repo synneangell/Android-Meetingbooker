@@ -2,15 +2,18 @@ package com.example.s331153s333975mappe2;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,13 +31,22 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = getApplicationContext().getSharedPreferences("Aktivitet_Kontakt", Context.MODE_PRIVATE);
-
         setContentView(R.layout.kontakter);
-        lv = (ListView) findViewById(R.id.listView_kontakter);
         db = new DBHandler(this);
 
+        lv = (ListView) findViewById(R.id.listView_kontakter);
+
         final List<String> visKontakter = visKontakterListView();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visKontakter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visKontakter){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                textView.setTextColor(Color.BLACK);
+                return view;
+            }
+        };
+
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -72,12 +84,12 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
         setActionBar(toolbar);
     }
 
-    /**----- Populere listview ------**/
+    /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/
     public List<String> visKontakterListView(){
         List <String> stringKontakter = new ArrayList<>();
         List<Kontakt> kontakter = db.finnAlleKontakter();
         for(int i = 0; i < kontakter.size(); i++){
-            stringKontakter.add("ID: "+kontakter.get(i)._KID+", navn: "+kontakter.get(i).navn+", telefon: "+kontakter.get(i).telefon);
+            stringKontakter.add("\nID: "+kontakter.get(i)._KID+"\nNavn: "+kontakter.get(i).navn+"\nTelefon: "+kontakter.get(i).telefon);
         }
         return stringKontakter;
     }

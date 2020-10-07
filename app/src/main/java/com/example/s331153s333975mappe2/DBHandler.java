@@ -27,7 +27,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 12;
+    static int DATABASE_VERSION = 13;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {
@@ -195,10 +195,12 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void slettMoteDeltakelse(Long inn_id) {
+    public void slettMoteDeltakelse(Long MId, Long KId) {
+        String StringMId = Long.toString(MId);
+        String StringKId = Long.toString(KId);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_MOTEDELTAGELSER, KEY_MDID + " =? ",
-                new String[]{Long.toString(inn_id)});
+        db.delete(TABLE_MOTEDELTAGELSER, KEY_FK_MID + " =? AND " + KEY_FK_KID + " = ?",
+                new String[]{StringMId, StringKId+""});
         db.close();
     }
 
@@ -233,5 +235,23 @@ public class DBHandler extends SQLiteOpenHelper {
         }else{
             return false;
         }
+    }
+    public List<MoteDeltagelse> finnAlleMoteDeltagelser() {
+        List<MoteDeltagelse> motedeltagelser = new ArrayList<MoteDeltagelse>();
+        String selectQuery = "SELECT * FROM " + TABLE_MOTEDELTAGELSER;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                MoteDeltagelse motedeltagelse = new MoteDeltagelse();
+                motedeltagelse.set_MDID(cursor.getLong(0));
+                motedeltagelse.set_MID(cursor.getLong(1));
+                motedeltagelse.set_KID(cursor.getLong(2));
+                motedeltagelser.add(motedeltagelse);
+            } while (cursor.moveToNext());
+            cursor.close();
+            db.close();
+        }
+        return motedeltagelser;
     }
 }

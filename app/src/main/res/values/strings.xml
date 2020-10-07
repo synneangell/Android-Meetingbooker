@@ -28,6 +28,9 @@
     <string name="slettMote">Slett møte</string>
     <string name="velgDato">Velg dato</string>
     <string name="velgTid">Velg tid</string>
+    <string name="tid">Tid</string>
+    <string name="dato">Dato</string>
+
 
 
 </resources>

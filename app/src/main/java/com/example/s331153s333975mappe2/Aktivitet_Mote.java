@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -11,9 +12,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,7 +39,16 @@ public class Aktivitet_Mote extends AppCompatActivity {
         db = new DBHandler(this);
 
         final List<String> visMoter = visMoterListView();
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visMoter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visMoter) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                textView.setTextColor(Color.BLACK);
+                return view;
+            }
+        };
+
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -79,7 +91,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
         List <String> stringMoter = new ArrayList<>();
         List<Mote> moter = db.finnAlleMoter();
         for(int i = 0; i < moter.size(); i++){
-            stringMoter.add("Møtenavn: "+moter.get(i).navn+", sted: "+moter.get(i).sted+", dato:"+ moter.get(i).dato +", tid: "+moter.get(i).tid);
+            stringMoter.add("\nMøtenavn: "+moter.get(i).navn+"\nSted: "+moter.get(i).sted+"\nDato:"+ moter.get(i).dato +"\nTid: "+moter.get(i).tid);
         }
         return stringMoter;
     }
@@ -96,7 +108,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.kontakter:
-                //Her er det egentlig meningen at det skal sendes verdier til neste aktivitet ut ifra det man trykker på i listview
                 Intent i = new Intent(this, Aktivitet_Kontakt.class);
                 startActivity(i);
                 break;

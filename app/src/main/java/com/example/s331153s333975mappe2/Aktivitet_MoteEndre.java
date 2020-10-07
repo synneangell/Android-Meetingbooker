@@ -94,8 +94,7 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
 
-
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override
@@ -116,7 +115,7 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
             mMinute = c.get(Calendar.MINUTE);
 
             // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
                         @Override

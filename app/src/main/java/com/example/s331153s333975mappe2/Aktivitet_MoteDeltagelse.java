@@ -93,13 +93,11 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
             Log.d("Kontaktid", Long.toString(kontaktId.get(i)));
             kontakter.add(db.finnKontakt(kontaktId.get(i)));
         }
-
         for(int i = 0; i < kontakter.size(); i++){
             stringKontakter.add("ID: "+kontakter.get(i)._KID+", navn: "+kontakter.get(i).navn+", telefon: "+kontakter.get(i).telefon);
         }
         return stringKontakter;
     }
-
 
     /**------------- METODER FOR NEDTREKKSMENY --------------**/
     @Override
@@ -113,13 +111,11 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.endre:
-
                 long MId = sp.getLong("MId", 0);
                 String innNavn = sp.getString("moteNavn", "feil");
                 String innSted = sp.getString("moteSted", "feil");
                 String innDato = sp.getString("moteDato", "feil");
                 String innTid = sp.getString("moteTid","feil");
-
 
                 SharedPreferences.Editor editor = sp2.edit();
                 editor.putLong("MId", MId);
@@ -145,8 +141,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     }
 
     public void slettMote() {
-        Intent intent = getIntent();
-        long MoteId = intent.getLongExtra("MId", 0);
+        long MoteId = sp.getLong("MId", 0);
         db.slettMote(MoteId);
         Intent i = new Intent(this, Aktivitet_Mote.class);
         startActivity(i);

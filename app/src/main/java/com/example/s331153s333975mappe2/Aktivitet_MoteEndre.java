@@ -45,6 +45,8 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
 
         navn.setText(sp.getString("moteNavn", "feil"));
         sted.setText(sp.getString("moteSted", "feil"));
+        tid.setText(sp.getString("moteTid", "feil"));
+        dato.setText(sp.getString("moteDato","feil"));
         //tidspunkt.setText(sp.getString("moteTidspunkt", "feil"));
 
 

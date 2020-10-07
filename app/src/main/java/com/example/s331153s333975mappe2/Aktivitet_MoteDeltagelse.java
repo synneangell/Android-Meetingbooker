@@ -116,14 +116,16 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 long MId = sp.getLong("MId", 0);
                 String innNavn = sp.getString("moteNavn", "feil");
                 String innSted = sp.getString("moteSted", "feil");
-                String innTidspunkt = sp.getString("moteTidspunkt", "feil");
+                String innDato = sp.getString("moteDato", "feil");
+                String innTid = sp.getString("moteTid","feil");
 
 
                 SharedPreferences.Editor editor = sp2.edit();
                 editor.putLong("MId", MId);
                 editor.putString("moteNavn", innNavn);
                 editor.putString("moteSted", innSted);
-                editor.putString("moteTidspunkt", innTidspunkt);
+                editor.putString("moteDato", innDato);
+                editor.putString("moteTid", innTid);
                 editor.apply();
                 Intent intent = new Intent(this, Aktivitet_MoteEndre.class);
                 startActivity(intent);

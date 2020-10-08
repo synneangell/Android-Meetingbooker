@@ -23,7 +23,7 @@ public class SettPeriodiskService extends Service {
         Calendar cal = Calendar.getInstance();
         Intent i = new Intent(this, MinVarselService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
-/*      cal.set(Calendar.HOUR_OF_DAY, 8);
+/*      cal.set(Calendar.HOUR_OF_DAY, 8); //dette var for å teste med tilfeldig tid som ikke ble hentet fra brukeren men hardkodet
         cal.set(Calendar.MINUTE, 30);
         cal.set(Calendar.SECOND, 0);*/
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

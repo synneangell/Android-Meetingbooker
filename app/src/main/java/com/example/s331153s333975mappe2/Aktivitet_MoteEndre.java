@@ -119,7 +119,7 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         if(datoInput.isEmpty()){
             dato.setError("Dato må være valgt eller skrevet inn");
             return false;
-/*        } else if(!DATO.matcher(datoInput).matches()){
+/*        } else if(!DATO.matcher(datoInput).matches()){ //får feil på denne, noe galt med regex (øverst i aktiviteten)
             dato.setError("Dato må være i format DD-MM-YYYY");
             return false;*/
         } else {

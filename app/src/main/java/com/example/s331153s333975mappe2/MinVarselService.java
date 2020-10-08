@@ -26,7 +26,7 @@ public class MinVarselService extends Service {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
         db = new DBHandler(MinVarselService.this);
-        List<Mote> alleMoter = db.finnAlleMoter();
+        List<Mote> alleMoter = db.finnAlleMoter(); //den klarer ikke å få inn noen møter her! en liten motherfucker
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent i = new Intent(this, Aktivitet_Mote.class);

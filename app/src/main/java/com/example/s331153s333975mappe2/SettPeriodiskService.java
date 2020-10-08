@@ -19,6 +19,7 @@ public class SettPeriodiskService extends Service {
     }
 
     @Override
+
     public int onStartCommand(Intent intent, int flags, int startId){
         Calendar cal = Calendar.getInstance();
         Intent i = new Intent(this, MinVarselService.class);

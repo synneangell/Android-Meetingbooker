@@ -1,11 +1,9 @@
 package com.example.s331153s333975mappe2;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,15 +14,29 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
-
     }
+
+/*    public void startService(View v){
+        Intent intent = new Intent();
+        intent.setAction("serviceBroadcast");
+        sendBroadcast(intent);
+    }*/
+
+    //denne stopper service som gir varsel om møter en gang i døgnet
+/*    public void stoppPeriodisk(View v){
+            Intent i = new Intent(Aktivitet_Innstillinger.this, MinVarselService.class);
+            PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
+            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            if(alarm != null){
+                alarm.cancel(pintent);
+            }
+    }*/
 
     public static class PrefsFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
-
         }
 
         @Override

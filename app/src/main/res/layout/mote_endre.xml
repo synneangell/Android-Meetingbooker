@@ -100,6 +100,7 @@
             android:layout_width="141dp"
             android:layout_height="80dp"
             android:layout_marginStart="161dp"
+            android:onClick="endreMote"
             android:layout_marginTop="516dp"
             android:layout_marginEnd="162dp"
             android:layout_marginBottom="167dp"

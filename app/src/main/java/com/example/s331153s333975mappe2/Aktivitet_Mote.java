@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -29,6 +28,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         sp = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
 
         setContentView(R.layout.mote);
@@ -72,6 +72,8 @@ public class Aktivitet_Mote extends AppCompatActivity {
         toolbar.setTitle("Planlagte møter");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
+
+        startPaminnelse();
     }
 
     /**----- METODE FOR Å POPULERE LISTVIEW ------**/
@@ -82,6 +84,18 @@ public class Aktivitet_Mote extends AppCompatActivity {
             stringMoter.add("Møtenavn: "+moter.get(i).navn+", sted: "+moter.get(i).sted+", dato:"+ moter.get(i).dato +", tid: "+moter.get(i).tid);
         }
         return stringMoter;
+    }
+
+    //Tenkte denne kunne dukke opp når admin får notifikasjon om møtet og trykker på den notifikasjonen så får man opp dialog med info om møtet
+    public void openDialog(){
+        MoteDialog moteDialog = new MoteDialog();
+        moteDialog.show(getSupportFragmentManager(), "møtedialog");
+    }
+
+    public void startPaminnelse(){
+        Intent intent = new Intent();
+        intent.setAction(".serviceBroadcast");
+        sendBroadcast(intent);
     }
 
     /**------------- METODER FOR NEDTREKKSMENY --------------**/

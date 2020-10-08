@@ -30,6 +30,12 @@
     <string name="velgTid">Velg tid</string>
     <string name="tid">Tid</string>
     <string name="dato">Dato</string>
+    <string name="varslerAv">Varsler av</string>
+    <string name="varslerPa">Varsler på</string>
+    <string name="settPaVarsel">Sett på varsel</string>
+    <string name="av">Av</string>
+    <string name="tidForVarsel">Tid for varsel</string>
+
 
 
 

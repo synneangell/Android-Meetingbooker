@@ -80,7 +80,7 @@ public class MinVarselService extends Service {
     }
 
     private void byggNotifikasjon(PendingIntent pintent, NotificationManager notificationManager){
-        //String contentText = "Remember your restaurant booking(s) today!";
+        //String contentText = "Husk møtet idag";
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Husk møtene for i dag!")
                 .setContentText("Du har et møte i dag!")

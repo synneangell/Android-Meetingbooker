@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,6 +38,9 @@ public class Aktivitet_Mote extends AppCompatActivity {
         setContentView(R.layout.mote);
         lv = findViewById(R.id.listView_mote);
         db = new DBHandler(this);
+
+        String melding = getString(R.string.standardMelding);
+        Log.d("Melding", melding);
 
         final List<String> visMoter = visMoterListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visMoter){

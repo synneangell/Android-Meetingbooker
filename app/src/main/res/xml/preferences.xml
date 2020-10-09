@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ListPreference
-        android:title="@string/settPaVarsel"
-        android:key="varsler_preferanse"
-        android:summary="%s"
-        android:entryValues="@array/varsler"
-        android:entries="@array/varsler"
-        android:defaultValue="@string/av"/>
+    <PreferenceCategory
+        android:title="Varsler">
 
-<!--    <EditTextPreference
-        android:key="editTextPref_Key"
-        android:title="@string/editTextPref_title"/>
-    <com.example.myapp.TimePreference
-        android:key="timePrefA_Key"
-        android:title="@string/timePrefA_title"/>
-    <com.example.myapp.TimePreference
-        android:key="timePrefB_Key"
-        android:title="@string/timePrefB_title"/>-->
+        <SwitchPreference
+            android:key="bytt"
+            android:title="Sms-varsler"
+            android:summary="Hvis varsler er på, sendes en SMS"/>
 
-
+        <EditTextPreference
+            android:key="klokkeslett"
+            android:title="Klokkeslett"
+            android:summary="Sett klokkeslett på varsel"/>
+    </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,11 +1,12 @@
 package com.example.s331153s333975mappe2;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 13;
+    static int DATABASE_VERSION = 14;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {

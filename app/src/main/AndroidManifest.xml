@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".Aktivitet_Mote">
             <intent-filter>
@@ -21,8 +22,6 @@
             android:parentActivityName=".Aktivitet_Mote"/>
         <activity android:name=".Aktivitet_MoteEndre"
             android:parentActivityName=".Aktivitet_MoteDeltagelse"/>
-        <activity android:name=".Aktivitet_MoteEndreDeltagelse"
-            android:parentActivityName=".Aktivitet_MoteEndre"/>
         <activity android:name=".Aktivitet_Kontakt"
             android:parentActivityName=".Aktivitet_Mote"/>
         <activity android:name=".Aktivitet_KontaktReg"
@@ -33,5 +32,14 @@
             android:parentActivityName=".Aktivitet_KontaktInfo"/>
         <activity android:name=".Aktivitet_MoteRegDeltagelse"
             android:parentActivityName=".Aktivitet_MoteDeltagelse"/>
+        <activity android:name=".Aktivitet_Innstillinger"
+            android:parentActivityName=".Aktivitet_Mote"/>
+        <receiver android:name=".MinBroadcastReceiver">
+            <intent-filter>
+                <action android:name=".serviceBroadcast"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".SettPeriodiskService"/>
+        <service android:name=".MinVarselService"/>
     </application>
 </manifest>

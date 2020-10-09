@@ -49,21 +49,26 @@ public class MinVarselService extends Service {
         PendingIntent pintent = PendingIntent.getActivity(MinVarselService.this, 0, i, 0);
 
         for(Mote mote : alleMoter){
-            if(mote.getDato().equals(currentDate)){
+            if(currentDate.equals(mote.getDato())){
                 Log.d("Møte dato ", mote.getDato());
                 byggNotifikasjon(pintent, notificationManager);
-            }
-        }
-        if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
-            for(MoteDeltagelse md : alleMoteDeltagelser){
-                for(Kontakt k : alleKontakter){
-                    if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
-                        for(Kontakt kontakt : alleKontakter){
-                            sendSMS(kontakt.getTelefon());
+
+                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
+                    for(MoteDeltagelse md : alleMoteDeltagelser){
+                        for(Kontakt k : alleKontakter){
+                            if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
+                                for(Kontakt kontakt : alleKontakter){
+                                    sendSMS(kontakt.getTelefon());
+                                }
+                            }
                         }
                     }
                 }
-            }
+            } /*else {
+                Toast.makeText(this, "Fikk ikke hentet møte/er ikke likt med current", Toast.LENGTH_SHORT).show();
+            }*/
+
+
         }
         return super.onStartCommand(intent, flags, startId);
     }

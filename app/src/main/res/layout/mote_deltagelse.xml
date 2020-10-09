@@ -15,15 +15,37 @@
         android:layout_height="wrap_content"
         android:background="@color/toolbar" />
 
+    <TextView
+        android:id="@+id/moteinformasjon"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#040000"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/deltakere"
+        android:text="@string/deltakere"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="60dp"
+        android:textColor="#040000"
+        android:textSize="20sp"
+        />
+
     <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        >
 
         <ListView
             android:id="@+id/listView_kontakter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="240dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,8 +59,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            app:backgroundTint="@color/knapp"
-            app:srcCompat="@android:drawable/ic_input_add"/>
+            app:backgroundTint="@color/toolbar"
+            app:srcCompat="@drawable/ic_baseline_person_add_24"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="15dp"
+            app:srcCompat="@drawable/ic_baseline_people_24" />
 
     </FrameLayout>
 

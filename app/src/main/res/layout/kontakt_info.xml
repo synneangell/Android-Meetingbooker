@@ -11,36 +11,46 @@
         android:layout_height="wrap_content"
         android:background="@color/toolbar" />
 
-    <TextView
-        android:id="@+id/regKontakt"
-        android:layout_width="275dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginBottom="580dp"
-        android:text="@string/kontaktInformasjon"
-        android:textColor="#040000"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:layout_marginLeft="40dp"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
 
     <TextView
         android:id="@+id/txtNavn"
         android:layout_width="205dp"
-        android:layout_height="68dp"
+        android:layout_height="60dp"
         android:layout_marginStart="103dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="149dp"
         android:layout_marginEnd="103dp"
         android:textColor="#000000"
+        app:backgroundTint="@color/toolbar"
+        android:textCursorDrawable="@color/knapp"
         android:textColorHint="@color/toolbar"
-        android:textSize="18sp" />
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="225dp"
+        android:layout_marginLeft="40dp"
+        app:srcCompat="@drawable/ic_baseline_local_phone_24" />
 
     <TextView
         android:id="@+id/txtTelefonnr"
         android:layout_width="205dp"
-        android:layout_height="68dp"
+        android:layout_height="60dp"
         android:layout_marginStart="103dp"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="230dp"
         android:layout_marginEnd="103dp"
+        app:backgroundTint="@color/toolbar"
+        android:textCursorDrawable="@color/knapp"
+        android:textColorHint="@color/toolbar"
         android:textColor="#000000"
-        android:textSize="18sp" />
+        android:textSize="30sp" />
 </RelativeLayout>

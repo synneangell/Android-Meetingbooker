@@ -45,9 +45,10 @@ public class Aktivitet_KontaktReg extends AppCompatActivity {
         });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\t\t Registrer kontakt ");
+        toolbar.setTitle("\tRegistrer kontakt ");
         toolbar.inflateMenu(R.menu.menu_kontaktinfo);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

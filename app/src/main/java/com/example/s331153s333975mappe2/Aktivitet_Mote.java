@@ -80,10 +80,10 @@ public class Aktivitet_Mote extends AppCompatActivity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Planlagte møter");
+        toolbar.setTitle("\tPlanlagte møter");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
-
+        toolbar.setLogo(R.drawable.ic_launcher_small);
         startPaminnelse();
     }
 
@@ -92,7 +92,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
         List <String> stringMoter = new ArrayList<>();
         List<Mote> moter = db.finnAlleMoter();
         for(int i = 0; i < moter.size(); i++){
-            stringMoter.add("\nMøtenavn: "+moter.get(i).navn+"\nSted: "+moter.get(i).sted+"\nDato:"+ moter.get(i).dato +"\nTid: "+moter.get(i).tid);
+            stringMoter.add("\nMøtenavn: "+moter.get(i).navn+"\nSted: "+moter.get(i).sted+"\nDato: "+ moter.get(i).dato +"\nTid: "+moter.get(i).tid);
         }
         return stringMoter;
     }

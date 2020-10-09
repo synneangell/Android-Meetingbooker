@@ -30,6 +30,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     DBHandler db;
     SharedPreferences sp;
     SharedPreferences sp2;
+    TextView txtMoteinformasjon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,16 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         sp2 = getApplicationContext().getSharedPreferences("Aktivitet_MoteDeltagelse", Context.MODE_PRIVATE);
 
         lv = (ListView) findViewById(R.id.listView_kontakter);
+        txtMoteinformasjon = findViewById(R.id.moteinformasjon);
+
+        Long moteId = sp.getLong("MId", 0);
+        String moteIdString = Long.toString(moteId);
+        String moteNavn = sp.getString("moteNavn", "feil");
+        String moteSted = sp.getString("moteSted", "feil");
+        String moteDato = sp.getString("moteDato", "feil");
+        String moteTid = sp.getString("moteTid", "feil");
+
+        txtMoteinformasjon.setText("\nMøteID: "+moteIdString+"\nMøtenavn: "+moteNavn+"\nSted: "+moteSted+"\nDato: "+ moteDato +"\nTid: "+moteTid);
 
         final List <String> deltakere = visMoteDeltakelseListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, deltakere){
@@ -79,10 +90,11 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         /**---- TOOLBAR OPPRETTES ----**/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Deltakere til møte");
+        toolbar.setTitle("\tMøteinformasjon");
         setActionBar(toolbar);
         toolbar.inflateMenu(R.menu.menu_motedeltagelse);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

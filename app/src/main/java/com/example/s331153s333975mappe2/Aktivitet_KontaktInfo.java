@@ -36,9 +36,10 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
         txtTelefonnr.setText(sp.getString("kontaktTelefonnr", "feil"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Kontaktinformasjon");
+        toolbar.setTitle("\tKontaktinformasjon");
         toolbar.inflateMenu(R.menu.menu_kontaktinfo);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

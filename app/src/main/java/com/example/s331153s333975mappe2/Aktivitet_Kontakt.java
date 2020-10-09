@@ -78,9 +78,11 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Alle kontakter");
+        toolbar.setTitle("\tAlle kontakter");
         toolbar.inflateMenu(R.menu.menu_kontakter);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
+
     }
 
     /**----- Populere listview ------**/

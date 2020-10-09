@@ -68,6 +68,7 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
         toolbar.setTitle("Velg deltakere til møte");
         toolbar.inflateMenu(R.menu.menu_mote_reg_deltagelse);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

@@ -52,9 +52,10 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         db = new DBHandler(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\t\t Registrer møte ");
+        toolbar.setTitle("\tRegistrer møte ");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

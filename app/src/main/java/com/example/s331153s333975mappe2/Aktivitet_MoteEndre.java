@@ -68,9 +68,10 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\t\t Endre møteinformasjon ");
+        toolbar.setTitle("\tEndre møteinformasjon ");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

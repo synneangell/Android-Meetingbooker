@@ -56,9 +56,10 @@ public class Aktivitet_KontaktEndre extends AppCompatActivity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Endre kontakt");
+        toolbar.setTitle("\tEndre kontakt");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

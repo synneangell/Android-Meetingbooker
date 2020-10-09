@@ -13,6 +13,7 @@
     <string name="innstillinger">Innstillinger</string>
     <string name="seMoteDeltagelse">Se møtedeltagelse</string>
     <string name="moteInformasjon">Møteinformasjon</string>
+    <string name="moteInformasjon2">Møteinformasjon:</string>
     <string name="kontaktInformasjon">Kontaktinformasjon</string>
     <string name="endre">Endre</string>
     <string name="slett">Slett</string>
@@ -35,6 +36,7 @@
     <string name="settPaVarsel">Sett på varsel</string>
     <string name="av">Av</string>
     <string name="tidForVarsel">Tid for varsel</string>
+    <string name="deltakere">Deltakere:</string>
 
 
 

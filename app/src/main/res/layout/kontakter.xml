@@ -37,8 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            app:backgroundTint="@color/knapp"
-            app:srcCompat="@android:drawable/ic_input_add"/>
+            app:backgroundTint="@color/toolbar"
+            app:srcCompat="@drawable/ic_baseline_person_add_24"/>
 
     </FrameLayout>
 

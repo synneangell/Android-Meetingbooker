@@ -50,9 +50,10 @@ public class MinVarselService extends Service {
 
         for(Mote mote : alleMoter){
             if(mote.getDato().equals(currentDate)){
+                Log.d("Møte dato ", mote.getDato());
                 byggNotifikasjon(pintent, notificationManager);
 
-/*                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
+                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
                     for(MoteDeltagelse md : alleMoteDeltagelser){
                         for(Kontakt k : alleKontakter){
                             if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
@@ -62,7 +63,7 @@ public class MinVarselService extends Service {
                             }
                         }
                     }
-                }*/
+                }
             }
         }
         return super.onStartCommand(intent, flags, startId);

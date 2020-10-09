@@ -112,6 +112,7 @@
             android:layout_marginTop="440dp"
             android:layout_marginEnd="120dp"
             android:background="@color/toolbar"
+            android:onClick="endreMote"
             android:text="@string/lagre" />
 
 </RelativeLayout>

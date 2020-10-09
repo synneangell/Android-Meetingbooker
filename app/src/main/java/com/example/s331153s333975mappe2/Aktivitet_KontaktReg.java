@@ -10,10 +10,15 @@ import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.regex.Pattern;
+
 public class Aktivitet_KontaktReg extends AppCompatActivity {
     EditText navn, telefonnr;
     Button reg;
     DBHandler db;
+
+    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
+    public static final Pattern TELEFON = Pattern.compile("[0-9]{8}");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +56,45 @@ public class Aktivitet_KontaktReg extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void regKontakt(View v){
+        if(!validerNavn() | !validerTelefonnr()){
+            Toast.makeText(Aktivitet_KontaktReg.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Kontakt kontakt = new Kontakt(navn.getText().toString(), telefonnr.getText().toString());
+            db.leggTilKontakt(kontakt);
+            Intent intent = new Intent(Aktivitet_KontaktReg.this, Aktivitet_Kontakt.class);
+            startActivity(intent);
+        }
+    }
+
+    public boolean validerNavn(){
+        String navnInput = navn.getText().toString().trim();
+        if(navnInput.isEmpty()){
+            navn.setError("Navn kan ikke være tomt");
+            return false;
+        } else if (!NAVN.matcher(navnInput).matches()){
+            navn.setError("Navnet må bestå av mellom 2 og 20 tegn");
+            return false;
+        } else {
+            navn.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validerTelefonnr(){
+        String telefonnrInput = telefonnr.getText().toString().trim();
+        if(telefonnrInput.isEmpty()){
+            telefonnr.setError("Telefonnummer kan ikke være tomt");
+            return false;
+        } else if(!TELEFON.matcher(telefonnrInput).matches()){
+            telefonnr.setError("Telefonnummer må bestå av 8 tall");
+            return false;
+        } else {
+            telefonnr.setError(null);
+            return true;
+        }
     }
 }

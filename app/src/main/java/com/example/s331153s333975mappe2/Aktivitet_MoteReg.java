@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 
@@ -19,6 +20,7 @@ import java.util.Calendar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClickListener {
     EditText navn, sted, tid, dato;
@@ -26,6 +28,12 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
     DBHandler db;
     Button btnReg, btnDatePicker, btnTimePicker;
     ListView lv;
+
+    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
+    public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
+    public static final Pattern DATO = Pattern.compile("(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}");
+    public static final Pattern TID = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
+    //Tid formatet må kunne være på formatet 5:5 også
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +65,72 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         });
     }
 
+    public boolean validerNavn(){
+        String navnInput = navn.getText().toString().trim();
+        if(navnInput.isEmpty()){
+            navn.setError("Navn kan ikke være tomt");
+            return false;
+        } else if (!NAVN.matcher(navnInput).matches()){
+            navn.setError("Navnet må bestå av mellom 2 og 20 tegn");
+            return false;
+        } else {
+            navn.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validerSted(){
+        String stedInput = sted.getText().toString().trim();
+        if(stedInput.isEmpty()){
+            sted.setError("Sted kan ikke være tomt");
+            return false;
+        } else if(!STED.matcher(stedInput).matches()){
+            sted.setError("Sted må bestå av mellom 2 og 20 tegn");
+            return false;
+        } else {
+            sted.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validerDato(){
+        String datoInput = dato.getText().toString().trim();
+        if(datoInput.isEmpty()){
+            dato.setError("Dato må være valgt eller skrevet inn");
+            return false;
+/*        } else if(!DATO.matcher(datoInput).matches()){
+            dato.setError("Dato må være i format DD-MM-YYYY");
+            return false;*/
+        } else {
+            dato.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validerTid(){
+        String tidInput = tid.getText().toString().trim();
+        if(tidInput.isEmpty()){
+            tid.setError("Tid må være valgt eller skrevet inn");
+            return false;
+        } else if(!TID.matcher(tidInput).matches()){
+            tid.setError("Tid må være i format TT:MM");
+            return false;
+        } else {
+            tid.setError(null);
+            return true;
+        }
+    }
+
     public void regMote(View v){
-        Mote mote = new Mote(navn.getText().toString(), sted.getText().toString(), dato.getText().toString(), tid.getText().toString());
-        db.leggTilMote(mote);
-        Log.d("Legger inn møte", "Navn: "+mote.navn + ", Sted: "+mote.sted +  ", Dato: "+mote.dato +", Tid: "+mote.tid);
-        Intent intent = new Intent(this, Aktivitet_Mote.class);
-        startActivity(intent);
+        if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
+            Toast.makeText(Aktivitet_MoteReg.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            Mote mote = new Mote(navn.getText().toString(), sted.getText().toString(), dato.getText().toString(), tid.getText().toString());
+            db.leggTilMote(mote);
+            Intent intent = new Intent(this, Aktivitet_Mote.class);
+            startActivity(intent);
+        }
     }
 
 

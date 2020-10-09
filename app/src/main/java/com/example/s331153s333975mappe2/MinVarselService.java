@@ -36,7 +36,7 @@ public class MinVarselService extends Service {
         //SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         //boolean varsel = pref.getBoolean("bytt", false);
 
-        boolean varsel = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("bytt", false);
+        boolean varsel = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("bytt", true);
         Log.d("Er varsel på? ", Boolean.toString(varsel));
 
         db = new DBHandler(MinVarselService.this);
@@ -52,15 +52,14 @@ public class MinVarselService extends Service {
             if(mote.getDato().equals(currentDate)){
                 Log.d("Møte dato ", mote.getDato());
                 byggNotifikasjon(pintent, notificationManager);
-
-                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
-                    for(MoteDeltagelse md : alleMoteDeltagelser){
-                        for(Kontakt k : alleKontakter){
-                            if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
-                                for(Kontakt kontakt : alleKontakter){
-                                    sendSMS(kontakt.getTelefon());
-                                }
-                            }
+            }
+        }
+        if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
+            for(MoteDeltagelse md : alleMoteDeltagelser){
+                for(Kontakt k : alleKontakter){
+                    if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
+                        for(Kontakt kontakt : alleKontakter){
+                            sendSMS(kontakt.getTelefon());
                         }
                     }
                 }

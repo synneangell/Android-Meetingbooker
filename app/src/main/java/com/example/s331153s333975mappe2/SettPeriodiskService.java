@@ -38,8 +38,8 @@ public class SettPeriodiskService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    private int[] delTid(String time) {
-        String[] userSplit = time.split(":");
-        return new int[] {Integer.parseInt(userSplit[0]), Integer.parseInt(userSplit[1])};
+    private int[] delTid(String tid) {
+        String[] del = tid.split(":");
+        return new int[] {Integer.parseInt(del[0]), Integer.parseInt(del[1])};
     }
 }

@@ -52,7 +52,7 @@ public class MinVarselService extends Service {
             if(mote.getDato().equals(currentDate)){
                 byggNotifikasjon(pintent, notificationManager);
 
-                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
+/*                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
                     for(MoteDeltagelse md : alleMoteDeltagelser){
                         for(Kontakt k : alleKontakter){
                             if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
@@ -62,7 +62,7 @@ public class MinVarselService extends Service {
                             }
                         }
                     }
-                }
+                }*/
             }
         }
         return super.onStartCommand(intent, flags, startId);
@@ -80,9 +80,10 @@ public class MinVarselService extends Service {
     }
 
     private void byggNotifikasjon(PendingIntent pintent, NotificationManager notificationManager){
+        //String contentText = "Remember your restaurant booking(s) today!";
         Notification notification = new NotificationCompat.Builder(this)
-                .setContentText("Du har et møte i dag!")
                 .setContentTitle("Husk møtene for i dag!")
+                .setContentText("Du har et møte i dag!")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pintent)
                 .build();

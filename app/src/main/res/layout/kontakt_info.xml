@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,30 +9,19 @@
         android:id="@+id/toolbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/toolbar" />
 
     <TextView
         android:id="@+id/regKontakt"
         android:layout_width="275dp"
         android:layout_height="60dp"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="112dp"
-        android:layout_marginEnd="85dp"
         android:layout_marginBottom="580dp"
-        android:layout_weight="1"
         android:text="@string/kontaktInformasjon"
         android:textColor="#040000"
         android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtNavn"
@@ -42,23 +30,17 @@
         android:layout_marginStart="103dp"
         android:layout_marginTop="220dp"
         android:layout_marginEnd="103dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textColorHint="@color/toolbar"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/txtTelefonnr"
         android:layout_width="205dp"
         android:layout_height="68dp"
         android:layout_marginStart="103dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="270dp"
         android:layout_marginEnd="103dp"
-        android:textSize="18sp"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNavn" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textColor="#000000"
+        android:textSize="18sp" />
+</RelativeLayout>

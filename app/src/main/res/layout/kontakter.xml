@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/kontaktToolbar" >
 
-         </ListView>
+        </ListView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -39,7 +39,6 @@
             android:layout_margin="16dp"
             app:backgroundTint="@color/knapp"
             app:srcCompat="@android:drawable/ic_input_add"/>
-
 
     </FrameLayout>
 

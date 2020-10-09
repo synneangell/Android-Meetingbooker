@@ -14,7 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar"
-     />
+        />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -45,4 +45,3 @@
     </FrameLayout>
 
 </RelativeLayout>
-

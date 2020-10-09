@@ -21,7 +21,6 @@ import java.util.Locale;
 
 public class MinVarselService extends Service {
     DBHandler db;
-    SharedPreferences sp;
 
     @Nullable
     @Override
@@ -34,8 +33,11 @@ public class MinVarselService extends Service {
         Toast.makeText(this, "I MinVarselService", Toast.LENGTH_SHORT).show();
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean varsel = pref.getBoolean("bytt", false);
+        //SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        //boolean varsel = pref.getBoolean("bytt", false);
+
+        boolean varsel = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("bytt", false);
+        Log.d("Er varsel på? ", Boolean.toString(varsel));
 
         db = new DBHandler(MinVarselService.this);
         final List<Mote> alleMoter = db.finnAlleMoter(); //den klarer ikke å få inn noen møter her! en liten motherfucker

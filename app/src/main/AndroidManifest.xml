@@ -34,7 +34,7 @@
             android:parentActivityName=".Aktivitet_MoteDeltagelse"/>
         <activity android:name=".Aktivitet_Innstillinger"
             android:parentActivityName=".Aktivitet_Mote"/>
-        <receiver android:name=".MinBroadcastReceiver">
+        <receiver android:name=".MinBroadcastReceiver" android:exported="true">
             <intent-filter>
                 <action android:name=".serviceBroadcast"/>
             </intent-filter>

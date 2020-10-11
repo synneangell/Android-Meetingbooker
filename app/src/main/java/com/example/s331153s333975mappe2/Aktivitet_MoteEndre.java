@@ -26,7 +26,7 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
     Button endre, btnDatePicker, btnTimePicker;
     private int mYear, mMonth, mDay, mHour, mMinute;
     DBHandler db;
-    SharedPreferences sp;
+    SharedPreferences sp, sp2;
 
     public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
     public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
@@ -75,7 +75,17 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
                     mote.setDato(dato.getText().toString());
                     mote.setTid(tid.getText().toString());
                     db.oppdaterMote(mote);
-                    Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_Mote.class);
+
+                    sp2 = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sp2.edit();
+                    editor.putString("moteNavn", navn.getText().toString());
+                    editor.putString("moteSted", sted.getText().toString());
+                    editor.putString("moteDato", dato.getText().toString());
+                    editor.putString("moteTid", tid.getText().toString());
+                    editor.putLong("MId", MId);
+                    editor.apply();
+
+                    Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_MoteDeltagelse.class);
                     startActivity(intent);
                 }
             }

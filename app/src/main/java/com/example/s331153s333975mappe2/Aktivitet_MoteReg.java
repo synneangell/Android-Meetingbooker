@@ -154,6 +154,7 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
+
                             if(dayOfMonth <= 9 && monthOfYear <= 9){
                                 String day = String.format("%02d" , dayOfMonth);
                                 monthOfYear += 1;

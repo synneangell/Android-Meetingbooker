@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import java.text.SimpleDateFormat;
@@ -39,7 +40,8 @@ public class MinVarselService extends Service {
         Log.d("Er varsel på? ", Boolean.toString(varsel));
 
         db = new DBHandler(MinVarselService.this);
-        final List<Mote> alleMoter = db.finnAlleMoter(); //den klarer ikke å få inn noen møter her! en liten motherfucker
+        final List<Mote> alleMoter = db.finnAlleMoter(); //den klarer ikke å få inn noen møter her! en liten motherfucker. Joda, den klarer det!!
+        Log.d("alleMoter.size",Integer.toString(alleMoter.size()));
         final List<MoteDeltagelse> alleMoteDeltagelser = db.finnAlleMoteDeltagelser();
         final List<Kontakt> alleKontakter = db.finnAlleKontakter();
 
@@ -47,30 +49,36 @@ public class MinVarselService extends Service {
         Intent i = new Intent(this, Aktivitet_Mote.class);
         PendingIntent pintent = PendingIntent.getActivity(MinVarselService.this, 0, i, 0);
 
+        byggNotifikasjon(pintent, notificationManager);
+
         for(Mote mote : alleMoter){
+            Log.d("Currentdate",currentDate);
+            Log.d("Møte dato ", mote.getDato());
             if(currentDate.equals(mote.getDato())){
+                Log.d("I if", "current date");
                 byggNotifikasjon(pintent, notificationManager);
-            } else {
-                Toast.makeText(this, "Fikk ikke hentet møte/er ikke likt med current", Toast.LENGTH_SHORT).show();
-            }
-            if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
-                for(MoteDeltagelse md : alleMoteDeltagelser){
-                    for(Kontakt k : alleKontakter){
-                        if(md.get_KID() == k.get_KID() && md.get_KID() != null){
-                            for(Kontakt kontakt : alleKontakter){
-                                sendSMS(kontakt.getTelefon());
+                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
+                    for(MoteDeltagelse md : alleMoteDeltagelser){
+                        for(Kontakt k : alleKontakter){
+                            if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
+                                for(Kontakt kontakt : alleKontakter){
+                                    Log.d("Telefonnr",kontakt.getTelefon());
+                                    sendSMS(kontakt.getTelefon());
+                                }
                             }
                         }
                     }
                 }
+            } else {
+                Toast.makeText(this, "Fikk ikke hentet møte/er ikke likt med current", Toast.LENGTH_SHORT).show();
             }
+
         }
         return super.onStartCommand(intent, flags, startId);
     }
 
     public void sendSMS(String telefonnr){
         String melding = getString(R.string.standardMelding);
-
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(telefonnr, null, melding, null, null);

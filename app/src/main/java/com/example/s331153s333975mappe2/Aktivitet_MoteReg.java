@@ -3,10 +3,9 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -16,16 +15,17 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClickListener {
     EditText navn, sted, tid, dato;
-    private int mYear, mMonth, mDay, mHour, mMinute;
+    private int year, month, day, mHour, mMinute;
     DBHandler db;
     Button btnReg, btnDatePicker, btnTimePicker;
     ListView lv;
@@ -97,13 +97,14 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
 
     public boolean validerDato(){
         String datoInput = dato.getText().toString().trim();
-        if(datoInput.isEmpty()){
+        if(datoInput.isEmpty()) {
             dato.setError("Dato må være valgt eller skrevet inn");
             return false;
-/*        } else if(!DATO.matcher(datoInput).matches()){
+        }
+        /*else if(!DATO.matcher(datoInput).matches()) {
             dato.setError("Dato må være i format DD-MM-YYYY");
             return false;*/
-        } else {
+        else {
             dato.setError(null);
             return true;
         }
@@ -124,7 +125,7 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
     }
 
     public void regMote(View v){
-        if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
+        if(!validerNavn() | !validerSted() | !validerDato() | !validerTid() |!validerDato()){
             Toast.makeText(Aktivitet_MoteReg.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
             return;
         } else {
@@ -135,14 +136,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         }
     }
 
-    private int[] delDato(String dato) {
-        String[] del = dato.split("/");
-        return new int[] {Integer.parseInt(del[0]), Integer.parseInt(del[1]), Integer.parseInt(del[2])};
-    }
-
-    //String klokkeSlett = PreferenceManager.getDefaultSharedPreferences(this).getString("klokkeslett", null);
-    //final int[] brukerTid = delTid(klokkeSlett);
-
 
     @Override
     public void onClick(View v) {
@@ -150,25 +143,41 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
 
             // Get Current Date
             final Calendar c = Calendar.getInstance();
-            mYear = c.get(Calendar.YEAR);
-            mMonth = c.get(Calendar.MONTH);
-            mDay = c.get(Calendar.DAY_OF_MONTH);
+            year = c.get(Calendar.YEAR);
+            month = c.get(Calendar.MONTH);
+            day = c.get(Calendar.DAY_OF_MONTH);
 
-            if(mMonth == 1){
-
-            }
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
-
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
-                            dato.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            if(dayOfMonth <= 9 && monthOfYear <= 9){
+                                String day = String.format("%02d" , dayOfMonth);
+                                monthOfYear += 1;
+                                String month = String.format("%02d" , monthOfYear);
+                                dato.setText(day + "-" + month + "-" + year);
 
+                            }
+                            else if(dayOfMonth <= 9){
+                                String day = String.format("%02d" , dayOfMonth);
+                                dato.setText(day + "-" + (monthOfYear+1) + "-" + year);
+
+                            }
+                            else if(monthOfYear<= 9){
+                                monthOfYear += 1;
+                                String month = String.format("%02d" , monthOfYear);
+                                dato.setText(dayOfMonth + "-" + month + "-" + year);
+
+                            }
+                            else{
+                                dato.setText(dayOfMonth + "-" + (monthOfYear+1) + "-" + year);
+                            }
                         }
-                    }, mYear, mMonth, mDay);
+                    }, year, month, day);
+
             datePickerDialog.show();
         }
         if (v == btnTimePicker) {
@@ -185,14 +194,29 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
+                            if(hourOfDay <= 9 && minute <= 9){
+                                String hour = String.format("%02d" , hourOfDay);
+                                String min = String.format("%02d" , minute);
+                                tid.setText(hour + ":" + min);
 
-                            tid.setText(hourOfDay + ":" + minute);
+                            }
+                            else if(hourOfDay <= 9){
+                                String hour = String.format("%02d" , hourOfDay);
+                                tid.setText(hour + ":" + minute);
+
+                            }
+                            else if(minute<= 9){
+                                String min = String.format("%02d" , minute);
+                                tid.setText(hourOfDay + ":" + min);
+
+                            }
+                            else{
+                                tid.setText(hourOfDay + ":" + minute);
+                            }
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();
         }
-
-
     }
 }
 

@@ -3,20 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:theme="@style/PreferenceScreen"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <PreferenceCategory
-        android:title="Varsler">
+        android:title="Varsler"
+        >
 
         <SwitchPreference
             android:key="bytt"
 
             android:title="Sms-varsler"
-            android:summary="Hvis varsler er på, sendes en SMS"/>
+            android:summary="Hvis varsler er på, sendes en SMS"
+            />
 
         <EditTextPreference
             android:key="klokkeslett"
             android:title="Klokkeslett"
-            android:summary="Sett klokkeslett på varsel"/>
+            android:summary="Sett klokkeslett på varsel"
+            android:text="12:00"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

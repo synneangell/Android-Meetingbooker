@@ -39,9 +39,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
         lv = findViewById(R.id.listView_mote);
         db = new DBHandler(this);
 
-        String melding = getString(R.string.standardMelding);
-        Log.d("Melding", melding);
-
         final List<String> visMoter = visMoterListView();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, visMoter){
             @Override

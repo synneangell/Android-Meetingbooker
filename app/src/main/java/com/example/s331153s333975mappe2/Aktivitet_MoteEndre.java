@@ -83,11 +83,12 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
     }
 
     public void endreMote(View v){
-        if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
+        /*if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
             Toast.makeText(Aktivitet_MoteEndre.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
             return;
-        } else {
-            long MId = sp.getLong("MId", 0);
+        } else {*/
+            long MId = sp.getLong("MId", 10);
+            Log.d("Moteid", Long.toString(MId));
             Mote mote = new Mote();
             mote.set_MID(MId);
             mote.setNavn(navn.getText().toString());
@@ -98,7 +99,7 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
 
             Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_Mote.class);
             startActivity(intent);
-        }
+        //}
     }
 
     public boolean validerNavn(){
@@ -173,9 +174,27 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
+                            if(dayOfMonth <= 9 && monthOfYear <= 9){
+                                String day = String.format("%02d" , dayOfMonth);
+                                monthOfYear += 1;
+                                String month = String.format("%02d" , monthOfYear);
+                                dato.setText(day + "-" + month + "-" + year);
 
-                            dato.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            }
+                            else if(dayOfMonth <= 9){
+                                String day = String.format("%02d" , dayOfMonth);
+                                dato.setText(day + "-" + (monthOfYear+1) + "-" + year);
 
+                            }
+                            else if(monthOfYear<= 9){
+                                monthOfYear += 1;
+                                String month = String.format("%02d" , monthOfYear);
+                                dato.setText(dayOfMonth + "-" + month + "-" + year);
+
+                            }
+                            else{
+                                dato.setText(dayOfMonth + "-" + (monthOfYear+1) + "-" + year);
+                            }
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -194,8 +213,25 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
+                            if(hourOfDay <= 9 && minute <= 9){
+                                String hour = String.format("%02d" , hourOfDay);
+                                String min = String.format("%02d" , minute);
+                                tid.setText(hour + ":" + min);
 
-                            tid.setText(hourOfDay + ":" + minute);
+                            }
+                            else if(hourOfDay <= 9){
+                                String hour = String.format("%02d" , hourOfDay);
+                                tid.setText(hour + ":" + minute);
+
+                            }
+                            else if(minute<= 9){
+                                String min = String.format("%02d" , minute);
+                                tid.setText(hourOfDay + ":" + min);
+
+                            }
+                            else{
+                                tid.setText(hourOfDay + ":" + minute);
+                            }
                         }
                     }, mHour, mMinute, false);
             timePickerDialog.show();

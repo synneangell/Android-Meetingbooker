@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -22,7 +23,9 @@ public class SettPeriodiskService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId){
         Toast.makeText(this, "I Periodisk service", Toast.LENGTH_SHORT).show();
 
-        String klokkeSlett = PreferenceManager.getDefaultSharedPreferences(this).getString("klokkeslett", null);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String klokkeSlett = pref.getString("klokkeslett", "12:00");
+
         final int[] brukerTid = delTid(klokkeSlett);
         Log.d("Klokkeslett ", klokkeSlett);
 

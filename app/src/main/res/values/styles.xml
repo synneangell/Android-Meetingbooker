@@ -7,7 +7,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/bakgrunn</item>
+        <item name="colorAccent">@color/toolbar</item>
+    </style>
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">#FFFFFF</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:background">@color/toolbar</item>
     </style>
 
 </resources>

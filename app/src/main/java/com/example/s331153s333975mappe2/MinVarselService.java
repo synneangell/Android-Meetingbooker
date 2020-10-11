@@ -82,6 +82,7 @@ public class MinVarselService extends Service {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(telefonnr, null, melding, null, null);
+            Log.d("I try", "Melding sendt");
         } catch (Exception e){
             Toast.makeText(getApplicationContext(), "Møtebooker har ikke tillatelse til å sende SMS. Gi tillatelse i innstillinger", Toast.LENGTH_SHORT).show();
         }

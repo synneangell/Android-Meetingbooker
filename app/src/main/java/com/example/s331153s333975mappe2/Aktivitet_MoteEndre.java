@@ -15,6 +15,12 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,31 +68,35 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         endre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
-                    Toast.makeText(Aktivitet_MoteEndre.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    long MId = sp.getLong("MId", 10);
-                    Log.d("Moteid", Long.toString(MId));
-                    Mote mote = new Mote();
-                    mote.set_MID(MId);
-                    mote.setNavn(navn.getText().toString());
-                    mote.setSted(sted.getText().toString());
-                    mote.setDato(dato.getText().toString());
-                    mote.setTid(tid.getText().toString());
-                    db.oppdaterMote(mote);
+                try {
+                    if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
+                        Toast.makeText(Aktivitet_MoteEndre.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        long MId = sp.getLong("MId", 10);
+                        Log.d("Moteid", Long.toString(MId));
+                        Mote mote = new Mote();
+                        mote.set_MID(MId);
+                        mote.setNavn(navn.getText().toString());
+                        mote.setSted(sted.getText().toString());
+                        mote.setDato(dato.getText().toString());
+                        mote.setTid(tid.getText().toString());
+                        db.oppdaterMote(mote);
 
-                    sp2 = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sp2.edit();
-                    editor.putString("moteNavn", navn.getText().toString());
-                    editor.putString("moteSted", sted.getText().toString());
-                    editor.putString("moteDato", dato.getText().toString());
-                    editor.putString("moteTid", tid.getText().toString());
-                    editor.putLong("MId", MId);
-                    editor.apply();
+                        sp2 = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp2.edit();
+                        editor.putString("moteNavn", navn.getText().toString());
+                        editor.putString("moteSted", sted.getText().toString());
+                        editor.putString("moteDato", dato.getText().toString());
+                        editor.putString("moteTid", tid.getText().toString());
+                        editor.putLong("MId", MId);
+                        editor.apply();
 
-                    Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_MoteDeltagelse.class);
-                    startActivity(intent);
+                        Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_MoteDeltagelse.class);
+                        startActivity(intent);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -134,28 +144,55 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         }
     }
 
-    public boolean validerDato(){
+    public boolean validerDato() throws ParseException {
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = sdformat.parse(currentDate);
+        Log.d("Dato current", d1.toString());
         String datoInput = dato.getText().toString().trim();
-        if(datoInput.isEmpty()){
+        Date d2 = sdformat.parse(datoInput);
+        Log.d("Dato input", d2.toString());
+
+        if(datoInput.isEmpty()) {
             dato.setError("Dato må være valgt eller skrevet inn");
             return false;
-/*        } else if(!DATO.matcher(datoInput).matches()){ //får feil på denne, noe galt med regex (øverst i aktiviteten)
+        }
+        else if(d1.compareTo(d2) > 0) {
+            dato.setError("Dato kan ikke være tilbake i tid");
+            Log.d("Inne i if", "Dato har vært");
+            return false;
+        }
+        /*else if(!DATO.matcher(datoInput).matches()) {
             dato.setError("Dato må være i format DD-MM-YYYY");
             return false;*/
-        } else {
+        else {
             dato.setError(null);
             return true;
         }
     }
 
-    public boolean validerTid(){
+    public boolean validerTid() throws ParseException {
+        String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date d1 = sdformat.parse(currentDateAndTime);
+        Log.d("Dato og tid current", d1.toString());
+        String datoInput = dato.getText().toString().trim();
         String tidInput = tid.getText().toString().trim();
+        String datoOgTidInput = datoInput + " "+tidInput;
+        Log.d("Dato og tid++", datoOgTidInput);
+        Date d2 = sdformat.parse(datoOgTidInput);
+        Log.d("Dato og tid input", d2.toString());
         if(tidInput.isEmpty()){
             tid.setError("Tid må være valgt eller skrevet inn");
             return false;
-        } else if(!TID.matcher(tidInput).matches()){
+        } else if(!TID.matcher(tidInput).matches()) {
             tid.setError("Tid må være i format TT:MM");
             return false;
+        }
+        else if(d1.compareTo(d2) > 0) {
+                tid.setError("Velg et klokkeslett som ikke har vært i dag");
+                Log.d("Inne i if", "Klokkeslett har vært");
+                return false;
         } else {
             tid.setError(null);
             return true;

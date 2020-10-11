@@ -62,8 +62,22 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         endre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_Mote.class);
-                startActivity(intent);
+                if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
+                    Toast.makeText(Aktivitet_MoteEndre.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    long MId = sp.getLong("MId", 10);
+                    Log.d("Moteid", Long.toString(MId));
+                    Mote mote = new Mote();
+                    mote.set_MID(MId);
+                    mote.setNavn(navn.getText().toString());
+                    mote.setSted(sted.getText().toString());
+                    mote.setDato(dato.getText().toString());
+                    mote.setTid(tid.getText().toString());
+                    db.oppdaterMote(mote);
+                    Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_Mote.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -80,26 +94,6 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
                 startActivity(intent);
             }
         });
-    }
-
-    public void endreMote(View v){
-        /*if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
-            Toast.makeText(Aktivitet_MoteEndre.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
-            return;
-        } else {*/
-            long MId = sp.getLong("MId", 10);
-            Log.d("Moteid", Long.toString(MId));
-            Mote mote = new Mote();
-            mote.set_MID(MId);
-            mote.setNavn(navn.getText().toString());
-            mote.setSted(sted.getText().toString());
-            mote.setDato(dato.getText().toString());
-            mote.setTid(tid.getText().toString());
-            db.oppdaterMote(mote);
-
-            Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_Mote.class);
-            startActivity(intent);
-        //}
     }
 
     public boolean validerNavn(){

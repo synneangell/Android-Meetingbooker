@@ -101,10 +101,8 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
         Date d1 = sdformat.parse(currentDate);
-        Log.d("Dato current", d1.toString());
         String datoInput = dato.getText().toString().trim();
         Date d2 = sdformat.parse(datoInput);
-        Log.d("Dato input", d2.toString());
 
         if(datoInput.isEmpty()) {
             dato.setError("Dato må være valgt eller skrevet inn");
@@ -128,13 +126,10 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date d1 = sdformat.parse(currentDateAndTime);
-        Log.d("Dato og tid current", d1.toString());
         String datoInput = dato.getText().toString().trim();
         String tidInput = tid.getText().toString().trim();
         String datoOgTidInput = datoInput + " "+tidInput;
-        Log.d("Dato og tid++", datoOgTidInput);
         Date d2 = sdformat.parse(datoOgTidInput);
-        Log.d("Dato og tid input", d2.toString());
         if(tidInput.isEmpty()){
             tid.setError("Tid må være valgt eller skrevet inn");
             return false;
@@ -144,7 +139,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         }
         else if(d1.compareTo(d2) > 0) {
             tid.setError("Velg et klokkeslett som ikke har vært i dag");
-            Log.d("Inne i if", "Klokkeslett har vært");
             return false;
         } else {
             tid.setError(null);

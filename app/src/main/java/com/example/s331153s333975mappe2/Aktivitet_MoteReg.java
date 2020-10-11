@@ -102,23 +102,25 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
         Date d1 = sdformat.parse(currentDate);
         String datoInput = dato.getText().toString().trim();
-        Date d2 = sdformat.parse(datoInput);
 
         if(datoInput.isEmpty()) {
             dato.setError("Dato må være valgt eller skrevet inn");
             return false;
         }
-        else if(d1.compareTo(d2) > 0) {
+        else {
+            Date d2 = sdformat.parse(datoInput);
+            if (d1.compareTo(d2) > 0) {
             dato.setError("Dato kan ikke være tilbake i tid");
-            Log.d("Inne i if", "Dato har vært");
-            return false;
-        }
+                Log.d("Inne i if", "Dato har vært");
+                return false;
+            }
         /*else if(!DATO.matcher(datoInput).matches()) {
             dato.setError("Dato må være i format DD-MM-YYYY");
             return false;*/
-        else {
-            dato.setError(null);
-            return true;
+            else {
+                dato.setError(null);
+                return true;
+            }
         }
     }
 
@@ -129,20 +131,22 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         String datoInput = dato.getText().toString().trim();
         String tidInput = tid.getText().toString().trim();
         String datoOgTidInput = datoInput + " "+tidInput;
-        Date d2 = sdformat.parse(datoOgTidInput);
         if(tidInput.isEmpty()){
             tid.setError("Tid må være valgt eller skrevet inn");
             return false;
-        } else if(!TID.matcher(tidInput).matches()) {
-            tid.setError("Tid må være i format TT:MM");
-            return false;
-        }
-        else if(d1.compareTo(d2) > 0) {
-            tid.setError("Velg et klokkeslett som ikke har vært i dag");
-            return false;
         } else {
-            tid.setError(null);
-            return true;
+            Date d2 = sdformat.parse(datoOgTidInput);
+            if (!TID.matcher(tidInput).matches()) {
+                tid.setError("Tid må være i format TT:MM");
+                return false;
+            } else if (d1.compareTo(d2) > 0) {
+                tid.setError("Velg et klokkeslett som ikke har vært i dag");
+                return false;
+
+            } else {
+                tid.setError(null);
+                return true;
+            }
         }
     }
 

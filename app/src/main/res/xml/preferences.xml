@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/PreferenceScreen"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
@@ -8,6 +9,7 @@
 
         <SwitchPreference
             android:key="bytt"
+
             android:title="Sms-varsler"
             android:summary="Hvis varsler er på, sendes en SMS"/>
 

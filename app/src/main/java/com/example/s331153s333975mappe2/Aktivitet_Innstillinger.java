@@ -1,9 +1,7 @@
 package com.example.s331153s333975mappe2;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.view.View;
 
 public class Aktivitet_Innstillinger extends PreferenceActivity {

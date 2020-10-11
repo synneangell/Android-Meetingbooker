@@ -3,6 +3,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -134,6 +135,14 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         }
     }
 
+    private int[] delDato(String dato) {
+        String[] del = dato.split("/");
+        return new int[] {Integer.parseInt(del[0]), Integer.parseInt(del[1]), Integer.parseInt(del[2])};
+    }
+
+    //String klokkeSlett = PreferenceManager.getDefaultSharedPreferences(this).getString("klokkeslett", null);
+    //final int[] brukerTid = delTid(klokkeSlett);
+
 
     @Override
     public void onClick(View v) {
@@ -145,6 +154,9 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
 
+            if(mMonth == 1){
+
+            }
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
@@ -179,6 +191,8 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
                     }, mHour, mMinute, false);
             timePickerDialog.show();
         }
+
+
     }
 }
 

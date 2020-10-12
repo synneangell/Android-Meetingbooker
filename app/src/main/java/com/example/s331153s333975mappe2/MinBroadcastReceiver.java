@@ -7,7 +7,6 @@ import android.widget.Toast;
 public class MinBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, "I broadcast", Toast.LENGTH_SHORT).show();
         Intent i = new Intent(context, SettPeriodiskService.class);
         context.startService(i);
     }

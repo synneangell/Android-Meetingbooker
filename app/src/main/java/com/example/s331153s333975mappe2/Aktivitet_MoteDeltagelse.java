@@ -130,7 +130,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         List <String> stringKontakter = new ArrayList<>();
         List <Kontakt> kontakter = new ArrayList<>();
         for(int i = 0; i < kontaktId.size(); i++){
-            Log.d("Kontaktid", Long.toString(kontaktId.get(i)));
             kontakter.add(db.finnKontakt(kontaktId.get(i)));
         }
 

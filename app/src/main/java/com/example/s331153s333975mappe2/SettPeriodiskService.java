@@ -21,13 +21,9 @@ public class SettPeriodiskService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
-        Toast.makeText(this, "I Periodisk service", Toast.LENGTH_SHORT).show();
-
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String klokkeSlett = pref.getString("klokkeslett", "12:00");
-
         final int[] brukerTid = delTid(klokkeSlett);
-        Log.d("Klokkeslett ", klokkeSlett);
 
         Calendar cal = Calendar.getInstance();
         Intent i = new Intent(this, MinVarselService.class);

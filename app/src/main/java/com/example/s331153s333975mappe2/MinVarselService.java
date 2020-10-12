@@ -30,18 +30,11 @@ public class MinVarselService extends Service {
 
     @Override
     public int onStartCommand (Intent intent, int flags, int startId){
-        Toast.makeText(this, "I MinVarselService", Toast.LENGTH_SHORT).show();
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-
-        //SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        //boolean varsel = pref.getBoolean("bytt", false);
-
         boolean varsel = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("bytt", true);
-        Log.d("Er varsel på? ", Boolean.toString(varsel));
 
         db = new DBHandler(MinVarselService.this);
         final List<Mote> alleMoter = db.finnAlleMoter(); //den klarer ikke å få inn noen møter her! en liten motherfucker. Joda, den klarer det!!
-        Log.d("alleMoter.size",Integer.toString(alleMoter.size()));
         final List<MoteDeltagelse> alleMoteDeltagelser = db.finnAlleMoteDeltagelser();
         final List<Kontakt> alleKontakter = db.finnAlleKontakter();
 
@@ -52,33 +45,29 @@ public class MinVarselService extends Service {
         byggNotifikasjon(pintent, notificationManager);
 
         for(Mote mote : alleMoter){
-            Log.d("Currentdate",currentDate);
-            Log.d("Møte dato ", mote.getDato());
             if(currentDate.equals(mote.getDato())){
-                Log.d("I if", "current date");
                 byggNotifikasjon(pintent, notificationManager);
-                if(varsel){ //her er det masse feil, kan sikkert gjøres kortere også.
+                if(varsel){
                     for(MoteDeltagelse md : alleMoteDeltagelser){
                         for(Kontakt k : alleKontakter){
                             if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
                                 for(Kontakt kontakt : alleKontakter){
-                                    Log.d("Telefonnr",kontakt.getTelefon());
                                     sendSMS(kontakt.getTelefon());
                                 }
                             }
                         }
                     }
                 }
-            } else {
-                Toast.makeText(this, "Fikk ikke hentet møte/er ikke likt med current", Toast.LENGTH_SHORT).show();
             }
-
         }
         return super.onStartCommand(intent, flags, startId);
     }
 
     public void sendSMS(String telefonnr){
-        String melding = getString(R.string.standardMelding);
+        SharedPreferences pref2 = PreferenceManager.getDefaultSharedPreferences(this);
+        String egendefinertSMS = pref2.getString("smsMelding", "Husk møtet ditt for i dag!");
+
+        String melding = egendefinertSMS;
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(telefonnr, null, melding, null, null);

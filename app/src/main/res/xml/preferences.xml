@@ -4,21 +4,25 @@
     android:theme="@style/PreferenceScreen"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
-        android:title="Varsler"
-        >
+        android:title="Varsler">
 
         <SwitchPreference
             android:key="bytt"
-
             android:title="Sms-varsler"
-            android:summary="Hvis varsler er på, sendes en SMS"
-            />
+            android:summary="Hvis varsler er på, sendes en SMS"/>
 
         <EditTextPreference
             android:key="klokkeslett"
             android:title="Klokkeslett"
+            android:hint="12:00"
             android:summary="Sett klokkeslett på varsel"
             android:text="12:00"/>
+
+        <EditTextPreference
+            android:key="smsMelding"
+            android:title="Egendefinert SMS-melding"
+            android:summary="Lag egendefinert melding"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

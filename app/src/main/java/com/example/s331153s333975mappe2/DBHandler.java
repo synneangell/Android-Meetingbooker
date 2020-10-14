@@ -28,7 +28,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_FK_MID = "_MID";
     static String KEY_FK_KID = "_KID";
 
-    static int DATABASE_VERSION = 14;
+    static int DATABASE_VERSION = 15;
     static String DATABASE_NAME = "Motebooker";
 
     public DBHandler(Context context) {

@@ -3,15 +3,12 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import java.text.SimpleDateFormat;
@@ -77,10 +74,9 @@ public class MinVarselService extends Service {
     }
 
     private void byggNotifikasjon(PendingIntent pintent, NotificationManager notificationManager){
-        String contentText = "Husk møtet idag";
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Husk møtene for i dag!")
-                .setContentText(contentText)
+                .setContentText("Husk møtet idag!")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentIntent(pintent)
                 .build();

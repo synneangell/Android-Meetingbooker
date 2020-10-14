@@ -1,10 +1,12 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,10 +31,12 @@ public class Aktivitet_Mote extends AppCompatActivity {
     DBHandler db;
     SharedPreferences sp;
 
+    public static String PROVIDER="com.example.s331153s333975mappe2";
+    public static final Uri CONTENT_URI = Uri.parse("content://"+ PROVIDER + "/mote");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         sp = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
 
         setContentView(R.layout.mote);

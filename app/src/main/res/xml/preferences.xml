@@ -9,7 +9,9 @@
         <SwitchPreference
             android:key="bytt"
             android:title="Sms-varsler"
-            android:summary="Hvis varsler er på, sendes en SMS"/>
+            android:summaryOff="Av"
+            android:summaryOn="På"
+            />
 
         <EditTextPreference
             android:key="klokkeslett"

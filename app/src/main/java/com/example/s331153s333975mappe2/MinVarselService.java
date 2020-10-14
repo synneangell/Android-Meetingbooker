@@ -31,7 +31,7 @@ public class MinVarselService extends Service {
         boolean varsel = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("bytt", true);
 
         db = new DBHandler(MinVarselService.this);
-        final List<Mote> alleMoter = db.finnAlleMoter(); //den klarer ikke å få inn noen møter her! en liten motherfucker. Joda, den klarer det!!
+        final List<Mote> alleMoter = db.finnAlleMoter();
         final List<MoteDeltagelse> alleMoteDeltagelser = db.finnAlleMoteDeltagelser();
         final List<Kontakt> alleKontakter = db.finnAlleKontakter();
 
@@ -44,18 +44,16 @@ public class MinVarselService extends Service {
         for(Mote mote : alleMoter){
             if(currentDate.equals(mote.getDato())){
                 byggNotifikasjon(pintent, notificationManager);
+                Long moteid = mote.get_MID();
                 if(varsel){
-                    for(MoteDeltagelse md : alleMoteDeltagelser){
-                        for(Kontakt k : alleKontakter){
-                            if(md.get_KID() == k.get_KID() && md.get_KID()  != null){
-                                for(Kontakt kontakt : alleKontakter){
-                                    sendSMS(kontakt.getTelefon());
-                                }
-                            }
-                        }
+                    List<Kontakt> deltakere = db.finnDeltakere(moteid);
+                    Log.d("Deltakeresize", Integer.toString(deltakere.size()));
+                    for(Kontakt kontakt : deltakere){
+                        sendSMS(kontakt.telefon);
                     }
                 }
             }
+
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -68,6 +66,9 @@ public class MinVarselService extends Service {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(telefonnr, null, melding, null, null);
+
+            String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
+            Log.d("I try", "Melding sendt" + currentDateAndTime);
         } catch (Exception e){
             Toast.makeText(getApplicationContext(), "Møtebooker har ikke tillatelse til å sende SMS. Gi tillatelse i innstillinger", Toast.LENGTH_SHORT).show();
         }

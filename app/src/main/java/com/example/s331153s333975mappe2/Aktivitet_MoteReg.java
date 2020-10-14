@@ -15,12 +15,14 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClickListener {
@@ -95,37 +97,61 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         }
     }
 
-    public boolean validerDato(){
+    public boolean validerDato() throws ParseException {
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        Date d1 = sdformat.parse(currentDate);
         String datoInput = dato.getText().toString().trim();
+
         if(datoInput.isEmpty()) {
             dato.setError("Dato må være valgt eller skrevet inn");
             return false;
         }
+        else {
+            Date d2 = sdformat.parse(datoInput);
+            if (d1.compareTo(d2) > 0) {
+            dato.setError("Dato kan ikke være tilbake i tid");
+                Log.d("Inne i if", "Dato har vært");
+                return false;
+            }
         /*else if(!DATO.matcher(datoInput).matches()) {
             dato.setError("Dato må være i format DD-MM-YYYY");
             return false;*/
-        else {
-            dato.setError(null);
-            return true;
+            else {
+                dato.setError(null);
+                return true;
+            }
         }
     }
 
-    public boolean validerTid(){
+    public boolean validerTid() throws ParseException {
+        String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
+        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date d1 = sdformat.parse(currentDateAndTime);
+        String datoInput = dato.getText().toString().trim();
         String tidInput = tid.getText().toString().trim();
+        String datoOgTidInput = datoInput + " "+tidInput;
         if(tidInput.isEmpty()){
             tid.setError("Tid må være valgt eller skrevet inn");
             return false;
-        } else if(!TID.matcher(tidInput).matches()){
-            tid.setError("Tid må være i format TT:MM");
-            return false;
         } else {
-            tid.setError(null);
-            return true;
+            Date d2 = sdformat.parse(datoOgTidInput);
+            if (!TID.matcher(tidInput).matches()) {
+                tid.setError("Tid må være i format TT:MM");
+                return false;
+            } else if (d1.compareTo(d2) > 0) {
+                tid.setError("Velg et klokkeslett som ikke har vært i dag");
+                return false;
+
+            } else {
+                tid.setError(null);
+                return true;
+            }
         }
     }
 
-    public void regMote(View v){
-        if(!validerNavn() | !validerSted() | !validerDato() | !validerTid() |!validerDato()){
+    public void regMote(View v) throws ParseException {
+        if(!validerNavn() | !validerSted() | !validerTid() |!validerDato()){
             Toast.makeText(Aktivitet_MoteReg.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
             return;
         } else {
@@ -153,11 +179,11 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
-
                             if(dayOfMonth <= 9 && monthOfYear <= 9){
                                 String day = String.format("%02d" , dayOfMonth);
                                 monthOfYear += 1;
                                 String month = String.format("%02d" , monthOfYear);
+
                                 dato.setText(day + "-" + month + "-" + year);
 
                             }

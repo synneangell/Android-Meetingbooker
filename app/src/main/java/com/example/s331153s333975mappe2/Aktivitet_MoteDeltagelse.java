@@ -69,7 +69,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j){
                 int indeks = i;
-                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this, R.style.AlertDialogStyle);
                 builder.setMessage(getResources().getString(R.string.slettKontakt));
                 builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
                     @Override
@@ -171,7 +171,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.slett:
-                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this, R.style.AlertDialogStyle);
                 builder.setMessage(getResources().getString(R.string.slettMote));
                 builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
                     @Override

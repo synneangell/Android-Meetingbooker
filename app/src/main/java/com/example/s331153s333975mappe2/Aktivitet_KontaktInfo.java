@@ -76,7 +76,7 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.slett:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
                 builder.setMessage(getResources().getString(R.string.slettKontakt))
                         .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i) -> slettKontakt())
                         .setNegativeButton(getResources().getString(R.string.nei), null)

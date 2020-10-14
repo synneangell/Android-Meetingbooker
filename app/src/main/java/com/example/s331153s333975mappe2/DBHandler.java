@@ -15,6 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String KEY_KID = "_KID";
     static String KEY_KONTAKT_NAVN = "Navn";
     static String KEY_TELEFON = "Telefon";
+    public static final String[] ALL_COLUMNS = {KEY_KID, KEY_KONTAKT_NAVN, KEY_TELEFON};
 
     static String TABLE_MOTER = "Moter";
     static String KEY_MID = "_MID";
@@ -219,6 +220,33 @@ public class DBHandler extends SQLiteOpenHelper {
         cursor.close();
         db.close();
 
+        return deltakere;
+    }
+
+    public List<Kontakt> finnDeltakere(Long mote_id){
+        List<Long> deltakereID = new ArrayList<Long>();
+        List<Kontakt> alleKontakter = finnAlleKontakter();
+        List <Kontakt> deltakere = new ArrayList<Kontakt>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "SELECT _KID FROM " + TABLE_MOTEDELTAGELSER + " WHERE _MID  = " + mote_id;
+        Cursor cursor = db.rawQuery(sql, null);
+        cursor.moveToFirst();
+        while(cursor.isAfterLast() == false) {
+            deltakereID.add(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID)));
+            Log.d("Cursor innhold ",Long.toString(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID))));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        db.close();
+
+        for(Long id : deltakereID){
+            for(Kontakt kontakt : alleKontakter){
+                if(id == kontakt._KID){
+                    deltakere.add(kontakt);
+                }
+            }
+        }
         return deltakere;
     }
 

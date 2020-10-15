@@ -1,15 +1,12 @@
 package com.example.s331153s333975mappe2;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.regex.Pattern;
 
 public class Aktivitet_KontaktReg extends AppCompatActivity {

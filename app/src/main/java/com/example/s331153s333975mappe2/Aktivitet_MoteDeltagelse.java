@@ -1,7 +1,6 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,9 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,9 +38,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_motedeltagelse);
         setActionBar(toolbar);
-        //setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
-
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,10 +97,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
             }
         });
 
-        /**---- TOOLBAR OPPRETTES ----**/
-
-
-
         /**---- KNAPP FOR REGISTRERING AV MØTEDELTAGELSE ----**/
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -125,15 +116,12 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/
     public List<String> visMoteDeltakelseListView(){
         long moteid = sp.getLong("MId", 0);
-        Log.d("Moteid i motedeltagelse", Long.toString(moteid));
-
         List <Long> kontaktId = db.finnMoteDeltakelse(moteid);
         List <String> stringKontakter = new ArrayList<>();
         List <Kontakt> kontakter = new ArrayList<>();
         for(int i = 0; i < kontaktId.size(); i++){
             kontakter.add(db.finnKontakt(kontaktId.get(i)));
         }
-
         for(int i = 0; i < kontakter.size(); i++){
             stringKontakter.add("\nID: "+kontakter.get(i)._KID+"\nNavn: "+kontakter.get(i).navn+"\nTelefon: "+kontakter.get(i).telefon);
         }
@@ -153,13 +141,11 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.endre:
-
                 long MId = sp.getLong("MId", 0);
                 String innNavn = sp.getString("moteNavn", "feil");
                 String innSted = sp.getString("moteSted", "feil");
                 String innDato = sp.getString("moteDato", "feil");
                 String innTid = sp.getString("moteTid","feil");
-
 
                 SharedPreferences.Editor editor = sp2.edit();
                 editor.putLong("MId", MId);
@@ -190,7 +176,5 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return true;
-
     }
-
 }

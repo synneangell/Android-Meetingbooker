@@ -89,7 +89,6 @@ public class TestProvider extends ContentProvider {
             db.update(TABELL, values, null, null);
             getContext().getContentResolver().notifyChange(uri, null);
             return 2;
-
         }
         return 0; }
 

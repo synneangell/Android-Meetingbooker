@@ -34,7 +34,6 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
 
 
                     if(varsel == true){
-                        //Log.d("Varsel er ", Boolean.toString(preference.isChecked()));
                         ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},1);
                     }
                 }

@@ -1,5 +1,4 @@
 package com.example.s331153s333975mappe2;
-
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -98,6 +97,5 @@ public class TestProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         return 0;
     }
-
 }
 

@@ -38,6 +38,21 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         setContentView(R.layout.mote_deltagelse);
         db = new DBHandler(this);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_motedeltagelse);
+        setActionBar(toolbar);
+        //setSupportActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
+
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
+                startActivity(intent);
+            }
+        });
+
         sp = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
         sp2 = getApplicationContext().getSharedPreferences("Aktivitet_MoteDeltagelse", Context.MODE_PRIVATE);
 
@@ -89,21 +104,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
 
         /**---- TOOLBAR OPPRETTES ----**/
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\tMøteinformasjon");
-        setActionBar(toolbar);
-        toolbar.inflateMenu(R.menu.menu_motedeltagelse);
-        setActionBar(toolbar);
-        toolbar.setLogo(R.drawable.ic_launcher_small);
 
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
-                startActivity(intent);
-            }
-        });
 
         /**---- KNAPP FOR REGISTRERING AV MØTEDELTAGELSE ----**/
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -142,10 +143,10 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
 
     /**------------- METODER FOR NEDTREKKSMENY --------------**/
     @Override
-    public boolean onCreateOptionsMenu (Menu menu){
+    public boolean onPrepareOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_motedeltagelse, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

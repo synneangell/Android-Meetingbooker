@@ -47,13 +47,11 @@ public class MinVarselService extends Service {
                 Long moteid = mote.get_MID();
                 if(varsel){
                     List<Kontakt> deltakere = db.finnDeltakere(moteid);
-                    Log.d("Deltakeresize", Integer.toString(deltakere.size()));
                     for(Kontakt kontakt : deltakere){
                         sendSMS(kontakt.telefon);
                     }
                 }
             }
-
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -68,7 +66,6 @@ public class MinVarselService extends Service {
             smsManager.sendTextMessage(telefonnr, null, melding, null, null);
 
             String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
-            Log.d("I try", "Melding sendt" + currentDateAndTime);
         } catch (Exception e){
             Toast.makeText(getApplicationContext(), "Møtebooker har ikke tillatelse til å sende SMS. Gi tillatelse i innstillinger", Toast.LENGTH_SHORT).show();
         }

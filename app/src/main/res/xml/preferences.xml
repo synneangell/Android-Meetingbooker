@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:theme="@style/PreferenceScreen"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
         android:title="Varsler">
@@ -10,8 +9,7 @@
             android:key="bytt"
             android:title="Sms-varsler"
             android:summaryOff="Av"
-            android:summaryOn="På"
-            />
+            android:summaryOn="På"/>
 
         <EditTextPreference
             android:key="klokkeslett"
@@ -24,7 +22,6 @@
             android:key="smsMelding"
             android:title="Egendefinert SMS-melding"
             android:summary="Lag egendefinert melding"/>
-
     </PreferenceCategory>
 
 </PreferenceScreen>

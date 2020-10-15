@@ -17,7 +17,7 @@ public class Aktivitet_KontaktReg extends AppCompatActivity {
     Button reg;
     DBHandler db;
 
-    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
+    public static final Pattern NAVN = Pattern.compile("[A-Za-z\\s]{2,}[\\.]{0,1}[A-Za-z\\s]{0,}");
     public static final Pattern TELEFON = Pattern.compile("[0-9]{8}");
 
     @Override
@@ -29,23 +29,7 @@ public class Aktivitet_KontaktReg extends AppCompatActivity {
         reg = (Button) findViewById(R.id.btnRegKontakt);
         db = new DBHandler(this);
 
-        reg.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Kontakt kontakt = new Kontakt(navn.getText().toString(), telefonnr.getText().toString());
-                if(kontakt.navn != null && kontakt.telefon != null) {
-                    db.leggTilKontakt(kontakt);
-                    Log.d("Legger inn kontakt", "Navn : "+kontakt.navn+", Telefonnr : "+kontakt.telefon);
-                    Intent intent = new Intent(Aktivitet_KontaktReg.this, Aktivitet_Kontakt.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(Aktivitet_KontaktReg.this, "Du må fylle ut alle feltene", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\tRegistrer kontakt ");
         toolbar.inflateMenu(R.menu.menu_kontaktinfo);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);

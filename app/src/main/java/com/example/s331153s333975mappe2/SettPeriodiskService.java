@@ -7,11 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.util.Log;
-import android.widget.Toast;
 import androidx.annotation.Nullable;
 import java.util.Calendar;
-import java.util.Date;
 
 public class SettPeriodiskService extends Service {
     @Nullable
@@ -31,7 +28,6 @@ public class SettPeriodiskService extends Service {
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
         cal.set(Calendar.HOUR_OF_DAY, brukerTid[0]);
         cal.set(Calendar.MINUTE, brukerTid[1]);
-        Log.d("Klokkeslett",cal.getTime().toString());
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 1000 * 60 * 60 * 24, pintent);

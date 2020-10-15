@@ -1,5 +1,4 @@
 package com.example.s331153s333975mappe2;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +86,5 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
         }
         return stringKontakter;
     }
-
 }
 

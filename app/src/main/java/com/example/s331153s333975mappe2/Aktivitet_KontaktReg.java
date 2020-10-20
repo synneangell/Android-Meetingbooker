@@ -35,7 +35,6 @@ public class Aktivitet_KontaktReg extends AppCompatActivity {
                 Kontakt kontakt = new Kontakt(navn.getText().toString(), telefonnr.getText().toString());
                 if(kontakt.navn != null && kontakt.telefon != null) {
                     db.leggTilKontakt(kontakt);
-                    Log.d("Legger inn kontakt", "Navn : "+kontakt.navn+", Telefonnr : "+kontakt.telefon);
                     Intent intent = new Intent(Aktivitet_KontaktReg.this, Aktivitet_Kontakt.class);
                     startActivity(intent);
                 } else {

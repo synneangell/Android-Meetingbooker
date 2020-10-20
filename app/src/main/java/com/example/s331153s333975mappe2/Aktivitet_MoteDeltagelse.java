@@ -123,8 +123,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     /**------------- METODE FOR Å POPULERE LISTVIEW --------------**/
     public List<String> visMoteDeltakelseListView(){
         long moteid = sp.getLong("MId", 0);
-        Log.d("Moteid i motedeltagelse", Long.toString(moteid));
-
         List <Long> kontaktId = db.finnMoteDeltakelse(moteid);
         List <String> stringKontakter = new ArrayList<>();
         List <Kontakt> kontakter = new ArrayList<>();

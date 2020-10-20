@@ -3,8 +3,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,14 +11,10 @@ import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
@@ -30,7 +24,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
     private int year, month, day, mHour, mMinute;
     DBHandler db;
     Button btnReg, btnDatePicker, btnTimePicker;
-    ListView lv;
 
     public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
     public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
@@ -160,17 +153,13 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         }
     }
 
-
     @Override
     public void onClick(View v) {
         if (v == btnDatePicker) {
-
-            // Get Current Date
             final Calendar c = Calendar.getInstance();
             year = c.get(Calendar.YEAR);
             month = c.get(Calendar.MONTH);
             day = c.get(Calendar.DAY_OF_MONTH);
-
 
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
@@ -205,13 +194,10 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
             datePickerDialog.show();
         }
         if (v == btnTimePicker) {
-
-            // Get Current Time
             final Calendar c = Calendar.getInstance();
             mHour = c.get(Calendar.HOUR_OF_DAY);
             mMinute = c.get(Calendar.MINUTE);
 
-            // Launch Time Picker Dialog
             TimePickerDialog timePickerDialog = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 

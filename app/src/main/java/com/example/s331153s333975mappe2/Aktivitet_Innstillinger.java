@@ -1,22 +1,14 @@
 package com.example.s331153s333975mappe2;
 import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.preference.SwitchPreference;
-import android.util.Log;
 import android.view.View;
-import android.widget.Switch;
 
 import androidx.core.app.ActivityCompat;
 
-import java.util.prefs.PreferenceChangeListener;
-import java.util.prefs.Preferences;
 
 public class Aktivitet_Innstillinger extends PreferenceActivity {
 
@@ -46,7 +38,6 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
 
 
                     if(varsel == true){
-                        //Log.d("Varsel er ", Boolean.toString(preference.isChecked()));
                         ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},1);
                     }
                 }

@@ -7,9 +7,7 @@ public class Mote {
     String tid;
     Long _MID;
 
-    public Mote(){
-
-    }
+    public Mote(){ }
 
     public Mote(String navn, String sted, String dato, String tid) {
         this.navn = navn;

@@ -6,7 +6,9 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.View;
+
 import androidx.core.app.ActivityCompat;
+
 
 public class Aktivitet_Innstillinger extends PreferenceActivity {
 
@@ -17,6 +19,7 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
     }
 
     public static class PrefsFragment extends PreferenceFragment {
+
         private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
         @Override
@@ -29,6 +32,7 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                     android.preference.SwitchPreference preference = (android.preference.SwitchPreference) findPreference("bytt");
                     SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    //boolean isChecked = sharedPreferences1.getBoolean("bytt", false);
 
                     boolean varsel = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("bytt", true);
 
@@ -40,6 +44,8 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
             };
         }
 
+
+
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
@@ -49,6 +55,7 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
     public void onResume(){
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+
     }
 
     @Override
@@ -56,5 +63,6 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
             super.onPause();
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
+
     }
 }

@@ -13,7 +13,7 @@
 
         <Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="675dp"
             android:background="@color/toolbar" />
@@ -39,7 +39,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="108dp"
-            android:layout_marginLeft="18dp" />
+            android:layout_marginLeft="18dp"
+            app:srcCompat="@drawable/ic_baseline_edit_24"/>
 
 
         <EditText
@@ -82,7 +83,7 @@
             android:textColorHint="@color/toolbar"/>
 
         <ImageView
-            android:id="@+id/dato"
+            android:id="@+id/datoImage"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="208dp"
@@ -129,7 +130,7 @@
             android:background="@color/toolbar"
             android:text="@string/velgTid" />
 
-
+        <!--
         <Button
             android:id="@+id/endre"
             android:layout_width="150dp"
@@ -138,6 +139,6 @@
             android:layout_marginTop="350dp"
             android:background="@color/toolbar"
             android:onClick="endreMote"
-            android:text="@string/lagre" />
+            android:text="@string/lagre" /> -->
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -24,9 +25,8 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
     DBHandler db;
     Button btnReg, btnDatePicker, btnTimePicker;
 
-    public static final Pattern NAVN = Pattern.compile("[A-Za-z\\s]{2,}[\\.]{0,1}[A-Za-z\\s]{0,}");
-    public static final Pattern STED = Pattern.compile("[A-Za-z\\s]{2,}[\\.]{0,1}[A-Za-z\\s]{0,}");
-    public static final Pattern DATO = Pattern.compile("(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}");
+    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
+    public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
     public static final Pattern TID = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
 
     @Override
@@ -42,6 +42,7 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         btnTimePicker=(Button)findViewById(R.id.btn_tid);
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
+
         db = new DBHandler(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -88,7 +89,7 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
 
     public boolean validerDato() throws ParseException {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
         Date d1 = sdformat.parse(currentDate);
         String datoInput = dato.getText().toString().trim();
 
@@ -97,24 +98,26 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
             return false;
         }
         else {
-            Date d2 = sdformat.parse(datoInput);
-            if (d1.compareTo(d2) > 0) {
-            dato.setError("Dato kan ikke være tilbake i tid");
-                return false;
+            try {
+                Date d2 = sdformat.parse(datoInput);
+                if (d1.compareTo(d2) > 0) {
+                    dato.setError("Dato kan ikke være tilbake i tid");
+                    return false;
+                } else {
+                    dato.setError(null);
+                    return true;
+                }
             }
-        /*else if(!DATO.matcher(datoInput).matches()) {
-            dato.setError("Dato må være i format DD-MM-YYYY");
-            return false;*/
-            else {
-                dato.setError(null);
-                return true;
+            catch(ParseException e){
+                dato.setError("Dato må være i format DD-MM-YYYY");
+                return false;
             }
         }
     }
 
     public boolean validerTid() throws ParseException {
         String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
-        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         Date d1 = sdformat.parse(currentDateAndTime);
         String datoInput = dato.getText().toString().trim();
         String tidInput = tid.getText().toString().trim();
@@ -167,22 +170,27 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
                                 String day = String.format("%02d" , dayOfMonth);
                                 monthOfYear += 1;
                                 String month = String.format("%02d" , monthOfYear);
+
                                 dato.setText(day + "-" + month + "-" + year);
+
                             }
                             else if(dayOfMonth <= 9){
                                 String day = String.format("%02d" , dayOfMonth);
                                 dato.setText(day + "-" + (monthOfYear+1) + "-" + year);
+
                             }
                             else if(monthOfYear<= 9){
                                 monthOfYear += 1;
                                 String month = String.format("%02d" , monthOfYear);
                                 dato.setText(dayOfMonth + "-" + month + "-" + year);
+
                             }
                             else{
                                 dato.setText(dayOfMonth + "-" + (monthOfYear+1) + "-" + year);
                             }
                         }
                     }, year, month, day);
+
             datePickerDialog.show();
         }
         if (v == btnTimePicker) {
@@ -194,19 +202,23 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
                     new TimePickerDialog.OnTimeSetListener() {
 
                         @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
                             if(hourOfDay <= 9 && minute <= 9){
                                 String hour = String.format("%02d" , hourOfDay);
                                 String min = String.format("%02d" , minute);
                                 tid.setText(hour + ":" + min);
+
                             }
                             else if(hourOfDay <= 9){
                                 String hour = String.format("%02d" , hourOfDay);
                                 tid.setText(hour + ":" + minute);
+
                             }
                             else if(minute<= 9){
                                 String min = String.format("%02d" , minute);
                                 tid.setText(hourOfDay + ":" + min);
+
                             }
                             else{
                                 tid.setText(hourOfDay + ":" + minute);

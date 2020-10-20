@@ -1,6 +1,7 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,7 +19,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toolbar;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,19 +37,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mote_deltagelse);
         db = new DBHandler(this);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_motedeltagelse);
-        setActionBar(toolbar);
-        toolbar.setLogo(R.drawable.ic_launcher_small);
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
-                startActivity(intent);
-            }
-        });
 
         sp = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
         sp2 = getApplicationContext().getSharedPreferences("Aktivitet_MoteDeltagelse", Context.MODE_PRIVATE);
@@ -97,6 +87,23 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
             }
         });
 
+        /**---- TOOLBAR OPPRETTES ----**/
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setActionBar(toolbar);
+        toolbar.inflateMenu(R.menu.menu_motedeltagelse);
+        setActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_launcher_small);
+
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
+                startActivity(intent);
+            }
+        });
+
         /**---- KNAPP FOR REGISTRERING AV MØTEDELTAGELSE ----**/
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +129,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         for(int i = 0; i < kontaktId.size(); i++){
             kontakter.add(db.finnKontakt(kontaktId.get(i)));
         }
+
         for(int i = 0; i < kontakter.size(); i++){
             stringKontakter.add("\nID: "+kontakter.get(i)._KID+"\nNavn: "+kontakter.get(i).navn+"\nTelefon: "+kontakter.get(i).telefon);
         }
@@ -131,21 +139,23 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
 
     /**------------- METODER FOR NEDTREKKSMENY --------------**/
     @Override
-    public boolean onPrepareOptionsMenu (Menu menu){
+    public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_motedeltagelse, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.endre:
+
                 long MId = sp.getLong("MId", 0);
                 String innNavn = sp.getString("moteNavn", "feil");
                 String innSted = sp.getString("moteSted", "feil");
                 String innDato = sp.getString("moteDato", "feil");
                 String innTid = sp.getString("moteTid","feil");
+
 
                 SharedPreferences.Editor editor = sp2.edit();
                 editor.putLong("MId", MId);
@@ -176,5 +186,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         return true;
+
     }
+
 }

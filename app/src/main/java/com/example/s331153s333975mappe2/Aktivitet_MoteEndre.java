@@ -30,7 +30,7 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
 
     public static final Pattern NAVN = Pattern.compile("[A-Za-z\\s]{2,}[\\.]{0,1}[A-Za-z\\s]{0,}");
     public static final Pattern STED = Pattern.compile("[A-Za-z\\s]{2,}[\\.]{0,1}[A-Za-z\\s]{0,}");
-    public static final Pattern DATO = Pattern.compile("(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}");
+    public static final Pattern DATO = Pattern.compile("(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])-[0-9]{4}");
     public static final Pattern TID = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
 
     @Override
@@ -154,9 +154,9 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
                 Log.d("Inne i if", "Dato har vært");
                 return false;
             }
-        /*else if(!DATO.matcher(datoInput).matches()) {
+        else if(!DATO.matcher(datoInput).matches()) {
             dato.setError("Dato må være i format DD-MM-YYYY");
-            return false;*/
+            return false;
             else {
                 dato.setError(null);
                 return true;

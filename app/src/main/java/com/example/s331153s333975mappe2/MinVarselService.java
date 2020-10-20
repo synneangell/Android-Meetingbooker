@@ -5,11 +5,14 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,11 +32,8 @@ public class MinVarselService extends Service {
     public int onStartCommand (Intent intent, int flags, int startId){
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         boolean varsel = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("bytt", true);
-
         db = new DBHandler(MinVarselService.this);
         final List<Mote> alleMoter = db.finnAlleMoter();
-        final List<MoteDeltagelse> alleMoteDeltagelser = db.finnAlleMoteDeltagelser();
-        final List<Kontakt> alleKontakter = db.finnAlleKontakter();
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent i = new Intent(this, Aktivitet_Mote.class);
@@ -56,7 +56,7 @@ public class MinVarselService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    public void sendSMS(String telefonnr){
+/*    public void sendSMS(String telefonnr){
         SharedPreferences pref2 = PreferenceManager.getDefaultSharedPreferences(this);
         String egendefinertSMS = pref2.getString("smsMelding", "Husk møtet ditt for i dag!");
 
@@ -68,6 +68,22 @@ public class MinVarselService extends Service {
             String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
         } catch (Exception e){
             Toast.makeText(getApplicationContext(), "Møtebooker har ikke tillatelse til å sende SMS. Gi tillatelse i innstillinger", Toast.LENGTH_SHORT).show();
+        }
+    }*/
+
+    public void sendSMS() {
+        SharedPreferences pref2 = PreferenceManager.getDefaultSharedPreferences(this);
+        String egendefinertSMS = pref2.getString("smsMelding", "Husk møtet ditt for i dag!");
+        String melding = egendefinertSMS;
+
+        MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+        if (MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_GRANTED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_GRANTED) {
+            SmsManager smsMan = SmsManager.getDefault();
+            smsMan.sendTextMessage(telefonnr, null, melding, null, null);
+            Toast.makeText(this, "Har sendt sms", Toast.LENGTH_SHORT).show();
+        } else{
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE}, 0);
         }
     }
 

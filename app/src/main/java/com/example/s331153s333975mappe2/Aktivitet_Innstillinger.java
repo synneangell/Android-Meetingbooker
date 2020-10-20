@@ -58,7 +58,6 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            view.setBackgroundColor(getResources().getColor(R.color.preferanseFarge));
         }
 
     @Override

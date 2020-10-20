@@ -65,7 +65,6 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Velg deltakere til møte");
         toolbar.inflateMenu(R.menu.menu_mote_reg_deltagelse);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);

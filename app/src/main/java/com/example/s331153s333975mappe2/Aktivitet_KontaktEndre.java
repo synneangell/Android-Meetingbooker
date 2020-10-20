@@ -20,7 +20,7 @@ public class Aktivitet_KontaktEndre extends AppCompatActivity {
     DBHandler db;
     SharedPreferences sp;
 
-    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
+    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ ]{2,20}");
     public static final Pattern TELEFON = Pattern.compile("[0-9]{8}");
 
     @Override
@@ -56,7 +56,6 @@ public class Aktivitet_KontaktEndre extends AppCompatActivity {
 
         /**---- TOOLBAR OPPRETTES ----**/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\tEndre kontakt");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);

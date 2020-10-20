@@ -39,7 +39,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="108dp"
-        android:layout_marginLeft="18dp" />
+        android:layout_marginLeft="18dp"
+        app:srcCompat="@drawable/ic_baseline_edit_24"/>
 
 
     <EditText

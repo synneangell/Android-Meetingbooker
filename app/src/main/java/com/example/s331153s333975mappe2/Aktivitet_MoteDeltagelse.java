@@ -90,7 +90,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         /**---- TOOLBAR OPPRETTES ----**/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\tMøteinformasjon");
         setActionBar(toolbar);
         toolbar.inflateMenu(R.menu.menu_motedeltagelse);
         setActionBar(toolbar);

@@ -102,12 +102,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
         return stringMoter;
     }
 
-    //Tenkte denne kunne dukke opp når admin får notifikasjon om møtet og trykker på den notifikasjonen så får man opp dialog med info om møtet
-    public void openDialog(){
-        MoteDialog moteDialog = new MoteDialog();
-        moteDialog.show(getSupportFragmentManager(), "møtedialog");
-    }
-
     public void startPaminnelse(){
         Intent intent = new Intent();
         intent.setAction(".serviceBroadcast");

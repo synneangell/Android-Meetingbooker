@@ -32,11 +32,9 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
     Button btnReg, btnDatePicker, btnTimePicker;
     ListView lv;
 
-    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
-    public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ]{2,20}");
-    public static final Pattern DATO = Pattern.compile("(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}");
+    public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
+    public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
     public static final Pattern TID = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
-    //Tid formatet må kunne være på formatet 5:5 også
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +53,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         db = new DBHandler(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("\tRegistrer møte ");
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
@@ -99,7 +96,7 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
 
     public boolean validerDato() throws ParseException {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy");
         Date d1 = sdformat.parse(currentDate);
         String datoInput = dato.getText().toString().trim();
 
@@ -108,25 +105,26 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
             return false;
         }
         else {
-            Date d2 = sdformat.parse(datoInput);
-            if (d1.compareTo(d2) > 0) {
-            dato.setError("Dato kan ikke være tilbake i tid");
-                Log.d("Inne i if", "Dato har vært");
-                return false;
+            try {
+                Date d2 = sdformat.parse(datoInput);
+                if (d1.compareTo(d2) > 0) {
+                    dato.setError("Dato kan ikke være tilbake i tid");
+                    return false;
+                } else {
+                    dato.setError(null);
+                    return true;
+                }
             }
-        /*else if(!DATO.matcher(datoInput).matches()) {
-            dato.setError("Dato må være i format DD-MM-YYYY");
-            return false;*/
-            else {
-                dato.setError(null);
-                return true;
+            catch(ParseException e){
+                dato.setError("Dato må være i format DD-MM-YYYY");
+                return false;
             }
         }
     }
 
     public boolean validerTid() throws ParseException {
         String currentDateAndTime = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date());
-        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         Date d1 = sdformat.parse(currentDateAndTime);
         String datoInput = dato.getText().toString().trim();
         String tidInput = tid.getText().toString().trim();

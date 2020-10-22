@@ -37,6 +37,7 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
                     //SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     boolean varsel = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("bytt", true);
 
+                    //må skrive noe for å få pushet, tralala
                     if(varsel == true){
                         ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},1);
                     } else { //mulig denne koden ikke skal stå her i det hele tatt... vet ikke helt hvordan jeg skal implementere den

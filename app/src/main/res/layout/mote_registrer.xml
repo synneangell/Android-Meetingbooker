@@ -18,6 +18,17 @@
         android:layout_marginBottom="675dp"
         android:background="@color/toolbar" />
 
+    <ImageView
+        android:id="@+id/lagre"
+        app:srcCompat="@drawable/ic_baseline_save_alt_24"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="350dp"
+        android:layout_marginRight="10dp"
+        android:onClick="regMote"
+        />
+
 
     <EditText
         android:id="@+id/txtNavnMote"
@@ -129,16 +140,5 @@
         android:layout_marginLeft="255dp"
         android:background="@color/toolbar"
         android:text="@string/velgTid" />
-
-
-    <Button
-        android:id="@+id/btnRegMote"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="350dp"
-        android:background="@color/toolbar"
-        android:onClick="regMote"
-        android:text="@string/lagre" />
 
 </RelativeLayout>

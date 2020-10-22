@@ -6,9 +6,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.View;
-
 import androidx.core.app.ActivityCompat;
-
 
 public class Aktivitet_Innstillinger extends PreferenceActivity {
 
@@ -36,33 +34,28 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
 
                     boolean varsel = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("bytt", true);
 
-
                     if(varsel == true){
-                        ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},1);
+                            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},1);
+                        }
                     }
-                }
-            };
+                };
         }
-
-
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
         }
 
-    @Override
-    public void onResume(){
-        super.onResume();
-        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+        @Override
+        public void onResume(){
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+        }
 
-    }
-
-    @Override
-    public void onPause(){
+        @Override
+        public void onPause(){
             super.onPause();
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
-    }
-
+        }
     }
 }

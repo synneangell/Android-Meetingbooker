@@ -1,4 +1,5 @@
 package com.example.s331153s333975mappe2;
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,6 +12,7 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,13 +50,11 @@ public class MinVarselService extends Service {
                 Long moteid = mote.get_MID();
                 if(varsel){
                     List<Kontakt> deltakere = db.finnDeltakere(moteid);
-                    Log.d("Deltakeresize", Integer.toString(deltakere.size()));
                     for(Kontakt kontakt : deltakere){
                         sendSMS(kontakt.telefon);
                     }
                 }
             }
-
         }
         return super.onStartCommand(intent, flags, startId);
     }

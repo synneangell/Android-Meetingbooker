@@ -91,7 +91,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setActionBar(toolbar);
-        toolbar.inflateMenu(R.menu.menu_motedeltagelse);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
 
@@ -110,7 +109,6 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 long moteid = sp.getLong("MId", 0);
-
                 SharedPreferences.Editor editor = sp2.edit();
                 editor.putLong("MId", moteid);
                 editor.apply();
@@ -137,56 +135,39 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
     }
 
 
-    /**------------- METODER FOR NEDTREKKSMENY --------------**/
-    @Override
-    public boolean onCreateOptionsMenu (Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_motedeltagelse, menu);
-        return true;
+    public void endre(View v){
+        long MId = sp.getLong("MId", 0);
+        String innNavn = sp.getString("moteNavn", "feil");
+        String innSted = sp.getString("moteSted", "feil");
+        String innDato = sp.getString("moteDato", "feil");
+        String innTid = sp.getString("moteTid","feil");
+
+
+        SharedPreferences.Editor editor = sp2.edit();
+        editor.putLong("MId", MId);
+        editor.putString("moteNavn", innNavn);
+        editor.putString("moteSted", innSted);
+        editor.putString("moteDato", innDato);
+        editor.putString("moteTid", innTid);
+        editor.apply();
+        Intent intent = new Intent(this, Aktivitet_MoteEndre.class);
+        startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.endre:
-
+    public void slett(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this, R.style.AlertDialogStyle);
+        builder.setMessage(getResources().getString(R.string.slettMote));
+        builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
                 long MId = sp.getLong("MId", 0);
-                String innNavn = sp.getString("moteNavn", "feil");
-                String innSted = sp.getString("moteSted", "feil");
-                String innDato = sp.getString("moteDato", "feil");
-                String innTid = sp.getString("moteTid","feil");
-
-
-                SharedPreferences.Editor editor = sp2.edit();
-                editor.putLong("MId", MId);
-                editor.putString("moteNavn", innNavn);
-                editor.putString("moteSted", innSted);
-                editor.putString("moteDato", innDato);
-                editor.putString("moteTid", innTid);
-                editor.apply();
-                Intent intent = new Intent(this, Aktivitet_MoteEndre.class);
+                db.slettMote(MId);
+                Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
                 startActivity(intent);
-                break;
-            case R.id.slett:
-                AlertDialog.Builder builder = new AlertDialog.Builder(Aktivitet_MoteDeltagelse.this, R.style.AlertDialogStyle);
-                builder.setMessage(getResources().getString(R.string.slettMote));
-                builder.setPositiveButton(getResources().getString(R.string.ja), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        long MId = sp.getLong("MId", 0);
-                        db.slettMote(MId);
-                        Intent intent = new Intent(Aktivitet_MoteDeltagelse.this, Aktivitet_Mote.class);
-                        startActivity(intent);
-                    }
-                });
-                builder.setNegativeButton(getResources().getString(R.string.nei), null);
-                builder.show();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-
+            }
+        });
+        builder.setNegativeButton(getResources().getString(R.string.nei), null);
+        builder.show();
     }
 
 }

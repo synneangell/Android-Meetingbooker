@@ -15,6 +15,28 @@
         android:layout_height="wrap_content"
         android:background="@color/toolbar" />
 
+    <ImageView
+        android:id="@+id/slett"
+        app:srcCompat="@drawable/ic_baseline_delete_forever_24"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="350dp"
+        android:layout_marginRight="10dp"
+        android:onClick="slett"
+        />
+
+    <ImageView
+        android:id="@+id/endre"
+        app:srcCompat="@drawable/ic_baseline_edit_24"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="318dp"
+        android:layout_marginRight="10dp"
+        android:onClick="endre"
+        />
+
     <TextView
         android:id="@+id/moteinformasjon"
         android:layout_width="400dp"

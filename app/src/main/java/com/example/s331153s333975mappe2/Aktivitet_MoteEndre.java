@@ -60,7 +60,7 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         dato.setText(sp.getString("moteDato","feil"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_mote_endre);
+        //toolbar.inflateMenu(R.menu.menu_mote_endre);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
@@ -71,56 +71,39 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
                 startActivity(intent);
             }
         });
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_mote_endre, menu);
-        return true;
-    }
+    public void lagre (View v){
+        try {
+            if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
+                Toast.makeText(Aktivitet_MoteEndre.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                long MId = sp.getLong("MId", 10);
+                Mote mote = new Mote();
+                mote.set_MID(MId);
+                mote.setNavn(navn.getText().toString());
+                mote.setSted(sted.getText().toString());
+                mote.setDato(dato.getText().toString());
+                mote.setTid(tid.getText().toString());
+                db.oppdaterMote(mote);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.menuLagre:
-                try {
-                    if(!validerNavn() | !validerSted() | !validerDato() | !validerTid()){
-                        Toast.makeText(Aktivitet_MoteEndre.this, "Alle felt må være riktig fylt inn", Toast.LENGTH_SHORT).show();
-                        break;
-                    } else {
-                        long MId = sp.getLong("MId", 10);
-                        Mote mote = new Mote();
-                        mote.set_MID(MId);
-                        mote.setNavn(navn.getText().toString());
-                        mote.setSted(sted.getText().toString());
-                        mote.setDato(dato.getText().toString());
-                        mote.setTid(tid.getText().toString());
-                        db.oppdaterMote(mote);
+                sp2 = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp2.edit();
+                editor.putString("moteNavn", navn.getText().toString());
+                editor.putString("moteSted", sted.getText().toString());
+                editor.putString("moteDato", dato.getText().toString());
+                editor.putString("moteTid", tid.getText().toString());
+                editor.putLong("MId", MId);
+                editor.apply();
 
-                        sp2 = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sp2.edit();
-                        editor.putString("moteNavn", navn.getText().toString());
-                        editor.putString("moteSted", sted.getText().toString());
-                        editor.putString("moteDato", dato.getText().toString());
-                        editor.putString("moteTid", tid.getText().toString());
-                        editor.putLong("MId", MId);
-                        editor.apply();
-
-                        Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_MoteDeltagelse.class);
-                        startActivity(intent);
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                break;
-            default:
-                break;
+                Intent intent = new Intent(Aktivitet_MoteEndre.this, Aktivitet_MoteDeltagelse.class);
+                startActivity(intent);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        return true;
     }
-
 
     public boolean validerNavn(){
         String navnInput = navn.getText().toString().trim();

@@ -16,8 +16,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="675dp"
-            android:background="@color/toolbar" />
+            android:background="@color/toolbar"/>
 
+        <ImageView
+            android:id="@+id/lagre"
+            app:srcCompat="@drawable/ic_baseline_save_alt_24"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginRight="10dp"
+            android:onClick="lagre"
+            />
 
         <EditText
             android:id="@+id/txtNavnMote"

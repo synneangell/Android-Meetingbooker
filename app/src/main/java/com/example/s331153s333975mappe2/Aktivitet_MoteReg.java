@@ -37,7 +37,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         sted = (EditText) findViewById(R.id.txtSted);
         dato = (EditText) findViewById(R.id.dato);
         tid = (EditText) findViewById(R.id.tid);
-        btnReg = (Button) findViewById(R.id.btnRegMote);
         btnDatePicker=(Button)findViewById(R.id.btn_dato);
         btnTimePicker=(Button)findViewById(R.id.btn_tid);
         btnDatePicker.setOnClickListener(this);
@@ -46,7 +45,6 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
         db = new DBHandler(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));

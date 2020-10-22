@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -36,7 +37,6 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
         txtTelefonnr.setText(sp.getString("kontaktTelefonnr", "feil"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_kontaktinfo);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));
@@ -49,43 +49,29 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
         });
     }
 
-    /**------------- METODER FOR NEDTREKKSMENY --------------**/
-    @Override
-    public boolean onCreateOptionsMenu (Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_kontaktinfo, menu);
-        return true;
+    public void endre(View v){
+        long kontaktId = sp.getLong("KId", 0);
+        String navn = sp.getString("kontaktNavn", "feil");
+        String telefonnr = sp.getString("kontaktTelefonnr", "feil");
+
+        SharedPreferences.Editor editor = sp2.edit();
+        editor.putLong("KId", kontaktId);
+        editor.putString("kontaktNavn", navn);
+        editor.putString("kontaktTelefonnr", telefonnr);
+        editor.apply();
+
+        Intent intent = new Intent(this, Aktivitet_KontaktEndre.class);
+        startActivity(intent);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch (item.getItemId()){
-            case R.id.endre:
-                long kontaktId = sp.getLong("KId", 0);
-                String navn = sp.getString("kontaktNavn", "feil");
-                String telefonnr = sp.getString("kontaktTelefonnr", "feil");
-
-                SharedPreferences.Editor editor = sp2.edit();
-                editor.putLong("KId", kontaktId);
-                editor.putString("kontaktNavn", navn);
-                editor.putString("kontaktTelefonnr", telefonnr);
-                editor.apply();
-
-                Intent intent = new Intent(this, Aktivitet_KontaktEndre.class);
-                startActivity(intent);
-                break;
-            case R.id.slett:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
-                builder.setMessage(getResources().getString(R.string.slettKontakt))
-                        .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i) -> slettKontakt())
-                        .setNegativeButton(getResources().getString(R.string.nei), null)
-                        .show();
-                break;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
+    public void slett(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
+        builder.setMessage(getResources().getString(R.string.slettKontakt))
+                .setPositiveButton(getResources().getString(R.string.ja), (dialogInterface, i) -> slettKontakt())
+                .setNegativeButton(getResources().getString(R.string.nei), null)
+                .show();
     }
+
 
     public void slettKontakt(){
         long kontaktId = sp.getLong("KId", 0);

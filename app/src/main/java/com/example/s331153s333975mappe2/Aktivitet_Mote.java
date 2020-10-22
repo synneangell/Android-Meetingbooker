@@ -33,7 +33,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
     public static String PROVIDER="com.example.s331153s333975mappe2";
     public static final Uri CONTENT_URI = Uri.parse("content://"+ PROVIDER + "/mote"); //trenger vi denne? Er ikke brukt?
     public static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
-    public static final String MY_PHONE_STATE_PERMISSION = ""; //hva skal stå her?
+    public static final int MY_PHONE_STATE_PERMISSION = 0;
 
 
     @Override
@@ -98,12 +98,9 @@ public class Aktivitet_Mote extends AppCompatActivity {
 
     /**---- METODE FOR SMS-FUNKSJONALITET ----**/
         public void sendSMS() {
-        MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(Aktivitet_Mote.this, Manifest.permission.SEND_SMS);
-        MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(Aktivitet_Mote.this, Manifest.permission.READ_PHONE_STATE);
-        if (MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_GRANTED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_GRANTED) {
-            SmsManager smsMan = SmsManager.getDefault();
-            smsMan.sendTextMessage(telefonnr, null, melding, null, null);
-        } else{
+        MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS);
+        MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+        if (!(MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_GRANTED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE}, 0);
         }
     }

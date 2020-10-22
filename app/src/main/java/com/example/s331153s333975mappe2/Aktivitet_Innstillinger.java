@@ -39,12 +39,12 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
 
                     if(varsel == true){
                         ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},1);
-                    } else {
+                    } else { //mulig denne koden ikke skal stå her i det hele tatt... vet ikke helt hvordan jeg skal implementere den
                         Intent i = new Intent(this, MinVarselService.class);
                         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
-                        AlarmManager sms = (AlarmManager) getSystemService(Context.ALARM_SERVICE); //dette skal vel være smsManager
-                        if(sms != null){
-                            sms.cancel(pintent);
+                        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE); //dette skal vel være smsManager eller??
+                        if(alarm != null){
+                            alarm.cancel(pintent);
                         }
                     }
                 }

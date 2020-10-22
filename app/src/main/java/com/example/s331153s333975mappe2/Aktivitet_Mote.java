@@ -1,11 +1,15 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
@@ -26,7 +31,10 @@ public class Aktivitet_Mote extends AppCompatActivity {
     SharedPreferences sp;
 
     public static String PROVIDER="com.example.s331153s333975mappe2";
-    public static final Uri CONTENT_URI = Uri.parse("content://"+ PROVIDER + "/mote");
+    public static final Uri CONTENT_URI = Uri.parse("content://"+ PROVIDER + "/mote"); //trenger vi denne? Er ikke brukt?
+    public static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 0;
+    public static final String MY_PHONE_STATE_PERMISSION = ""; //hva skal stå her?
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +91,21 @@ public class Aktivitet_Mote extends AppCompatActivity {
         toolbar.inflateMenu(R.menu.menu_mote);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
+
         startPaminnelse();
+        sendSMS();
+    }
+
+    /**---- METODE FOR SMS-FUNKSJONALITET ----**/
+        public void sendSMS() {
+        MY_PERMISSIONS_REQUEST_SEND_SMS = ActivityCompat.checkSelfPermission(Aktivitet_Mote.this, Manifest.permission.SEND_SMS);
+        MY_PHONE_STATE_PERMISSION = ActivityCompat.checkSelfPermission(Aktivitet_Mote.this, Manifest.permission.READ_PHONE_STATE);
+        if (MY_PERMISSIONS_REQUEST_SEND_SMS == PackageManager.PERMISSION_GRANTED && MY_PHONE_STATE_PERMISSION == PackageManager.PERMISSION_GRANTED) {
+            SmsManager smsMan = SmsManager.getDefault();
+            smsMan.sendTextMessage(telefonnr, null, melding, null, null);
+        } else{
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE}, 0);
+        }
     }
 
     /**----- METODE FOR Å POPULERE LISTVIEW ------**/
@@ -114,7 +136,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.kontakter:
-                Intent i = new Intent(this, Aktivitet_Kontakt.class);
+                 Intent i = new Intent(this, Aktivitet_Kontakt.class);
                 startActivity(i);
                 break;
             case R.id.innstillinger:

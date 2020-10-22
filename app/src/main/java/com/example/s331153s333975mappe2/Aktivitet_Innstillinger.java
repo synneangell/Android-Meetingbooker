@@ -1,14 +1,18 @@
 package com.example.s331153s333975mappe2;
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
+import android.telephony.SmsManager;
 import android.view.View;
-
 import androidx.core.app.ActivityCompat;
-
 
 public class Aktivitet_Innstillinger extends PreferenceActivity {
 
@@ -19,7 +23,6 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
     }
 
     public static class PrefsFragment extends PreferenceFragment {
-
         private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
 
         @Override
@@ -30,21 +33,23 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
             preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                    android.preference.SwitchPreference preference = (android.preference.SwitchPreference) findPreference("bytt");
-                    SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    //boolean isChecked = sharedPreferences1.getBoolean("bytt", false);
-
+                    //SwitchPreference preference = (SwitchPreference) findPreference("bytt");
+                    //SharedPreferences sharedPreferences1 = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     boolean varsel = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("bytt", true);
-
 
                     if(varsel == true){
                         ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.SEND_SMS},1);
+                    } else {
+                        Intent i = new Intent(this, MinVarselService.class);
+                        PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
+                        AlarmManager sms = (AlarmManager) getSystemService(Context.ALARM_SERVICE); //dette skal vel være smsManager
+                        if(sms != null){
+                            sms.cancel(pintent);
+                        }
                     }
                 }
             };
         }
-
-
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -55,7 +60,9 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
     public void onResume(){
         super.onResume();
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(preferenceChangeListener);
-
+        SwitchPreference preferanse = (SwitchPreference) findPreference("bytt");
+        preferanse.setSummaryOff("av");
+        preferanse.setSummaryOn("på");
     }
 
     @Override
@@ -63,6 +70,5 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
             super.onPause();
             getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(preferenceChangeListener);
     }
-
     }
 }

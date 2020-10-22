@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.s331153s333975mappe2">
 
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <user-permission android:name="android.permission.SEND_SMS" />
+    <user-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="com.example.s331153s333975mappe2.permission"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -41,7 +41,8 @@
             android:parentActivityName=".Aktivitet_MoteDeltagelse"/>
         <activity android:name=".Aktivitet_Innstillinger"
             android:parentActivityName=".Aktivitet_Mote"/>
-        <receiver android:name=".MinBroadcastReceiver" android:exported="true">
+        <receiver android:name=".MinBroadcastReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name=".serviceBroadcast"/>
             </intent-filter>

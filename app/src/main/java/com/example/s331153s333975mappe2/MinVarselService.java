@@ -1,4 +1,5 @@
 package com.example.s331153s333975mappe2;
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;

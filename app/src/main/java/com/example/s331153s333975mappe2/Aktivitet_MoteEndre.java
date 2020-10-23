@@ -6,13 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -30,7 +29,6 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
     private int mYear, mMonth, mDay, mHour, mMinute;
     DBHandler db;
     SharedPreferences sp, sp2;
-    MenuItem lagre;
 
     public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
     public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
@@ -44,13 +42,11 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         sted = findViewById(R.id.txtSted);
         dato = findViewById(R.id.dato);
         tid = findViewById(R.id.tid);
-        endre = (Button) findViewById(R.id.endre);
         btnDatePicker=(Button)findViewById(R.id.btn_dato);
         btnTimePicker=(Button)findViewById(R.id.btn_tid);
         btnDatePicker.setOnClickListener(this);
         btnTimePicker.setOnClickListener(this);
         db = new DBHandler(this);
-        MenuItem lagre;
 
         sp = getApplicationContext().getSharedPreferences("Aktivitet_MoteDeltagelse", Context.MODE_PRIVATE);
 
@@ -60,7 +56,6 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         dato.setText(sp.getString("moteDato","feil"));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.inflateMenu(R.menu.menu_mote_endre);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));

@@ -8,8 +8,6 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.View;
-
 import androidx.annotation.Nullable;
 import java.util.Calendar;
 import java.util.regex.Pattern;

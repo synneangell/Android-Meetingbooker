@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -23,7 +22,7 @@ public class Aktivitet_MoteReg extends AppCompatActivity implements View.OnClick
     EditText navn, sted, tid, dato;
     private int year, month, day, mHour, mMinute;
     DBHandler db;
-    Button btnReg, btnDatePicker, btnTimePicker;
+    Button btnDatePicker, btnTimePicker;
 
     public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
     public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");

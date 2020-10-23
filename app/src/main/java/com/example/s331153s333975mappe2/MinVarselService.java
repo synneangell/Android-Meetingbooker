@@ -9,8 +9,6 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import java.text.SimpleDateFormat;
@@ -37,23 +35,22 @@ public class MinVarselService extends Service {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Intent i = new Intent(this, Aktivitet_Mote.class);
         PendingIntent pintent = PendingIntent.getActivity(MinVarselService.this, 0, i, 0);
-        byggNotifikasjon(pintent, notificationManager);
-
-        Log.d("I varsel, sms =", Boolean.toString(sms));
 
         for(Mote mote : alleMoter){
             if(currentDate.equals(mote.getDato())){
+                Log.d("Inne i if", "");
+                Log.d("Current date", currentDate.toString());
+                Log.d("Mote dato", mote.getDato());
                 Long moteid = mote.get_MID();
+                byggNotifikasjon(pintent, notificationManager);
+
                 if(sms){
                     List<Kontakt> deltakere = db.finnDeltakere(moteid);
                     for(Kontakt kontakt : deltakere){
                         sendSMS(kontakt.telefon);
-                        byggNotifikasjon(pintent, notificationManager);
                     }
                 }
-                else{
-                    byggNotifikasjon(pintent, notificationManager);
-                }
+
             }
         }
         return super.onStartCommand(intent, flags, startId);

@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 
 public class Aktivitet_KontaktEndre extends AppCompatActivity {
     EditText navn, telefonnr;
-    Button endre;
     DBHandler db;
     SharedPreferences sp;
 
@@ -47,7 +46,6 @@ public class Aktivitet_KontaktEndre extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public void endreKontakt(View v){

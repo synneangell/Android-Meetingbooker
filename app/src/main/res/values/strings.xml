@@ -33,11 +33,15 @@
     <string name="varslerAv">Varsler av</string>
     <string name="varslerPa">Varsler på</string>
     <string name="settPaVarsel">Sett på varsel</string>
+    <string name="på">På</string>
     <string name="av">Av</string>
     <string name="tidForVarsel">Tid for varsel</string>
     <string name="deltakere">Deltakere:</string>
-
-
-
+    <string name="smsVarsel">Sms-varsler til deltakere</string>
+    <string name="klokkeslett">Klokkeslett</string>
+    <string name="settKlokkeslett">Sett klokkeslett på varsel</string>
+    <string name="egendefinert">Egendefinert SMS-melding</string>
+    <string name="lagEgendefinert">Lag egendefinert melding</string>
+    <string name="klokkeslettTolv">12:00</string>
 
 </resources>

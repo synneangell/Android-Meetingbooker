@@ -8,23 +8,22 @@
 
         <SwitchPreference
             android:key="sms"
-            android:title="Sms-varsler til deltakere"
-            android:summaryOff="Av"
-            android:summaryOn="På"/>
+            android:title="@string/smsVarsel"
+            android:summaryOff="@string/av"
+            android:summaryOn="@string/på"/>
 
          <EditTextPreference
             android:key="klokkeslett"
-            android:title="Klokkeslett"
-            android:defaultValue="12:00"
+            android:title="@string/klokkeslett"
+            android:defaultValue="@string/klokkeslettTolv"
              android:inputType="datetime"
-             android:summary="Sett klokkeslett på varsel"
-            android:text="12:00"/>
-
+             android:summary="@string/settKlokkeslett"
+            android:text="@string/klokkeslettTolv"/>
 
         <EditTextPreference
             android:key="smsMelding"
-            android:title="Egendefinert SMS-melding"
-            android:summary="Lag egendefinert melding"/>
+            android:title="@string/egendefinert"
+            android:summary="@string/lagEgendefinert"/>
 
     </PreferenceCategory>
 

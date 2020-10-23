@@ -72,7 +72,6 @@ public class Aktivitet_KontaktInfo extends AppCompatActivity {
                 .show();
     }
 
-
     public void slettKontakt(){
         long kontaktId = sp.getLong("KId", 0);
         db.slettKontakt(kontaktId);

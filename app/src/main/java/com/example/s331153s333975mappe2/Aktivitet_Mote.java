@@ -1,8 +1,6 @@
 package com.example.s331153s333975mappe2;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,8 +8,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -109,7 +105,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
         sendBroadcast(intent);
     }
 
-
     /**----- METODE FOR Å POPULERE LISTVIEW ------**/
     public List<String> visMoterListView(){
         List <String> stringMoter = new ArrayList<>();
@@ -144,6 +139,5 @@ public class Aktivitet_Mote extends AppCompatActivity {
         }
         return true;
     }
-
 
 }

@@ -1,12 +1,11 @@
 package com.example.s331153s333975mappe2;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -214,7 +213,6 @@ public class DBHandler extends SQLiteOpenHelper {
         cursor.moveToFirst();
         while(cursor.isAfterLast() == false) {
             deltakere.add(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID)));
-            Log.d("Cursor innhold ",Long.toString(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID))));
             cursor.moveToNext();
         }
         cursor.close();
@@ -234,7 +232,6 @@ public class DBHandler extends SQLiteOpenHelper {
         cursor.moveToFirst();
         while(cursor.isAfterLast() == false) {
             deltakereID.add(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID)));
-            Log.d("Cursor innhold ",Long.toString(cursor.getLong(cursor.getColumnIndex(KEY_FK_KID))));
             cursor.moveToNext();
         }
         cursor.close();
@@ -255,7 +252,6 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = null;
         String sql ="SELECT "+KEY_FK_KID+ " FROM "+TABLE_MOTEDELTAGELSER+" WHERE "+KEY_FK_MID+" = "+MId+" AND "+KEY_FK_KID+" = "+KId;
         cursor= db.rawQuery(sql,null);
-        Log.d("CursorCount ", Integer.toString(cursor.getCount()));
         int cursorCount = cursor.getCount();
         cursor.close();
 

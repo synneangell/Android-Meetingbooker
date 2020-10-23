@@ -35,13 +35,6 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
             preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                        //mulig denne koden ikke skal stå her i det hele tatt... vet ikke helt hvordan jeg skal implementere den
-                        /*Intent i = new Intent(this, MinVarselService.class);
-                        PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
-                        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE); //dette skal vel være smsManager eller??
-                        if(alarm != null){
-                            alarm.cancel(pintent);
-                        }*/
                         Log.d("TAG", "Inne i listener");
                         stoppPaminnelse();
                         startPaminnelse();

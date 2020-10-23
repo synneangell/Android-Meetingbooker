@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,8 +29,6 @@ public class MinVarselService extends Service {
 
     @Override
     public int onStartCommand (Intent intent, int flags, int startId){
-        Toast.makeText(getApplicationContext(), "I MinVarselService" , Toast.LENGTH_SHORT).show();
-
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         boolean sms = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("sms", true);
         db = new DBHandler(MinVarselService.this);
@@ -40,15 +39,20 @@ public class MinVarselService extends Service {
         PendingIntent pintent = PendingIntent.getActivity(MinVarselService.this, 0, i, 0);
         byggNotifikasjon(pintent, notificationManager);
 
+        Log.d("I varsel, sms =", Boolean.toString(sms));
+
         for(Mote mote : alleMoter){
             if(currentDate.equals(mote.getDato())){
-                byggNotifikasjon(pintent, notificationManager);
                 Long moteid = mote.get_MID();
                 if(sms){
                     List<Kontakt> deltakere = db.finnDeltakere(moteid);
                     for(Kontakt kontakt : deltakere){
                         sendSMS(kontakt.telefon);
+                        byggNotifikasjon(pintent, notificationManager);
                     }
+                }
+                else{
+                    byggNotifikasjon(pintent, notificationManager);
                 }
             }
         }

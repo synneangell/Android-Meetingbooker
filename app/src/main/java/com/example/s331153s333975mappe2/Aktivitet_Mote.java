@@ -39,8 +39,6 @@ public class Aktivitet_Mote extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sp = getApplicationContext().getSharedPreferences("Aktivitet_Mote", Context.MODE_PRIVATE);
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        varsel = pref.getBoolean("bytt", true);
         setContentView(R.layout.mote);
         lv = findViewById(R.id.listView_mote);
         db = new DBHandler(this);
@@ -92,10 +90,7 @@ public class Aktivitet_Mote extends AppCompatActivity {
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
 
-        AlarmManager alarm = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
-        if(alarm!=null){
-            startPaminnelse();
-        }
+        startPaminnelse();
         sjekkGodkjenningSMS();
     }
 

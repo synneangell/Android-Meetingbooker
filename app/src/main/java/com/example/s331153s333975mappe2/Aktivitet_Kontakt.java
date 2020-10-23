@@ -83,7 +83,7 @@ public class Aktivitet_Kontakt extends AppCompatActivity {
 
     }
 
-    /**----- Populere listview ------**/
+    /**----- POPULERER LISTVIEW ------**/
     public List<String> visKontakterListView(){
         List <String> stringKontakter = new ArrayList<>();
         List<Kontakt> kontakter = db.finnAlleKontakter();

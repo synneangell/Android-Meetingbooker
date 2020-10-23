@@ -134,6 +134,7 @@ public class Aktivitet_MoteDeltagelse extends AppCompatActivity {
         return stringKontakter;
     }
 
+    /**------------- METODE FOR IKONENE SLETT & ENDRE --------------**/
 
     public void endre(View v){
         long MId = sp.getLong("MId", 0);

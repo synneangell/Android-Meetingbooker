@@ -7,8 +7,8 @@
         android:title="Varsler">
 
         <SwitchPreference
-            android:key="bytt"
-            android:title="Sms-varsler"
+            android:key="sms"
+            android:title="Sms-varsler til deltakere"
             android:summaryOff="Av"
             android:summaryOn="På"/>
 
@@ -19,10 +19,12 @@
             android:summary="Sett klokkeslett på varsel"
             android:text="12:00"/>
 
+
         <EditTextPreference
             android:key="smsMelding"
             android:title="Egendefinert SMS-melding"
             android:summary="Lag egendefinert melding"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

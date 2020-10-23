@@ -1,19 +1,16 @@
 package com.example.s331153s333975mappe2;
-import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
-import android.view.View;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,8 +28,10 @@ public class MinVarselService extends Service {
 
     @Override
     public int onStartCommand (Intent intent, int flags, int startId){
+        Toast.makeText(getApplicationContext(), "I MinVarselService" , Toast.LENGTH_SHORT).show();
+
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        boolean varsel = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("bytt", true);
+        boolean sms = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("sms", true);
         db = new DBHandler(MinVarselService.this);
         final List<Mote> alleMoter = db.finnAlleMoter();
 
@@ -45,7 +44,7 @@ public class MinVarselService extends Service {
             if(currentDate.equals(mote.getDato())){
                 byggNotifikasjon(pintent, notificationManager);
                 Long moteid = mote.get_MID();
-                if(varsel){
+                if(sms){
                     List<Kontakt> deltakere = db.finnDeltakere(moteid);
                     for(Kontakt kontakt : deltakere){
                         sendSMS(kontakt.telefon);
@@ -59,8 +58,8 @@ public class MinVarselService extends Service {
     public void sendSMS(String telefonnr){
         SharedPreferences pref2 = PreferenceManager.getDefaultSharedPreferences(this);
         String melding = pref2.getString("smsMelding", "Husk møtet ditt for i dag!");
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(telefonnr, null, melding, null, null);
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage(telefonnr, null, melding, null, null);
     }
 
     private void byggNotifikasjon(PendingIntent pintent, NotificationManager notificationManager){

@@ -16,12 +16,14 @@
             android:key="klokkeslett"
             android:title="Klokkeslett"
             android:hint="12:00"
+            android:inputType="datetime"
             android:summary="Sett klokkeslett på varsel"
             android:text="12:00"/>
 
 
         <EditTextPreference
             android:key="smsMelding"
+            android:inputType="text"
             android:title="Egendefinert SMS-melding"
             android:summary="Lag egendefinert melding"/>
 

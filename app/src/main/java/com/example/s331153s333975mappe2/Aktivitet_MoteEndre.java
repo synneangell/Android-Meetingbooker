@@ -26,11 +26,10 @@ import java.util.Calendar;
 
 public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnClickListener {
     EditText navn, sted, tid, dato;
-    Button endre, btnDatePicker, btnTimePicker;
+    Button btnDatePicker, btnTimePicker;
     private int mYear, mMonth, mDay, mHour, mMinute;
     DBHandler db;
     SharedPreferences sp, sp2;
-    MenuItem lagre;
 
     public static final Pattern NAVN = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
     public static final Pattern STED = Pattern.compile("[a-zæøåA-ZÆØÅ0-9 ]{2,20}");
@@ -44,7 +43,6 @@ public class Aktivitet_MoteEndre extends AppCompatActivity implements View.OnCli
         sted = findViewById(R.id.txtSted);
         dato = findViewById(R.id.dato);
         tid = findViewById(R.id.tid);
-        endre = (Button) findViewById(R.id.endre);
         btnDatePicker=(Button)findViewById(R.id.btn_dato);
         btnTimePicker=(Button)findViewById(R.id.btn_tid);
         btnDatePicker.setOnClickListener(this);

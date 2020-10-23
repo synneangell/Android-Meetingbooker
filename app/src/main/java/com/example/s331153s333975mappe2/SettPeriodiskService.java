@@ -12,6 +12,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 public class SettPeriodiskService extends Service {
     @Nullable
@@ -29,7 +30,6 @@ public class SettPeriodiskService extends Service {
         cal.set(Calendar.HOUR_OF_DAY, brukerTid[0]);
         cal.set(Calendar.MINUTE, brukerTid[1]);
         cal.set(Calendar.SECOND,0);
-        Log.d("Tid", cal.getTime().toString());
         Intent i = new Intent(this, MinVarselService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);

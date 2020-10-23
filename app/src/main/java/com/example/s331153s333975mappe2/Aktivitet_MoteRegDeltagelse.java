@@ -62,7 +62,7 @@ public class Aktivitet_MoteRegDeltagelse extends Activity {
         });
 
         /**---- TOOLBAR OPPRETTES ----**/
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_launcher_small);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.arrow));

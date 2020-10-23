@@ -11,6 +11,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import androidx.core.app.ActivityCompat;
 
@@ -41,6 +42,7 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
                         if(alarm != null){
                             alarm.cancel(pintent);
                         }*/
+                        Log.d("TAG", "Inne i listener");
                         stoppPaminnelse();
                         startPaminnelse();
                 }
@@ -67,6 +69,19 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
                 am.cancel(pi);
             }
         }
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this.preferenceChangeListener);
+
+        }
+
+        @Override
+        public void onPause() {
+            getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this.preferenceChangeListener);
+            super.onPause();
+        }
+
     }
 
 }

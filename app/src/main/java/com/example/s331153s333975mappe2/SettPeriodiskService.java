@@ -12,6 +12,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 public class SettPeriodiskService extends Service {
     @Nullable
@@ -24,7 +25,14 @@ public class SettPeriodiskService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId){
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         String klokkeSlett = pref.getString("klokkeslett", "12:00");
+
+        Pattern TID = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
+        if(!TID.matcher(klokkeSlett).matches()){
+            klokkeSlett = "12:00";
+
+        }
         final int[] brukerTid = delTid(klokkeSlett);
+
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, brukerTid[0]);
         cal.set(Calendar.MINUTE, brukerTid[1]);

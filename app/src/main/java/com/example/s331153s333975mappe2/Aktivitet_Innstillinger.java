@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -13,9 +15,14 @@ import android.preference.SwitchPreference;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.core.app.ActivityCompat;
 
+import java.util.regex.Pattern;
+
 public class Aktivitet_Innstillinger extends PreferenceActivity {
+    public static final Pattern TID = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +39,26 @@ public class Aktivitet_Innstillinger extends PreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
 
+            EditTextPreference klokkeslettEdit = (EditTextPreference)
+                    getPreferenceScreen().findPreference("klokkeslett");
+
             preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                         Log.d("TAG", "Inne i listener");
+                        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                        String klokkeslett = pref.getString("klokkeslett", "12:00");
+                        if(!TID.matcher(klokkeslett).matches()){
+                            Toast.makeText(getActivity(), "Tid må være i format TT:MM.\n Varselet vil komme til default verdi 12:00" , Toast.LENGTH_SHORT).show();
+                        }
                         stoppPaminnelse();
                         startPaminnelse();
                 }
-            };
 
+
+            };
         }
+
 
         @Override
         public void onViewCreated(View view, Bundle savedInstanceState) {
